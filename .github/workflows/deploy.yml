@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+            - fix-deployment-workflow
 
 jobs:
     build:
@@ -33,14 +34,14 @@ jobs:
             - name: configure github pages
               uses: actions/configure-pages@v4
               with:
-                  static_site_generator: next
+                  static_site_generator: react-static
             - name: npm install
               run: npm ci
             - run: npm run build
             - name: upload artifacts
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: "./out"
+                  path: "./build"
 
             - name: deploy
               id: deployment
