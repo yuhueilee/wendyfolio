@@ -1,5 +1,36 @@
 @import "./../../index.scss";
+@import "./../../../node_modules/bootstrap/scss/mixins";
 
-h2 {
+.layout {
+    @include flex;
+    background-color: $colorGreyPrimary50;
+}
+
+.title {
     @include poppins-medium;
+    @include flex;
+    margin: 0;
+    padding: 16px;
+    color: $colorYellowPrimary;
+    border: solid 2px $colorYellowSecondary;
+    box-sizing: border-box; /* make inset border */
+}
+
+/* Margin setup based on breakpoints */
+@include media-breakpoint-down(lg) {
+    .layout {
+        padding: 24px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .layout {
+        padding: 24px 104px;
+    }
+    .title {
+        $gapSize: 24px;
+        $colNum: 12;
+        $columnSize: calc((100% + $gapSize) / $colNum - $gapSize);
+        width: calc($columnSize * 6 + $gapSize * 5);
+    }
 }

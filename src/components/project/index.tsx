@@ -1,12 +1,16 @@
 import './index.scss';
 
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const Project = () => {
     return (
         <Container>
             <Row>
-                <h2>Side Projects</h2>
+                <Col>
+                    <div className="layout">
+                        <h2 className="title">Side Projects</h2>
+                    </div>
+                </Col>
             </Row>
         </Container>
     );
