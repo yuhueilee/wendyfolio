@@ -1,9 +1,15 @@
-import "./App.css";
+import './App.css';
 
-import React from "react";
+import React from 'react';
+
+import Project from './components/project';
 
 function App() {
-    return <div className="App">learn react</div>;
+    return (
+        <div>
+            <Project />
+        </div>
+    );
 }
 
 export default App;
