@@ -1,10 +1,9 @@
-name: Test, Build and Deploy to Github Pages
+name: Production (github-pages) Deployment
 
 on:
     push:
         branches:
             - main
-            - fix-deployment-workflow
 
 jobs:
     build:
