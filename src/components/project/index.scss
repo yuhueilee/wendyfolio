@@ -12,7 +12,8 @@
     margin: 0;
     padding: 16px;
     color: $colorYellowPrimary;
-    border: solid 2px $colorYellowSecondary;
+    border: solid $borderWidth $colorYellowSecondary;
+    border-radius: $borderRadius;
     box-sizing: border-box; /* make inset border */
 }
 

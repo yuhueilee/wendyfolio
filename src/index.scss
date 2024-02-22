@@ -12,6 +12,8 @@ $grid-breakpoints: (
     xl: 1200px,
     xxl: 1400px,
 );
+$borderRadius: 2px;
+$borderWidth: 2px;
 
 @mixin poppins-thin {
     font-family: "Poppins", sans-serif;
