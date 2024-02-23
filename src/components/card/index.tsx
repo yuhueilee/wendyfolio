@@ -4,14 +4,14 @@ import { CardContent } from '../../types';
 
 const CardItem = (contentList: Array<CardContent>) => {
     return (
-        <Row md={1} lg={3}>
+        <Row md={1} lg={3} className="g-4">
             {contentList.map((content, index) => (
                 <Col key={index}>
                     <Card>
                         <Card.Img variant="top" src={content.img} />
                         <Card.Body>
                             <Card.Title>{content.title}</Card.Title>
-                            <Card.Body>{content.description}</Card.Body>
+                            <Card.Text>{content.description}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
