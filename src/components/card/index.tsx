@@ -1,3 +1,5 @@
+import './index.scss';
+
 import { Card, Col, Row } from 'react-bootstrap';
 
 import { CardContent } from '../../types';
