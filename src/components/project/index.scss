@@ -1,9 +1,11 @@
 @import "./../../index.scss";
 @import "./../../../node_modules/bootstrap/scss/mixins";
 
-.layout {
-    @include flex(column);
+/* Overwrites the bootstrap style */
+.container {
     background-color: $colorGreyPrimary50;
+    margin: 0;
+    max-width: 100%;
 }
 
 .title {
@@ -20,7 +22,7 @@
 
 /* Margin setup based on breakpoints */
 @include media-breakpoint-down(lg) {
-    .layout {
+    .container {
         padding: 24px;
     }
     .title {
@@ -29,7 +31,7 @@
 }
 
 @include media-breakpoint-up(lg) {
-    .layout {
+    .container {
         padding: 24px 104px;
     }
     .title {
