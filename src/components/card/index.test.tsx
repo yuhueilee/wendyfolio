@@ -8,6 +8,7 @@ test("renders project container", () => {
             img: "https://project1.png",
             title: "project 1",
             description: "react project",
+            links: [],
         },
     ];
     render(CardItem(contentList));
