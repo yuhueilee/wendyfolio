@@ -4,7 +4,7 @@ import { CardContent } from '../../types';
 
 const CardItem = (contentList: Array<CardContent>) => {
     return (
-        <Row md={1} lg={3} className="g-4">
+        <Row xs={1} sm={1} md={1} lg={3} className="g-4">
             {contentList.map((content, index) => (
                 <Col key={index}>
                     <Card>

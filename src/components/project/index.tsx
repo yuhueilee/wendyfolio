@@ -22,6 +22,20 @@ const Project = () => {
                             title: "Penguin Battle",
                             description: "An online boardgame",
                         },
+                        {
+                            img:
+                                process.env.PUBLIC_URL +
+                                "/images/project-1.png",
+                            title: "Penguin Battle",
+                            description: "An online boardgame",
+                        },
+                        {
+                            img:
+                                process.env.PUBLIC_URL +
+                                "/images/project-1.png",
+                            title: "Penguin Battle",
+                            description: "An online boardgame",
+                        },
                     ])}
                 </Col>
             </Row>
