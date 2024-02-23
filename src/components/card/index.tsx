@@ -5,6 +5,23 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { CardContent } from '../../types';
 
 const CardItem = (contentList: Array<CardContent>) => {
+    window.addEventListener("rounded card image", () => {
+        const cardImage = document.querySelectorAll("img");
+
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            cardImage.forEach((img) => {
+                img.classList.add("rounded-start");
+            });
+        } else if (
+            window.matchMedia("(min-width: 576px)").matches ||
+            window.matchMedia("(min-width: 992px)").matches
+        ) {
+            cardImage.forEach((img) => {
+                img.classList.remove("rounded-start");
+            });
+        }
+    });
+
     return (
         <Row xs={1} sm={1} md={1} lg={3} className="g-4">
             {contentList.map((content, index) => (
