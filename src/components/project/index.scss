@@ -21,7 +21,7 @@
 }
 
 /* Styles setup based on breakpoints */
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-down(md) {
     .container {
         padding: 24px;
     }
@@ -30,7 +30,7 @@
     }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
     .container {
         padding: 24px 104px;
     }
