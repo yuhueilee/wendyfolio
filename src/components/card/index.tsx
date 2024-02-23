@@ -1,15 +1,23 @@
-import { Col, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 
 import { CardContent } from '../../types';
 
-const Card = (contentList: Array<CardContent>) => {
+const CardItem = (contentList: Array<CardContent>) => {
     return (
         <Row md={1} lg={3}>
-            {contentList.map((_, index) => (
-                <Col key={index}></Col>
+            {contentList.map((content, index) => (
+                <Col key={index}>
+                    <Card>
+                        <Card.Img variant="top" src={content.img} />
+                        <Card.Body>
+                            <Card.Title>{content.title}</Card.Title>
+                            <Card.Body>{content.description}</Card.Body>
+                        </Card.Body>
+                    </Card>
+                </Col>
             ))}
         </Row>
     );
 };
 
-export default Card;
+export default CardItem;
