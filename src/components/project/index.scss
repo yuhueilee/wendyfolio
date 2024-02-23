@@ -32,7 +32,7 @@
 
 @include media-breakpoint-up(md) {
     .container {
-        padding: 24px 104px;
+        padding: 24px 104px !important;
     }
     .title {
         $gapSize: 24px;
