@@ -5,7 +5,7 @@
 .container {
     background-color: $colorGreyPrimary50;
     margin: 0;
-    max-width: 100%;
+    max-width: 100% !important;
 }
 
 .title {
