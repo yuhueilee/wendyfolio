@@ -5,17 +5,17 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { CardContent } from '../../types';
 
 const CardItem = (contentList: Array<CardContent>) => {
-    window.addEventListener("rounded card image", () => {
+    window.addEventListener("resize", () => {
         const cardImage = document.querySelectorAll("img");
 
-        if (window.matchMedia("(min-width: 769px)").matches) {
+        if (
+            window.matchMedia("(max-width: 768px)").matches &&
+            window.matchMedia("(min-width: 576px)").matches
+        ) {
             cardImage.forEach((img) => {
                 img.classList.add("rounded-start");
             });
-        } else if (
-            window.matchMedia("(min-width: 576px)").matches ||
-            window.matchMedia("(min-width: 992px)").matches
-        ) {
+        } else {
             cardImage.forEach((img) => {
                 img.classList.remove("rounded-start");
             });
@@ -23,15 +23,15 @@ const CardItem = (contentList: Array<CardContent>) => {
     });
 
     return (
-        <Row xs={1} sm={1} md={1} lg={3} className="g-4">
+        <Row xs={1} sm={1} md={3} lg={3} className="g-4">
             {contentList.map((content, index) => (
                 <Col key={index}>
                     <Card border="light">
                         <Row className="g-0">
-                            <Col sm={12} md={6} lg={12}>
+                            <Col xs={12} sm={6} md={12}>
                                 <Card.Img variant="top" src={content.img} />
                             </Col>
-                            <Col sm={12} md={6} lg={12}>
+                            <Col xs={12} sm={6} md={12}>
                                 <Card.Body>
                                     <Card.Title>{content.title}</Card.Title>
                                     <Card.Text>{content.description}</Card.Text>
