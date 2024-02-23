@@ -20,7 +20,7 @@
     box-sizing: border-box; /* make inset border */
 }
 
-/* Margin setup based on breakpoints */
+/* Styles setup based on breakpoints */
 @include media-breakpoint-down(lg) {
     .container {
         padding: 24px;
