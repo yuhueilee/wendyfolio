@@ -8,7 +8,7 @@ const Project = () => {
     return (
         <Container>
             <Row key={0}>
-                <Col class="d-flex justify-content-center">
+                <Col className="d-flex justify-content-center">
                     <h2 className="title">Side Projects</h2>
                 </Col>
             </Row>
