@@ -9,6 +9,7 @@ function App() {
     return (
         <div>
             <Project />
+            <div className="divider"></div>
             <Experience />
         </div>
     );

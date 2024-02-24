@@ -134,6 +134,11 @@ $borderWidth: 2px;
     flex-direction: $d;
 }
 
+@mixin size($w, $h: $w) {
+    width: $w;
+    height: $h;
+}
+
 body {
     margin: 0;
 }
