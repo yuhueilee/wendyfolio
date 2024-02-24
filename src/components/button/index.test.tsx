@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ButtonItem from './index';
 
 describe("correctly returns the button component", () => {
-    it("renders buttons with correct links and icons", () => {
+    it("renders buttons with correct links, icons and labels", () => {
         const links = ["https://github.com", "https://example.com"];
         render(<ButtonItem links={links} />);
 
@@ -14,13 +14,13 @@ describe("correctly returns the button component", () => {
             expect(button).toHaveAttribute("href", links[index]);
         });
 
-        const githubIcon = 'Link <i class="bi bi-github"></i>';
-        const defaultIcon = 'Link <i class="bi bi-box-arrow-up-right"></i>';
+        const githubIcon = 'Github <i class="bi bi-github"></i>';
+        const defaultIcon = 'Website <i class="bi bi-box-arrow-up-right"></i>';
         expect(buttons[0].innerHTML).toEqual(githubIcon);
         expect(buttons[1].innerHTML).toEqual(defaultIcon);
     });
 
-    it("renders buttons with default icon for unknown links", () => {
+    it("renders buttons with default icon and label for unknown links", () => {
         const links = ["https://example.com", "https://example.org"];
         render(<ButtonItem links={links} />);
 
@@ -29,7 +29,7 @@ describe("correctly returns the button component", () => {
 
         buttons.forEach((button) => {
             expect(button.innerHTML).toEqual(
-                'Link <i class="bi bi-box-arrow-up-right"></i>'
+                'Website <i class="bi bi-box-arrow-up-right"></i>'
             );
         });
     });
