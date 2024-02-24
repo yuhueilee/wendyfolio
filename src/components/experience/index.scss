@@ -8,36 +8,15 @@
     max-width: 100% !important;
 }
 
-.title {
-    @include poppins-medium;
-    @include flex;
-    margin: 0;
-    margin-bottom: 24px;
-    padding: 16px;
-    color: $colorYellowPrimary;
-    border: solid $borderWidth $colorYellowSecondary;
-    border-radius: $borderRadius;
-    box-sizing: border-box; /* make inset border */
-}
-
 /* Styles setup based on breakpoints */
 @include media-breakpoint-down(md) {
     .container {
         padding: 24px;
-    }
-    .title {
-        width: 100%;
     }
 }
 
 @include media-breakpoint-up(md) {
     .container {
         padding: 24px 104px !important;
-    }
-    .title {
-        $gapSize: 24px;
-        $colNum: 12;
-        $columnSize: calc((100% + $gapSize) / $colNum - $gapSize);
-        width: calc($columnSize * 6 + $gapSize * 5);
     }
 }

@@ -1,3 +1,5 @@
+import './index.scss';
+
 import { Container, Row } from 'react-bootstrap';
 
 import { ListContent } from '../../types';
