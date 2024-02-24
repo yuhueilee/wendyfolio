@@ -1,7 +1,35 @@
 import './index.scss';
 
+import { Button, Col, Row } from 'react-bootstrap';
+
 const ButtonItem = (links: Array<string>) => {
-    return <></>;
+    const buttons = links.map((link, index) => {
+        return (
+            <Col key={"btn-col-" + index}>
+                <Button
+                    key={"btn-" + index}
+                    href={link}
+                    target="_black"
+                    className="w-100"
+                >
+                    Link {Icon(link)}
+                </Button>
+            </Col>
+        );
+    });
+    return (
+        <Row sm={2} md={1} lg={2} className="g-1">
+            {buttons}
+        </Row>
+    );
+};
+
+const Icon = (link: string): JSX.Element => {
+    if (link.includes("github")) {
+        return <i className="bi bi-github"></i>;
+    }
+
+    return <i className="bi bi-box-arrow-up-right"></i>;
 };
 
 export default ButtonItem;

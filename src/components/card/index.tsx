@@ -3,6 +3,7 @@ import './index.scss';
 import { Card, Col, Row } from 'react-bootstrap';
 
 import { CardContent } from '../../types';
+import ButtonItem from '../button';
 
 const CardItem = (contentList: Array<CardContent>) => {
     window.addEventListener("resize", () => {
@@ -35,6 +36,7 @@ const CardItem = (contentList: Array<CardContent>) => {
                                 <Card.Body>
                                     <Card.Title>{content.title}</Card.Title>
                                     <Card.Text>{content.description}</Card.Text>
+                                    {ButtonItem(content.links)}
                                 </Card.Body>
                             </Col>
                         </Row>
