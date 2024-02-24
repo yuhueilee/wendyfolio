@@ -12,7 +12,7 @@ function ButtonItem({ links }: { links: Array<string> }): JSX.Element {
                     target="_black"
                     className={"w-100 " + color(link)}
                 >
-                    {Label(link)} {Icon(link)}
+                    {label(link)} {icon(link)}
                 </Button>
             </Col>
         );
@@ -24,7 +24,7 @@ function ButtonItem({ links }: { links: Array<string> }): JSX.Element {
     );
 }
 
-const Label = (link: string): string => {
+const label = (link: string): string => {
     if (link.includes("github")) {
         return "Github";
     }
@@ -32,7 +32,7 @@ const Label = (link: string): string => {
     return "Website";
 };
 
-const Icon = (link: string): JSX.Element => {
+const icon = (link: string): JSX.Element => {
     if (link.includes("github")) {
         return <i className="bi bi-github"></i>;
     }
