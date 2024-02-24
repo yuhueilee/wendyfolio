@@ -14,11 +14,20 @@ const experience = () => {
             description: "Implemented...",
         },
     ];
+    const eduLists: Array<ListContent> = [
+        {
+            title: "Bachelor of Computer Science",
+            subTitle: "@Monash University Malaysia",
+            duration: "Jun 2022 ~ Dec 2023",
+            description: "Implemented...",
+        },
+    ];
 
     return (
         <Container>
             <Row sm={1} md={1} lg={2}>
-                <List title="Job Experiences" contents={jobLists} />
+                <List key={0} title="Job Experiences" contents={jobLists} />
+                <List key={1} title="Education" contents={eduLists} />
             </Row>
         </Container>
     );
