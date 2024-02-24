@@ -36,7 +36,7 @@ const CardItem = (contentList: Array<CardContent>) => {
                                 <Card.Body>
                                     <Card.Title>{content.title}</Card.Title>
                                     <Card.Text>{content.description}</Card.Text>
-                                    {ButtonItem(content.links)}
+                                    <ButtonItem links={content.links} />
                                 </Card.Body>
                             </Col>
                         </Row>

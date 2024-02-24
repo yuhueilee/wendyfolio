@@ -2,7 +2,7 @@ import './index.scss';
 
 import { Button, Col, Row } from 'react-bootstrap';
 
-const ButtonItem = (links: Array<string>) => {
+function ButtonItem({ links }: { links: Array<string> }): JSX.Element {
     const buttons = links.map((link, index) => {
         return (
             <Col key={"btn-col-" + index}>
@@ -22,7 +22,7 @@ const ButtonItem = (links: Array<string>) => {
             {buttons}
         </Row>
     );
-};
+}
 
 const Icon = (link: string): JSX.Element => {
     if (link.includes("github")) {
