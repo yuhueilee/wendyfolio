@@ -1,14 +1,23 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+
+import { ListContent } from '../../types';
+import List from '../list';
 
 const experience = () => {
+    const jobLists: Array<ListContent> = [
+        {
+            title: "Backend Software Engineer",
+            subTitle: "@Foodpanda",
+            duration: "Jun 2022 ~ Dec 2023",
+            description: "Implemented...",
+        },
+    ];
+
     return (
         <Container>
-            <Row key={0}>
-                <Col className="d-flex justify-content-center">
-                    <h2 className="title">Job Experiences</h2>
-                </Col>
+            <Row sm={1} md={1} lg={2}>
+                <List title="Job Experiences" contents={jobLists} />
             </Row>
-            <Row key={1}></Row>
         </Container>
     );
 };
