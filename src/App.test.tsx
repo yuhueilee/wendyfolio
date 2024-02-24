@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import App from "./App";
+import App from './App';
 
-test("renders learn react link", () => {
+test("renders project container", () => {
     render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+    const title = screen.getByText(/side projects/i);
+    expect(title).toBeInTheDocument();
 });
