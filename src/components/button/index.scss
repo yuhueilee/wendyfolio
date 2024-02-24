@@ -1,1 +1,16 @@
 @import "../../index.scss";
+
+.btn-secondary,
+.btn-tertiary {
+    border: none;
+    color: black;
+    border-radius: 2px;
+}
+
+.btn-secondary {
+    background-color: $colorYellowSecondary;
+}
+
+.btn-tertiary {
+    background-color: $colorYellowTertiary;
+}

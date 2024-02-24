@@ -10,7 +10,7 @@ function ButtonItem({ links }: { links: Array<string> }): JSX.Element {
                     key={"btn-" + index}
                     href={link}
                     target="_black"
-                    className="w-100"
+                    className={"w-100 " + color(link)}
                 >
                     {Label(link)} {Icon(link)}
                 </Button>
@@ -38,6 +38,14 @@ const Icon = (link: string): JSX.Element => {
     }
 
     return <i className="bi bi-box-arrow-up-right"></i>;
+};
+
+const color = (link: string): string => {
+    if (link.includes("github")) {
+        return "btn-tertiary";
+    }
+
+    return "btn-secondary";
 };
 
 export default ButtonItem;
