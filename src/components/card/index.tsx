@@ -33,7 +33,7 @@ const CardItem = (contentList: Array<CardContent>) => {
                                 <Card.Img variant="top" src={content.img} />
                             </Col>
                             <Col xs={12} sm={6} md={12}>
-                                <Card.Body>
+                                <Card.Body className="h-100 d-flex flex-column">
                                     <Card.Title>{content.title}</Card.Title>
                                     <Card.Text>{content.description}</Card.Text>
                                     <ButtonItem links={content.links} />

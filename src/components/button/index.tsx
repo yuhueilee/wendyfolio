@@ -28,7 +28,7 @@ function ButtonItem({ links }: { links: Array<string> }): JSX.Element {
         );
     });
     return (
-        <Row sm={2} md={1} lg={1} className="g-1">
+        <Row sm={2} md={1} lg={1} className="g-1 mt-auto">
             {buttons}
         </Row>
     );
