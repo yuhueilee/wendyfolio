@@ -6,12 +6,12 @@
 }
 
 .topNav {
-    @include size(100%, 80px);
+    @include size(100%, 60px);
     color: $colorYellowSecondary;
 }
 
 .copyRight {
-    @include size(100%, 40px);
+    @include size(100%, 30px);
     color: $colorYellowTertiary;
 }
 
