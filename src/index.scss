@@ -142,3 +142,21 @@ $borderWidth: 2px;
 body {
     margin: 0;
 }
+
+.card-title.h5 {
+    @include poppins-bold;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.card-subtitle.h6 {
+    @include poppins-semibold;
+    font-size: 24px;
+    color: $colorYellowPrimary;
+    margin-bottom: 8px;
+}
+
+[class^="description"] {
+    @include poppins-regular;
+    font-size: 16px;
+}

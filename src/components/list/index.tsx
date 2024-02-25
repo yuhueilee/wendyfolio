@@ -17,11 +17,15 @@ function List({
                 <Card.Body>
                     <Card.Title>{list.title}</Card.Title>
                     <Card.Subtitle>{list.subTitle}</Card.Subtitle>
-                    <Card.Text>{list.duration}</Card.Text>
+                    <Card.Text className="duration">{list.duration}</Card.Text>
                     <ListGroup as="ol" numbered>
                         {list.descriptions.map((paragraph, index) => {
                             return (
-                                <ListGroup.Item as="li" key={index}>
+                                <ListGroup.Item
+                                    as="li"
+                                    key={index}
+                                    className="description"
+                                >
                                     {paragraph}
                                 </ListGroup.Item>
                             );

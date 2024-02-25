@@ -35,7 +35,9 @@ const CardItem = (contentList: Array<CardContent>) => {
                             <Col xs={12} sm={6} md={12}>
                                 <Card.Body className="h-100 d-flex flex-column">
                                     <Card.Title>{content.title}</Card.Title>
-                                    <Card.Text>{content.description}</Card.Text>
+                                    <Card.Text className="description">
+                                        {content.description}
+                                    </Card.Text>
                                     <ButtonItem links={content.links} />
                                 </Card.Body>
                             </Col>
