@@ -1,5 +1,20 @@
 @import "./index.scss";
 
+.topNav,
+.copyRight {
+    background-color: $colorYellowPrimary;
+}
+
+.topNav {
+    @include size(100%, 80px);
+    color: $colorYellowSecondary;
+}
+
+.copyRight {
+    @include size(100%, 40px);
+    color: $colorYellowTertiary;
+}
+
 .divider {
     @include size(100%, 24px);
 }
