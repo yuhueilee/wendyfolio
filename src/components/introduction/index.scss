@@ -1,1 +1,6 @@
 @import "../../index.scss";
+
+.profile {
+    @include size(200px);
+    object-fit: cover;
+}
