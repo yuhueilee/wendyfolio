@@ -147,6 +147,14 @@ body {
     background-color: $colorGreyPrimary50;
     margin: 0;
     max-width: 100% !important;
+
+    @include media-breakpoint-down(md) {
+        padding: 24px;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: 24px 104px !important;
+    }
 }
 
 .title {
@@ -160,23 +168,12 @@ body {
     border: solid $borderWidth $colorYellowSecondary;
     border-radius: $borderRadius;
     box-sizing: border-box; /* make inset border */
-}
 
-/* Styles setup based on breakpoints */
-@include media-breakpoint-down(md) {
-    .container {
-        padding: 24px;
-    }
-    .title {
+    @include media-breakpoint-down(md) {
         width: 100%;
     }
-}
 
-@include media-breakpoint-up(md) {
-    .container {
-        padding: 24px 104px !important;
-    }
-    .title {
+    @include media-breakpoint-up(md) {
         $gapSize: 24px;
         $colNum: 12;
         $columnSize: calc((100% + $gapSize) / $colNum - $gapSize);
