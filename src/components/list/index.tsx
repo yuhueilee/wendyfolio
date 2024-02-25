@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { Col, Row } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 import { ListContent } from '../../types';
 
@@ -13,10 +13,14 @@ function List({
 }): JSX.Element {
     const items = contents.map((list, index) => {
         return (
-            <Row key={index} className="w-100">
-                <h1>{list.title}</h1>
-                <h2>{list.subTitle}</h2>
-            </Row>
+            <Card key={index}>
+                <Card.Body>
+                    <Card.Title>{list.title}</Card.Title>
+                    <Card.Subtitle>{list.subTitle}</Card.Subtitle>
+                    <Card.Text>{list.duration}</Card.Text>
+                    <Card.Text>{list.description}</Card.Text>
+                </Card.Body>
+            </Card>
         );
     });
     return (
