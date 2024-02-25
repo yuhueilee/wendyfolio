@@ -156,7 +156,8 @@ body {
     margin-bottom: 8px;
 }
 
-[class^="description"] {
+// font regular 16px
+[class^="fr-16"] {
     @include poppins-regular;
     font-size: 16px;
 }
