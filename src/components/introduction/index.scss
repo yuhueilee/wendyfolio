@@ -1,6 +1,13 @@
 @import "../../index.scss";
 
 .profile {
-    @include size(200px);
     object-fit: cover;
+
+    @include media-breakpoint-down(sm) {
+        @include size(170px);
+    }
+
+    @include media-breakpoint-up(sm) {
+        @include size(232px);
+    }
 }
