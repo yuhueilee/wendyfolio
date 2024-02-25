@@ -6,11 +6,11 @@
     border: solid 0.3em $colorYellowPrimary;
     padding: 0.3em;
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
         @include size(170px);
     }
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         @include size(232px);
     }
 }
