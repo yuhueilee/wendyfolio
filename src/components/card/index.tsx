@@ -5,7 +5,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { CardContent } from '../../types';
 import ButtonItem from '../button';
 
-const CardItem = (contentList: Array<CardContent>) => {
+function CardItem({ contentList }: { contentList: Array<CardContent> }) {
     window.addEventListener("resize", () => {
         const cardImage = document.querySelectorAll("img");
 
@@ -35,7 +35,9 @@ const CardItem = (contentList: Array<CardContent>) => {
                             <Col xs={12} sm={6} md={12}>
                                 <Card.Body className="h-100 d-flex flex-column">
                                     <Card.Title>{content.title}</Card.Title>
-                                    <Card.Text>{content.description}</Card.Text>
+                                    <Card.Text className="fr-16">
+                                        {content.description}
+                                    </Card.Text>
                                     <ButtonItem links={content.links} />
                                 </Card.Body>
                             </Col>
@@ -45,6 +47,6 @@ const CardItem = (contentList: Array<CardContent>) => {
             ))}
         </Row>
     );
-};
+}
 
 export default CardItem;

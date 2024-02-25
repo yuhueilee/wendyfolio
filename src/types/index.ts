@@ -4,3 +4,10 @@ export interface CardContent {
     description: string;
     links: Array<string>;
 }
+
+export interface ListContent {
+    title: string;
+    subTitle: string;
+    duration: string;
+    descriptions: Array<string>;
+}

@@ -1,0 +1,22 @@
+@import "./../../index.scss";
+@import "./../../../node_modules/bootstrap/scss/mixins";
+
+/* Overwrites the bootstrap style */
+.container {
+    background-color: $colorGreyPrimary50;
+    margin: 0;
+    max-width: 100% !important;
+}
+
+/* Styles setup based on breakpoints */
+@include media-breakpoint-down(md) {
+    .container {
+        padding: 24px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .container {
+        padding: 24px 104px !important;
+    }
+}

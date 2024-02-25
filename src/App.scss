@@ -1,0 +1,5 @@
+@import "./index.scss";
+
+.divider {
+    @include size(100%, 24px);
+}
