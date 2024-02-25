@@ -38,7 +38,9 @@ const Project = () => {
                 </Col>
             </Row>
             <Row key={1}>
-                <Col>{CardItem(contentList)}</Col>
+                <Col>
+                    <CardItem contentList={contentList} />
+                </Col>
             </Row>
         </Container>
     );

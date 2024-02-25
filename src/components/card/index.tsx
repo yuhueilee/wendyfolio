@@ -5,7 +5,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { CardContent } from '../../types';
 import ButtonItem from '../button';
 
-const CardItem = (contentList: Array<CardContent>) => {
+function CardItem({ contentList }: { contentList: Array<CardContent> }) {
     window.addEventListener("resize", () => {
         const cardImage = document.querySelectorAll("img");
 
@@ -47,6 +47,6 @@ const CardItem = (contentList: Array<CardContent>) => {
             ))}
         </Row>
     );
-};
+}
 
 export default CardItem;
