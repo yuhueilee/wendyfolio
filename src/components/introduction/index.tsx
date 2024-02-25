@@ -49,12 +49,16 @@ const Introduction = () => {
                             <Button
                                 variant="link"
                                 className="ps-0 py-0 fr-16 link-warning"
+                                href="https://github.com/yuhueilee"
+                                target="_blank"
                             >
                                 Github
                             </Button>
                             <Button
                                 variant="link"
                                 className="ps-0 py-0 fr-16 link-warning"
+                                href="https://www.linkedin.com/in/yuhueilee-wendy/"
+                                target="_blank"
                             >
                                 LinkedIn
                             </Button>
