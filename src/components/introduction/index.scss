@@ -1,18 +1,11 @@
 @import "../../index.scss";
 
 .profile {
+    @include size(200px);
     object-fit: cover;
     background: $colorYellowPrimary content-box;
     border: solid 0.3em $colorYellowPrimary;
     padding: 0.3em;
-
-    @include media-breakpoint-down(md) {
-        @include size(170px);
-    }
-
-    @include media-breakpoint-up(md) {
-        @include size(232px);
-    }
 }
 
 .introduction {
