@@ -20,7 +20,7 @@ function ButtonItem({ links }: { links: Array<string> }): JSX.Element {
                     key={"btn-" + index}
                     href={link}
                     target="_black"
-                    className={"w-100 " + color(link)}
+                    className={"description w-100 " + color(link)}
                 >
                     {label(link)} {icon(link)}
                 </Button>
