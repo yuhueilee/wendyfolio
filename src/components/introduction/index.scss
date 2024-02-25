@@ -1,0 +1,28 @@
+@import "../../index.scss";
+
+.profile {
+    @include size(200px);
+    object-fit: cover;
+    background: $colorYellowPrimary content-box;
+    border: solid 0.3em $colorYellowPrimary;
+    padding: 0.3em;
+}
+
+.introduction {
+    @include media-breakpoint-down(sm) {
+        align-items: center;
+    }
+
+    @include media-breakpoint-up(sm) {
+        align-items: start;
+    }
+}
+
+.name,
+.position,
+.bio,
+.links {
+    @include media-breakpoint-down(sm) {
+        text-align: center;
+    }
+}

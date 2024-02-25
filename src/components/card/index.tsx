@@ -7,7 +7,7 @@ import ButtonItem from '../button';
 
 function CardItem({ contentList }: { contentList: Array<CardContent> }) {
     window.addEventListener("resize", () => {
-        const cardImage = document.querySelectorAll("img");
+        const cardImage = document.querySelectorAll(".cardImage");
 
         if (
             window.matchMedia("(max-width: 768px)").matches &&
@@ -30,7 +30,11 @@ function CardItem({ contentList }: { contentList: Array<CardContent> }) {
                     <Card border="light">
                         <Row className="g-0">
                             <Col xs={12} sm={6} md={12}>
-                                <Card.Img variant="top" src={content.img} />
+                                <Card.Img
+                                    className="cardImage"
+                                    variant="top"
+                                    src={content.img}
+                                />
                             </Col>
                             <Col xs={12} sm={6} md={12}>
                                 <Card.Body className="h-100 d-flex flex-column">

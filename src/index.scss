@@ -194,7 +194,20 @@ body {
     margin-bottom: 8px;
 }
 
-// font regular 16px
+.list-group.list-group-numbered {
+    --bs-list-group-border-color: white;
+}
+
+[class^="fsb-36"] {
+    @include poppins-semibold;
+    font-size: 36px;
+}
+
+[class^="fb-24"] {
+    @include poppins-bold;
+    font-size: 24px;
+}
+
 [class^="fr-16"] {
     @include poppins-regular;
     font-size: 16px;

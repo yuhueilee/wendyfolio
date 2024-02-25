@@ -1,5 +1,21 @@
 @import "./index.scss";
 
+.topNav,
+.copyRight {
+    background-color: $colorYellowPrimary;
+}
+
+.topNav {
+    @include size(100%, 60px);
+    color: $colorYellowSecondary;
+    box-shadow: 0 2px 6px rgba(black, 0.15);
+}
+
+.copyRight {
+    @include size(100%, 30px);
+    color: $colorYellowTertiary;
+}
+
 .divider {
     @include size(100%, 24px);
 }
