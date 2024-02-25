@@ -14,3 +14,13 @@
         @include size(232px);
     }
 }
+
+.introduction {
+    @include media-breakpoint-down(sm) {
+        justify-content: center;
+    }
+
+    @include media-breakpoint-up(sm) {
+        justify-content: start;
+    }
+}
