@@ -1,6 +1,6 @@
-import './index.scss';
+import "./index.scss";
 
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 
 const Introduction = () => {
     return (
@@ -33,13 +33,13 @@ const Introduction = () => {
                     lg={8}
                     className="d-flex flex-column introduction"
                 >
-                    <h1 className="fsb-36">Wendy (Lee Yu Huei)</h1>
-                    <h2 className="fb-24">Software Engineer</h2>
-                    <h4 className="fr-16">
+                    <h1 className="fsb-36 name">Wendy (Lee Yu Huei)</h1>
+                    <h2 className="fb-24 position">Software Engineer</h2>
+                    <h4 className="fr-16 bio">
                         Never stop learning and improving!
                     </h4>
                     <div className="d-flex flex-row h-100">
-                        <div className="align-self-end">
+                        <div className="align-self-end links">
                             <Button
                                 variant="link"
                                 className="ps-0 py-0 fr-16 link-warning"
