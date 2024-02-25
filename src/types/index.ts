@@ -9,5 +9,5 @@ export interface ListContent {
     title: string;
     subTitle: string;
     duration: string;
-    description: string;
+    descriptions: Array<string>;
 }

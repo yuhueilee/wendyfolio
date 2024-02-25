@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { Card, Col } from 'react-bootstrap';
+import { Card, Col, ListGroup } from 'react-bootstrap';
 
 import { ListContent } from '../../types';
 
@@ -18,7 +18,15 @@ function List({
                     <Card.Title>{list.title}</Card.Title>
                     <Card.Subtitle>{list.subTitle}</Card.Subtitle>
                     <Card.Text>{list.duration}</Card.Text>
-                    <Card.Text>{list.description}</Card.Text>
+                    <ListGroup as="ol" numbered>
+                        {list.descriptions.map((paragraph, index) => {
+                            return (
+                                <ListGroup.Item as="li" key={index}>
+                                    {paragraph}
+                                </ListGroup.Item>
+                            );
+                        })}
+                    </ListGroup>
                 </Card.Body>
             </Card>
         );

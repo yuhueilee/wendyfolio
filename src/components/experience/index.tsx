@@ -11,7 +11,7 @@ const experience = () => {
             title: "Backend Software Engineer",
             subTitle: "@Foodpanda",
             duration: "Jun 2022 ~ Dec 2023",
-            description: "Implemented...",
+            descriptions: ["Implemented...", "Integrated..."],
         },
     ];
     const eduLists: Array<ListContent> = [
@@ -19,7 +19,7 @@ const experience = () => {
             title: "Bachelor of Computer Science",
             subTitle: "@Monash University Malaysia",
             duration: "Jun 2022 ~ Dec 2023",
-            description: "Implemented...",
+            descriptions: ["Implemented..."],
         },
     ];
 
