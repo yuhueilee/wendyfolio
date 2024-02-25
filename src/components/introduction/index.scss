@@ -2,6 +2,9 @@
 
 .profile {
     object-fit: cover;
+    background: $colorYellowPrimary content-box;
+    border: solid 0.3em $colorYellowPrimary;
+    padding: 0.3em;
 
     @include media-breakpoint-down(sm) {
         @include size(170px);
