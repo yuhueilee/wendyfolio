@@ -194,6 +194,10 @@ body {
     margin-bottom: 8px;
 }
 
+.list-group.list-group-numbered {
+    --bs-list-group-border-color: white;
+}
+
 [class^="fsb-36"] {
     @include poppins-semibold;
     font-size: 36px;

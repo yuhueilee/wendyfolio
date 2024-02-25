@@ -24,7 +24,7 @@ function List({
                                 <ListGroup.Item
                                     as="li"
                                     key={index}
-                                    className="fr-16"
+                                    className="fr-16 px-0 pt-0"
                                 >
                                     {paragraph}
                                 </ListGroup.Item>
