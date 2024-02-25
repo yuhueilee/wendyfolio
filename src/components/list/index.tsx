@@ -1,8 +1,8 @@
-import './index.scss';
+import "./index.scss";
 
-import { Card, Col, ListGroup } from 'react-bootstrap';
+import { Card, Col, ListGroup } from "react-bootstrap";
 
-import { ListContent } from '../../types';
+import { ListContent } from "../../types";
 
 function List({
     title,
@@ -13,7 +13,7 @@ function List({
 }): JSX.Element {
     const items = contents.map((list, index) => {
         return (
-            <Card key={index}>
+            <Card key={index} border="light">
                 <Card.Body>
                     <Card.Title>{list.title}</Card.Title>
                     <Card.Subtitle>{list.subTitle}</Card.Subtitle>
