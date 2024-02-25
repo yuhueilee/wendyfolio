@@ -9,7 +9,7 @@ const Introduction = () => {
                 sm={1}
                 md={2}
                 lg={2}
-                className="d-flex justify-content-center pt-3"
+                className="g-2 d-flex justify-content-center pt-3"
             >
                 <Col
                     key={0}
