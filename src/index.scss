@@ -143,6 +143,47 @@ body {
     margin: 0;
 }
 
+.container {
+    background-color: $colorGreyPrimary50;
+    margin: 0;
+    max-width: 100% !important;
+}
+
+.title {
+    @include flex;
+    @include poppins-medium;
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 24px;
+    padding: 16px;
+    color: $colorYellowPrimary;
+    border: solid $borderWidth $colorYellowSecondary;
+    border-radius: $borderRadius;
+    box-sizing: border-box; /* make inset border */
+}
+
+/* Styles setup based on breakpoints */
+@include media-breakpoint-down(md) {
+    .container {
+        padding: 24px;
+    }
+    .title {
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .container {
+        padding: 24px 104px !important;
+    }
+    .title {
+        $gapSize: 24px;
+        $colNum: 12;
+        $columnSize: calc((100% + $gapSize) / $colNum - $gapSize);
+        width: calc($columnSize * 6 + $gapSize * 5);
+    }
+}
+
 .card-title.h5 {
     @include poppins-bold;
     font-size: 24px;
