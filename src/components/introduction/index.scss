@@ -17,10 +17,10 @@
 
 .introduction {
     @include media-breakpoint-down(sm) {
-        justify-content: center;
+        align-items: center;
     }
 
     @include media-breakpoint-up(sm) {
-        justify-content: start;
+        align-items: start;
     }
 }

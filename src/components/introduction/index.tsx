@@ -28,17 +28,28 @@ const Introduction = () => {
                     md={7}
                     className="d-flex flex-column introduction"
                 >
-                    <h1>Wendy (Lee Yu Huei)</h1>
-                    <h2>Software Engineer</h2>
-                    <h4>Never stop learning and improving!</h4>
+                    <h1 className="fsb-36">Wendy (Lee Yu Huei)</h1>
+                    <h2 className="fb-24">Software Engineer</h2>
+                    <h4 className="fr-16">
+                        Never stop learning and improving!
+                    </h4>
                     <div>
-                        <Button variant="link" className="ps-0">
+                        <Button
+                            variant="link"
+                            className="ps-0 py-0 fr-16 link-warning"
+                        >
                             wendylee70127@gmail.com
                         </Button>
-                        <Button variant="link" className="ps-0">
+                        <Button
+                            variant="link"
+                            className="ps-0 py-0 fr-16 link-warning"
+                        >
                             Github
                         </Button>
-                        <Button variant="link" className="ps-0">
+                        <Button
+                            variant="link"
+                            className="ps-0 py-0 fr-16 link-warning"
+                        >
                             LinkedIn
                         </Button>
                     </div>
