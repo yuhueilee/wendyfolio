@@ -15,7 +15,7 @@ const Introduction = () => {
                     key={0}
                     xs={12}
                     sm={5}
-                    md={5}
+                    lg={4}
                     className="d-flex justify-content-center"
                 >
                     <Image
@@ -30,7 +30,7 @@ const Introduction = () => {
                     key={1}
                     xs={12}
                     sm={7}
-                    md={7}
+                    lg={8}
                     className="d-flex flex-column introduction"
                 >
                     <h1 className="fsb-36">Wendy (Lee Yu Huei)</h1>
