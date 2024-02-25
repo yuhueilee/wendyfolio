@@ -5,7 +5,12 @@ import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 const Introduction = () => {
     return (
         <Container>
-            <Row sm={1} md={2} lg={2} className="d-flex justify-content-center">
+            <Row
+                sm={1}
+                md={2}
+                lg={2}
+                className="d-flex justify-content-center pt-3"
+            >
                 <Col
                     key={0}
                     xs={12}
@@ -33,25 +38,27 @@ const Introduction = () => {
                     <h4 className="fr-16">
                         Never stop learning and improving!
                     </h4>
-                    <div>
-                        <Button
-                            variant="link"
-                            className="ps-0 py-0 fr-16 link-warning"
-                        >
-                            wendylee70127@gmail.com
-                        </Button>
-                        <Button
-                            variant="link"
-                            className="ps-0 py-0 fr-16 link-warning"
-                        >
-                            Github
-                        </Button>
-                        <Button
-                            variant="link"
-                            className="ps-0 py-0 fr-16 link-warning"
-                        >
-                            LinkedIn
-                        </Button>
+                    <div className="d-flex flex-row h-100">
+                        <div className="align-self-end">
+                            <Button
+                                variant="link"
+                                className="ps-0 py-0 fr-16 link-warning"
+                            >
+                                wendylee70127@gmail.com
+                            </Button>
+                            <Button
+                                variant="link"
+                                className="ps-0 py-0 fr-16 link-warning"
+                            >
+                                Github
+                            </Button>
+                            <Button
+                                variant="link"
+                                className="ps-0 py-0 fr-16 link-warning"
+                            >
+                                LinkedIn
+                            </Button>
+                        </div>
                     </div>
                 </Col>
             </Row>
