@@ -9,9 +9,23 @@ const experience = () => {
     const jobLists: Array<ListContent> = [
         {
             title: "Backend Software Engineer",
-            subTitle: "@Foodpanda",
+            subTitle: "@Foodpanda Taiwan",
             duration: "Jun 2022 ~ Dec 2023",
-            descriptions: ["Implemented...", "Integrated..."],
+            descriptions: [
+                "Worked closely with client engineers, product managers, product analysts, and designers to seamlessly and punctually deliver the feature",
+                "Developed and maintained the backend service for subscription functionality, ensuring accurate behavior through rigorous testing on staging",
+                "Troubleshooted production issues using Datadog and AWS console, consistently resolving them within a 5-hour timeframe",
+                "Performed unit tests and integration tests on key user flows to uphold a minimum code coverage of 70%",
+            ],
+        },
+        {
+            title: "Frontend Intern",
+            subTitle: "@Wavelet Solutions",
+            duration: "Jan 2021 - June 2021",
+            descriptions: [
+                "Implemented a responsive user interface using Ionic components for the e-commerce website that is used by retail chain stores",
+                "Applied Angular Redux to automatically reflected the changes on user interface",
+            ],
         },
     ];
     const eduLists: Array<ListContent> = [
