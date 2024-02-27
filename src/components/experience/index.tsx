@@ -30,10 +30,16 @@ const experience = () => {
     ];
     const eduLists: Array<ListContent> = [
         {
-            title: "Bachelor of Computer Science",
+            title: "Bachelor of Computer Science, Advanced Computer Programming",
             subTitle: "@Monash University Malaysia",
-            duration: "Jun 2022 ~ Dec 2023",
-            descriptions: ["Implemented..."],
+            duration: "Feb 2019 - Mar 2022",
+            descriptions: ["Graduated with a GPA of 3.8 on a 4.0 scale"],
+        },
+        {
+            title: "Monash University Foundation Year",
+            subTitle: "@Sunway College Malaysia",
+            duration: "Jul 2017 - Nov 2018",
+            descriptions: ["Graduated with a high distinction academic score"],
         },
     ];
 
