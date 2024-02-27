@@ -1,32 +1,21 @@
-import './index.scss';
+import "./index.scss";
 
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from "react-bootstrap";
 
-import { CardContent } from '../../types';
-import CardItem from '../card';
+import { CardContent } from "../../types";
+import CardItem from "../card";
 
 const Project = () => {
     const contentList: Array<CardContent> = [
         {
             img: process.env.PUBLIC_URL + "/images/project-1.png",
             title: "Penguin Battle",
-            description: "An online boardgame",
+            description:
+                "A turn-based board game developed using the React framework, leveraging boardgame.io library for game logic implementation",
             links: [
                 "https://github.com/yuhueilee/penguin-game",
                 "https://penguin-battle.netlify.app/",
             ],
-        },
-        {
-            img: process.env.PUBLIC_URL + "/images/project-1.png",
-            title: "Penguin Battle",
-            description: "An online boardgame",
-            links: ["https://penguin-battle.netlify.app/"],
-        },
-        {
-            img: process.env.PUBLIC_URL + "/images/project-1.png",
-            title: "Penguin Battle",
-            description: "An online boardgame",
-            links: [],
         },
     ];
 
