@@ -1,9 +1,9 @@
-import './index.scss';
+import "./index.scss";
 
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row } from "react-bootstrap";
 
-import { ListContent } from '../../types';
-import List from '../list';
+import { ListContent } from "../../types";
+import List from "../list";
 
 const experience = () => {
     const jobLists: Array<ListContent> = [
@@ -26,7 +26,7 @@ const experience = () => {
     return (
         <Container>
             <Row sm={1} md={1} lg={2} className="g-4">
-                <List key={0} title="Job Experiences" contents={jobLists} />
+                <List key={0} title="Job Experience" contents={jobLists} />
                 <List key={1} title="Education" contents={eduLists} />
             </Row>
         </Container>
