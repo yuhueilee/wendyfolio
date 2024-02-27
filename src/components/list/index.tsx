@@ -13,7 +13,7 @@ function List({
 }): JSX.Element {
     const items = contents.map((list, index) => {
         return (
-            <Card key={index} border="light">
+            <Card key={index} border="light" className="mb-3">
                 <Card.Body>
                     <Card.Title>{list.title}</Card.Title>
                     <Card.Subtitle>{list.subTitle}</Card.Subtitle>
