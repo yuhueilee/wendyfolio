@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
 
-import { ListContent } from '../../types';
-import List from './index';
+import { ListContent } from "../../types";
+import List from "./index";
 
 describe("correctly returns the list component", () => {
     it("renders title and contents correctly", () => {
@@ -21,7 +21,7 @@ describe("correctly returns the list component", () => {
             },
         ];
 
-        render(<List title={title} contents={contents} />);
+        render(<List title={title} contentList={contents} />);
 
         expect(screen.getByText(title)).toBeInTheDocument();
 
@@ -39,6 +39,6 @@ describe("correctly returns the list component", () => {
         const title = "Test Title";
         const contents: Array<ListContent> = [];
 
-        render(<List title={title} contents={contents} />);
+        render(<List title={title} contentList={contents} />);
     });
 });

@@ -6,7 +6,7 @@ import { ListContent } from "../../types";
 import List from "../list";
 
 const experience = () => {
-    const jobLists: Array<ListContent> = [
+    const jobList: Array<ListContent> = [
         {
             title: "Backend Software Engineer",
             subTitle: "@Foodpanda Taiwan",
@@ -28,7 +28,7 @@ const experience = () => {
             ],
         },
     ];
-    const eduLists: Array<ListContent> = [
+    const eduList: Array<ListContent> = [
         {
             title: "Bachelor of Computer Science, Advanced Computer Programming",
             subTitle: "@Monash University Malaysia",
@@ -46,8 +46,8 @@ const experience = () => {
     return (
         <Container>
             <Row sm={1} md={1} lg={2} className="g-4">
-                <List key={0} title="Job Experience" contents={jobLists} />
-                <List key={1} title="Education" contents={eduLists} />
+                <List key={0} title="Job Experience" contentList={jobList} />
+                <List key={1} title="Education" contentList={eduList} />
             </Row>
         </Container>
     );

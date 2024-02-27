@@ -6,12 +6,12 @@ import { ListContent } from "../../types";
 
 function List({
     title,
-    contents,
+    contentList,
 }: {
     title: string;
-    contents: Array<ListContent>;
+    contentList: Array<ListContent>;
 }): JSX.Element {
-    const items = contents.map((list, index) => {
+    const items = contentList.map((list, index) => {
         return (
             <Card key={index} border="light" className="mb-3">
                 <Card.Body>
