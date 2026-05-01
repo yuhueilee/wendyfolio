@@ -1,9 +1,11 @@
-import "./index.scss";
+'use client'
 
-import { Container, Row } from "react-bootstrap";
+import "./index.scss"
 
-import { ListContent } from "../../types";
-import List from "../list";
+import { Container, Row } from "react-bootstrap"
+
+import { ListContent } from "../../types"
+import List from "../list"
 
 const experience = () => {
     const jobList: Array<ListContent> = [
@@ -27,7 +29,7 @@ const experience = () => {
                 "Applied Angular Redux to automatically reflected the changes on user interface",
             ],
         },
-    ];
+    ]
     const eduList: Array<ListContent> = [
         {
             title: "Bachelor of Computer Science, Advanced Computer Programming",
@@ -41,7 +43,7 @@ const experience = () => {
             duration: "Jul 2017 - Nov 2018",
             descriptions: ["Graduated with a high distinction academic score"],
         },
-    ];
+    ]
 
     return (
         <Container>
@@ -50,7 +52,7 @@ const experience = () => {
                 <List key={1} title="Education" contentList={eduList} />
             </Row>
         </Container>
-    );
-};
+    )
+}
 
-export default experience;
+export default experience

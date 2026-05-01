@@ -1,14 +1,18 @@
-import "./index.scss";
+'use client'
 
-import { Col, Container, Row } from "react-bootstrap";
+import "./index.scss"
 
-import { CardContent } from "../../types";
-import CardItem from "../card";
+import { Col, Container, Row } from "react-bootstrap"
+
+import { CardContent } from "../../types"
+import CardItem from "../card"
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
 const Project = () => {
     const contentList: Array<CardContent> = [
         {
-            img: process.env.PUBLIC_URL + "/images/project-1.png",
+            img: BASE_PATH + "/images/project-1.png",
             title: "Penguin Battle",
             description:
                 "A turn-based board game developed using the React framework, leveraging boardgame.io library for game logic implementation",
@@ -17,7 +21,7 @@ const Project = () => {
                 "https://penguin-battle.netlify.app/",
             ],
         },
-    ];
+    ]
 
     return (
         <Container>
@@ -32,7 +36,7 @@ const Project = () => {
                 </Col>
             </Row>
         </Container>
-    );
-};
+    )
+}
 
-export default Project;
+export default Project
