@@ -1,10 +1,9 @@
-'use client'
+"use client";
 
-import "./index.scss"
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import profileImg from "../../public/images/profile-pic.jpeg";
 
-import { Button, Col, Container, Image, Row } from "react-bootstrap"
-
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+import "./index.scss";
 
 const Introduction = () => {
     return (
@@ -23,7 +22,7 @@ const Introduction = () => {
                     className="d-flex justify-content-center"
                 >
                     <Image
-                        src={BASE_PATH + "/images/profile-pic.jpeg"}
+                        src={profileImg.src}
                         roundedCircle
                         className="profile"
                         alt="Wendy Lee"
@@ -70,7 +69,7 @@ const Introduction = () => {
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};
 
-export default Introduction
+export default Introduction;
