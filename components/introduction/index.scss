@@ -1,4 +1,4 @@
-@import "../../index.scss";
+@import "../../app/globals";
 
 .profile {
     @include size(200px);
@@ -6,6 +6,7 @@
     background: $colorYellowPrimary content-box;
     border: solid 0.3em $colorYellowPrimary;
     padding: 0.3em;
+    border-radius: 50%;
 }
 
 .introduction {

@@ -1,27 +1,34 @@
-import './index.scss';
+'use client'
 
-import { Card, Col, Row } from 'react-bootstrap';
+import './index.scss'
 
-import { CardContent } from '../../types';
-import ButtonItem from '../button';
+import { useEffect } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
+
+import { CardContent } from '../../types'
+import ButtonItem from '../button'
 
 function CardItem({ contentList }: { contentList: Array<CardContent> }) {
-    window.addEventListener("resize", () => {
-        const cardImage = document.querySelectorAll(".cardImage");
+    useEffect(() => {
+        const handleResize = () => {
+            const cardImage = document.querySelectorAll(".cardImage")
 
-        if (
-            window.matchMedia("(max-width: 768px)").matches &&
-            window.matchMedia("(min-width: 576px)").matches
-        ) {
-            cardImage.forEach((img) => {
-                img.classList.add("rounded-start");
-            });
-        } else {
-            cardImage.forEach((img) => {
-                img.classList.remove("rounded-start");
-            });
+            if (
+                window.matchMedia("(max-width: 768px)").matches &&
+                window.matchMedia("(min-width: 576px)").matches
+            ) {
+                cardImage.forEach((img) => {
+                    img.classList.add("rounded-start")
+                })
+            } else {
+                cardImage.forEach((img) => {
+                    img.classList.remove("rounded-start")
+                })
+            }
         }
-    });
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
 
     return (
         <Row xs={1} sm={1} md={3} lg={3} className="g-4">
@@ -50,7 +57,7 @@ function CardItem({ contentList }: { contentList: Array<CardContent> }) {
                 </Col>
             ))}
         </Row>
-    );
+    )
 }
 
-export default CardItem;
+export default CardItem

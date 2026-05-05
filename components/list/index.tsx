@@ -1,8 +1,10 @@
-import "./index.scss";
+'use client'
 
-import { Card, Col, ListGroup } from "react-bootstrap";
+import "./index.scss"
 
-import { ListContent } from "../../types";
+import { Card, Col, ListGroup } from "react-bootstrap"
+
+import { ListContent } from "../../types"
 
 function List({
     title,
@@ -28,19 +30,19 @@ function List({
                                 >
                                     {paragraph}
                                 </ListGroup.Item>
-                            );
+                            )
                         })}
                     </ListGroup>
                 </Card.Body>
             </Card>
-        );
-    });
+        )
+    })
     return (
         <Col sm={12} md={6} lg={6}>
             <h2 className="title w-100">{title}</h2>
             {items}
         </Col>
-    );
+    )
 }
 
-export default List;
+export default List

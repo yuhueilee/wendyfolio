@@ -1,6 +1,9 @@
-import "./index.scss";
+"use client";
 
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import profileImg from "../../public/images/profile-pic.jpeg";
+
+import "./index.scss";
 
 const Introduction = () => {
     return (
@@ -19,11 +22,10 @@ const Introduction = () => {
                     className="d-flex justify-content-center"
                 >
                     <Image
-                        src={
-                            process.env.PUBLIC_URL + "/images/profile-pic.jpeg"
-                        }
+                        src={profileImg.src}
                         roundedCircle
                         className="profile"
+                        alt="Wendy Lee"
                     />
                 </Col>
                 <Col
