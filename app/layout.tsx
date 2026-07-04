@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import './globals.scss'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'YuHuei Lee — Software Engineer',
+  title: 'Wendy Lee — Software Engineer',
   description:
-    'Portfolio of YuHuei Lee, a software engineer working across backend, mobile, and web.',
+    'Portfolio of Wendy Lee (Lee Yu Huei), a software engineer working across backend services, responsive frontends, and the tests and tooling that keep both trustworthy.',
   icons: { icon: '/favicon.ico', apple: '/logo192.png' },
 }
 
