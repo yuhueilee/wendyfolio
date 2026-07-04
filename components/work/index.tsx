@@ -14,8 +14,10 @@ const Work = () => (
                 const imageLeft = i % 2 === 1;
                 return (
                     <article
-                        className={`flex flex-col items-stretch overflow-hidden border border-card-line bg-white ${
-                            imageLeft ? "wide:flex-row" : "wide:flex-row-reverse"
+                        className={`flex flex-col items-stretch overflow-hidde wide:gap-3 ${
+                            imageLeft
+                                ? "wide:flex-row"
+                                : "wide:flex-row-reverse"
                         }`}
                         key={project.title}
                     >
@@ -25,7 +27,7 @@ const Work = () => (
                             imageLeft={imageLeft}
                         />
 
-                        <div className="flex min-w-0 flex-1 flex-col p-[clamp(20px,4.5vw,26px)] wide:flex-[1_1_60%]">
+                        <div className="flex min-w-0 flex-1 flex-col p-[clamp(20px,4.5vw,26px)] wide:flex-[1_1_60%] border border-card-line bg-white">
                             <span className="font-mono text-[11px] tracking-[0.08em] text-muted">
                                 {project.kind}
                             </span>

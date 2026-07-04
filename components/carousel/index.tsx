@@ -22,11 +22,7 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
 
     return (
         <div
-            className={`relative border-b border-card-line bg-tint wide:flex wide:min-w-0 wide:flex-[0_0_40%] wide:flex-col wide:justify-center wide:border-b-0 ${
-                imageLeft
-                    ? "wide:border-r wide:border-r-card-line"
-                    : "wide:border-l wide:border-l-card-line"
-            }`}
+            className={`relative wide:flex wide:min-w-0 wide:flex-[0_0_40%] wide:flex-col wide:justify-center`}
         >
             <div className="relative aspect-[4/3] w-full">
                 <Swiper
