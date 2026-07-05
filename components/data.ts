@@ -54,6 +54,24 @@ export const JOBS: Array<Job> = [
 export const PROJECTS: Array<Project> = [
     {
         kind: "SIDE PROJECT",
+        title: "Replyo",
+        description:
+            "Designed and implemented an auto-reply bot for Threads that matches keywords and responds in seconds, saving operational time of manual reply.",
+        stack: ["Next.js", "TypeScript", "Express", "Redis", "Threads API"],
+        links: [
+            {
+                label: "LIVE DEMO",
+                href: "https://replyo-client.vercel.app/",
+            },
+            {
+                label: "GITHUB",
+                href: "https://github.com/yuhueilee/replyo",
+            },
+        ],
+        shots: [null, null, null],
+    },
+    {
+        kind: "SIDE PROJECT",
         title: "Penguin Battle",
         description:
             "A turn-based board game developed with React, leveraging the boardgame.io library for the game logic. Playable online — bring a friend and fight over fish.",
@@ -66,14 +84,5 @@ export const PROJECTS: Array<Project> = [
             },
         ],
         shots: [project1Img, null, null],
-    },
-    {
-        kind: "SIDE PROJECT",
-        title: "Wendyfolio",
-        description:
-            "This portfolio itself — a statically exported Next.js site with component-level SCSS, unit tests on every component, and CI-friendly builds.",
-        stack: ["Next.js", "TypeScript", "SCSS", "Jest"],
-        links: [{ label: "GITHUB", href: "https://github.com/yuhueilee" }],
-        shots: [null, null, null],
     },
 ];
