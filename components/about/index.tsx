@@ -23,31 +23,20 @@ const About = () => (
             </div>
             <div className="min-w-0 flex-[1_1_320px]">
                 <p className={PARAGRAPH}>
-                    Hi, I&apos;m Wendy (Lee Yu Huei) — a software engineer who
-                    likes working across the whole stack and learning whatever
-                    the problem demands. I studied Computer Science at Monash
-                    University, graduating with a 3.8 GPA and a focus on
-                    advanced programming, then took that curiosity straight
-                    into industry.
-                </p>
-                <p className={`${PARAGRAPH} mt-4`}>
-                    At foodpanda Taiwan I built and maintained the backend
-                    services behind the subscription product, working closely
-                    with client engineers, product managers, analysts, and
-                    designers to ship features on time. I care about the
-                    unglamorous parts that make software trustworthy: rigorous
-                    staging tests, at least 70% coverage on key flows, and
-                    production issues traced through Datadog and AWS and
-                    resolved within hours — not days.
-                </p>
-                <p className={`${PARAGRAPH} mt-4`}>
-                    Before that, I built responsive e-commerce interfaces with
-                    Ionic and Angular as a frontend intern at Wavelet
-                    Solutions — an early lesson in how much UI details shape a
-                    user&apos;s trust. Outside of work I tinker with side
-                    projects like Penguin Battle, a turn-based board game on
-                    React and boardgame.io. My motto hasn&apos;t changed since
-                    university: never stop learning and improving.
+                    Hi, I'm Wendy — a software engineer with four years of
+                    experience. My journey has taken me from backend to
+                    frontend: building subscription features for a food delivery
+                    app while conducting{" "}
+                    <span className="font-semibold text-accent">e2e tests</span> covering key
+                    user flows, modernizing an e-commerce platform's React
+                    Native app with TypeScript and{" "}
+                    <span className="font-semibold text-accent">CI/CD workflows</span>, and
+                    now working at the intersection of React and AI tooling —
+                    building <span className="font-semibold text-accent">AI agents</span> that
+                    speed up package migrations and automate repetitive
+                    engineering work. What ties it all together? I love stepping
+                    outside my comfort zone and building tools that help teams
+                    move faster.
                 </p>
             </div>
         </div>
