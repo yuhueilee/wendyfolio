@@ -16,7 +16,7 @@ const Header = () => (
         <div
             className={`pointer-events-auto hidden items-center justify-self-start rounded-full px-[15px] py-[11px] font-mono text-xs font-medium tracking-[0.1em] text-ink sm:inline-flex ${GLASS}`}
         >
-            WL
+            Wendy
         </div>
 
         <nav
@@ -39,15 +39,7 @@ const Header = () => (
                 download
                 className="hidden items-center gap-2 rounded-full border border-accent bg-accent px-4 py-[11px] font-mono text-[11px] tracking-[0.06em] text-mist no-underline shadow-float transition-colors duration-[250ms] hover:bg-accent-dark sm:inline-flex"
             >
-                RÉSUMÉ&nbsp;↓
-            </a>
-            <a
-                href={RESUME_HREF}
-                download
-                aria-label="Download résumé"
-                title="Download résumé"
-                className="grid h-[42px] w-[42px] place-items-center rounded-full border border-accent bg-accent text-mist shadow-float transition-colors duration-[250ms] hover:bg-accent-dark sm:hidden"
-            >
+                <span>RESUME</span>
                 <DownloadIcon size={17} />
             </a>
         </div>
