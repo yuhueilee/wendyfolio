@@ -1,41 +1,48 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { JOBS } from "../data";
 import SectionHead from "../section-head";
 
-const Experience = () => {
-    const timelineRef = useRef<HTMLDivElement | null>(null);
-    const fillRef = useRef<HTMLDivElement | null>(null);
+const companyName = (org: string) => org.replace(/^@\s*/, "");
 
-    const updateFill = useCallback(() => {
-        const wrap = timelineRef.current;
-        const fill = fillRef.current;
-        if (!wrap || !fill) return;
-        const r = wrap.getBoundingClientRect();
-        if (!r.height) return;
-        const mid = window.innerHeight * 0.55;
-        const prog = Math.max(0, Math.min(1, (mid - r.top) / r.height));
-        fill.style.height = prog * 100 + "%";
-    }, []);
+const Experience = () => {
+    const [active, setActive] = useState(0);
+    const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+    const vBarRef = useRef<HTMLSpanElement | null>(null);
+    const hBarRef = useRef<HTMLSpanElement | null>(null);
+
+    const moveIndicator = useCallback(() => {
+        const tab = tabRefs.current[active];
+        if (!tab) return;
+        const vBar = vBarRef.current;
+        const hBar = hBarRef.current;
+        if (vBar) {
+            vBar.style.transform = `translateY(${tab.offsetTop}px)`;
+            vBar.style.height = `${tab.offsetHeight}px`;
+        }
+        if (hBar) {
+            hBar.style.transform = `translateX(${tab.offsetLeft}px)`;
+            hBar.style.width = `${tab.offsetWidth}px`;
+        }
+    }, [active]);
 
     useEffect(() => {
-        updateFill();
+        moveIndicator();
         let n = 0;
         const poll = setInterval(() => {
-            updateFill();
-            if (++n > 20) clearInterval(poll);
+            moveIndicator();
+            if (++n > 10) clearInterval(poll);
         }, 200);
-        const onScroll = () => updateFill();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll, { passive: true });
+        window.addEventListener("resize", moveIndicator, { passive: true });
         return () => {
             clearInterval(poll);
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", onScroll);
+            window.removeEventListener("resize", moveIndicator);
         };
-    }, [updateFill]);
+    }, [moveIndicator]);
+
+    const job = JOBS[active];
 
     return (
         <section id="experience" className="scroll-mt-[72px] bg-tint">
@@ -45,43 +52,69 @@ const Experience = () => {
                     spacing="mb-[clamp(36px,8vw,52px)]"
                 />
 
-                <div
-                    className="relative pl-[clamp(28px,6vw,40px)]"
-                    ref={timelineRef}
-                >
-                    <div className="absolute bottom-1 left-2 top-1 w-px bg-line" />
-                    <div
-                        className="absolute left-[7.5px] top-1 h-0 w-[2px] bg-accent transition-[height] duration-200 ease-linear"
-                        ref={fillRef}
-                    />
+                <div className="flex flex-col gap-7 md:flex-row md:items-center md:gap-[clamp(32px,5vw,56px)]">
+                    <div className="-mx-[clamp(20px,5vw,40px)] overflow-x-auto px-[clamp(20px,5vw,40px)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:w-[200px] md:flex-none md:overflow-visible md:px-0">
+                        <div
+                            className="relative flex w-fit flex-row md:w-auto md:flex-col"
+                            role="tablist"
+                            aria-label="Companies"
+                        >
+                            <span className="absolute inset-x-0 bottom-0 h-px bg-line md:hidden" />
+                            <span className="absolute inset-y-0 left-0 hidden w-px bg-line md:block" />
+                            <span
+                                className="absolute bottom-0 left-0 h-[2px] bg-accent transition-[transform,width] duration-300 ease-out md:hidden"
+                                ref={hBarRef}
+                            />
+                            <span
+                                className="absolute left-0 top-0 hidden w-[2px] bg-accent transition-[transform,height] duration-300 ease-out md:block"
+                                ref={vBarRef}
+                            />
+                            {JOBS.map((j, i) => (
+                                <button
+                                    className={`flex-none cursor-pointer border-0 bg-transparent px-4 py-3 text-left font-mono text-xs tracking-[0.08em] transition-colors duration-[250ms] md:px-5 ${
+                                        active === i
+                                            ? "text-accent"
+                                            : "text-muted hover:text-ink"
+                                    }`}
+                                    key={j.org}
+                                    onClick={() => setActive(i)}
+                                    ref={(el) => {
+                                        tabRefs.current[i] = el;
+                                    }}
+                                    role="tab"
+                                    aria-selected={active === i}
+                                    type="button"
+                                >
+                                    {companyName(j.org)}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                    <div className="flex flex-col gap-[clamp(36px,8vw,52px)]">
-                        {JOBS.map((job) => (
-                            <div className="relative" key={job.title}>
-                                <div className="absolute left-[calc(clamp(28px,6vw,40px)*-1_+_3px)] top-[5px] h-[11px] w-[11px] rounded-full border-2 border-accent bg-tint" />
-                                <h3 className="m-0 font-sans text-[clamp(20px,4.6vw,25px)] font-normal leading-[1.15]">
-                                    {job.title}{" "}
-                                    <span className="text-accent">
-                                        {job.org}
-                                    </span>
-                                </h3>
-                                <div className="mt-2 flex flex-wrap items-center gap-2.5">
-                                    <span className="font-mono text-[11px] tracking-[0.08em] text-muted">
-                                        {job.duration}
-                                    </span>
-                                </div>
-                                <ul className="m-0 mt-3.5 flex list-none flex-col gap-2 p-0">
-                                    {job.points.map((point) => (
-                                        <li
-                                            className="relative max-w-[620px] pl-5 text-[clamp(13.5px,3.4vw,14.5px)] leading-[1.6] text-body before:absolute before:left-0 before:top-0 before:text-accent before:content-['—']"
-                                            key={point}
-                                        >
-                                            {point}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
+                    <div
+                        className="min-w-0 flex-1 animate-fade-up md:min-h-[280px]"
+                        key={job.org}
+                        role="tabpanel"
+                    >
+                        <h3 className="m-0 font-sans text-[clamp(20px,4.6vw,25px)] font-normal leading-[1.15]">
+                            {job.title}{" "}
+                            <span className="text-accent">{job.org}</span>
+                        </h3>
+                        <div className="mt-2 flex flex-wrap items-center gap-2.5">
+                            <span className="font-mono text-[11px] tracking-[0.08em] text-muted">
+                                {job.duration}
+                            </span>
+                        </div>
+                        <ul className="m-0 mt-3.5 flex list-none flex-col gap-2 p-0">
+                            {job.points.map((point) => (
+                                <li
+                                    className="relative max-w-[620px] pl-5 text-[clamp(13.5px,3.4vw,14.5px)] leading-[1.6] text-body before:absolute before:left-0 before:top-0 before:text-accent before:content-['—']"
+                                    key={point}
+                                >
+                                    {point}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </div>

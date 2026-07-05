@@ -29,6 +29,15 @@ module.exports = {
         glass: '0 6px 20px rgba(36, 60, 76, 0.10)',
         float: '0 6px 20px rgba(36, 60, 76, 0.14)',
       },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.35s ease both',
+      },
     },
   },
   plugins: [],
