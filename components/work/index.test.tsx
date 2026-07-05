@@ -27,9 +27,9 @@ describe("correctly returns the work component", () => {
         const cards = screen.getAllByRole("article");
         PROJECTS.forEach((project, i) => {
             project.links.forEach((link) => {
-                const anchor = within(cards[i]).getByText(
-                    `${link.label} ↗`
-                );
+                const anchor = within(cards[i]).getByRole("link", {
+                    name: link.label,
+                });
                 expect(anchor).toHaveAttribute("href", link.href);
                 expect(anchor).toHaveAttribute("target", "_blank");
             });

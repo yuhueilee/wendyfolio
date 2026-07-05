@@ -71,9 +71,9 @@ const Experience = () => {
                             />
                             {JOBS.map((j, i) => (
                                 <button
-                                    className={`flex-none cursor-pointer border-0 bg-transparent px-4 py-3 text-left font-mono text-xs tracking-[0.08em] transition-colors duration-[250ms] md:px-5 ${
+                                    className={`flex-none cursor-pointer border-0 bg-transparent px-4 py-3 text-left font-mono text-xs tracking-[0.08em] transition-colors duration-[250ms] hover:bg-tint-deep md:px-5 ${
                                         active === i
-                                            ? "text-accent"
+                                            ? "text-accent-dark"
                                             : "text-muted hover:text-ink"
                                     }`}
                                     key={j.org}
@@ -98,20 +98,22 @@ const Experience = () => {
                     >
                         <h3 className="m-0 font-sans text-[clamp(20px,4.6vw,25px)] font-normal leading-[1.15]">
                             {job.title}{" "}
-                            <span className="text-accent">{job.org}</span>
+                            <span className="text-accent-dark">
+                                {job.org}
+                            </span>
                         </h3>
                         <div className="mt-2 flex flex-col gap-2">
                             <span className="font-mono text-[11px] tracking-[0.08em] text-muted">
                                 {job.duration}
                             </span>
-                            <span className="font-mono text-[11px] tracking-[0.08em] text-accent">
+                            <span className="font-mono text-[11px] tracking-[0.08em] text-accent-dark">
                                 {job.stack.join(" / ")}
                             </span>
                         </div>
                         <ul className="m-0 mt-2 flex list-none flex-col gap-2 p-0">
                             {job.points.map((point) => (
                                 <li
-                                    className="relative max-w-[620px] pl-5 text-[clamp(13.5px,3.4vw,14.5px)] leading-[1.6] text-body before:absolute before:left-0 before:top-0 before:text-accent before:content-['—']"
+                                    className="relative max-w-[620px] pl-5 text-[clamp(13.5px,3.4vw,14.5px)] leading-[1.6] text-body before:absolute before:left-0 before:top-0 before:text-accent-dark before:content-['—']"
                                     key={point}
                                 >
                                     {point}

@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         mist: '#F4FCFB',
         tint: '#E9F2FA',
+        'tint-deep': '#D3E3F2',
         ink: '#243C4C',
         accent: '#5289AD',
         'accent-dark': '#3A647F',

@@ -14,7 +14,7 @@ type CarouselProps = {
 };
 
 const NAV_BTN =
-    "absolute top-1/2 z-[3] grid h-9 w-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-line bg-[rgba(244,252,251,0.92)] text-[17px] text-ink backdrop-blur-[4px] transition-colors duration-[250ms] hover:border-ink hover:bg-ink hover:text-mist";
+    "absolute top-1/2 z-[3] hidden h-9 w-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full border-0 bg-[rgba(244,252,251,0.8)] text-[17px] text-ink backdrop-blur-[4px] transition-colors duration-[250ms] hover:bg-[rgba(36,60,76,0.8)] hover:text-mist wide:grid";
 
 const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);

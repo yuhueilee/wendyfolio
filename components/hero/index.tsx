@@ -2,8 +2,8 @@ import { RESUME_HREF } from "../data";
 import { DownloadIcon } from "../icons";
 
 const Hero = () => (
-    <section id="hero" className="bg-gradient-to-b from-tint to-mist">
-        <div className="mx-auto max-w-[880px] px-[clamp(20px,5vw,40px)] pb-[clamp(64px,14vw,110px)] pt-[clamp(110px,22vw,170px)]">
+    <section id="hero" className="bg-gradient-to-b from-tint-deep to-mist">
+        <div className="mx-auto max-w-[880px] px-[clamp(20px,5vw,40px)] pb-[clamp(64px,14vw,110px)] pt-[clamp(110px,22vw,170px)] md:pb-[72px] md:pt-[128px]">
             <p className="m-0 mb-[clamp(20px,5vw,28px)] font-mono text-sm tracking-[0.16em] text-muted">
                 Hi, my name is
             </p>
@@ -26,7 +26,7 @@ const Hero = () => (
                 </a>
                 <a
                     href="#work"
-                    className="inline-flex items-center border border-line bg-transparent px-[26px] py-[15px] font-mono text-xs tracking-[0.08em] text-ink no-underline transition-colors duration-[250ms] hover:border-ink"
+                    className="inline-flex items-center border border-line bg-transparent px-[26px] py-[15px] font-mono text-xs tracking-[0.08em] text-ink no-underline transition-colors duration-[250ms] hover:border-ink hover:bg-ink hover:text-white"
                 >
                     VIEW WORK
                 </a>

@@ -1,8 +1,27 @@
-import profileImg from "../../public/images/profile-pic.jpeg";
+import profileImg from "../../public/images/profile.jpg";
 import SectionHead from "../section-head";
 
 const PARAGRAPH =
     "m-0 text-[clamp(14.5px,2.4vw,16px)] leading-[1.75] text-body-dark";
+
+const Waves = ({ position }: { position: string }) => (
+    <svg
+        aria-hidden
+        viewBox="0 0 120 60"
+        fill="none"
+        className={`absolute z-[1] w-[clamp(96px,20vw,120px)] text-accent ${position}`}
+    >
+        {[10, 28, 46].map((y) => (
+            <path
+                d={`M4 ${y} q 8 -9 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0`}
+                key={y}
+                stroke="currentColor"
+                strokeWidth="5"
+                strokeLinecap="round"
+            />
+        ))}
+    </svg>
+);
 
 const About = () => (
     <section
@@ -12,14 +31,15 @@ const About = () => (
         <SectionHead title="ABOUT ME" />
         <div className="flex flex-row-reverse flex-wrap items-center gap-[clamp(28px,6vw,48px)]">
             <div className="mx-auto flex flex-none flex-col items-center gap-3.5">
-                <img
-                    src={profileImg.src}
-                    alt="Wendy Lee"
-                    className="block h-[clamp(180px,40vw,220px)] w-[clamp(180px,40vw,220px)] rounded-full border border-line object-cover"
-                />
-                <span className="font-mono text-[10px] tracking-[0.14em] text-muted">
-                    WENDY · LEE YU HUEI
-                </span>
+                <div className="relative">
+                    <img
+                        src={profileImg.src}
+                        alt="Wendy Lee"
+                        className="block h-[clamp(270px,60vw,330px)] w-[clamp(270px,60vw,330px)] line object-cover"
+                    />
+                    <Waves position="-bottom-6 -left-8" />
+                    <Waves position="-top-6 -right-8" />
+                </div>
             </div>
             <div className="min-w-0 flex-[1_1_320px]">
                 <p className={PARAGRAPH}>
@@ -27,13 +47,20 @@ const About = () => (
                     experience. My journey has taken me from backend to
                     frontend: building subscription features for a food delivery
                     app while conducting{" "}
-                    <span className="font-semibold text-accent">e2e tests</span> covering key
-                    user flows, modernizing an e-commerce platform's React
-                    Native app with TypeScript and{" "}
-                    <span className="font-semibold text-accent">CI/CD workflows</span>, and
-                    now working at the intersection of React and AI tooling —
-                    building <span className="font-semibold text-accent">AI agents</span> that
-                    speed up package migrations and automate repetitive
+                    <span className="font-semibold text-accent-dark">
+                        e2e tests
+                    </span>{" "}
+                    covering key user flows, modernizing an e-commerce
+                    platform's React Native app with TypeScript and{" "}
+                    <span className="font-semibold text-accent-dark">
+                        CI/CD workflows
+                    </span>
+                    , and now working at the intersection of React and AI
+                    tooling — building{" "}
+                    <span className="font-semibold text-accent-dark">
+                        AI agents
+                    </span>{" "}
+                    that speed up package migrations and automate repetitive
                     engineering work. What ties it all together? I love stepping
                     outside my comfort zone and building tools that help teams
                     move faster.

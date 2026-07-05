@@ -1,5 +1,6 @@
 import { PROJECTS } from "../data";
 import Carousel from "../carousel";
+import { GitHubIcon, LinkIcon } from "../icons";
 import SectionHead from "../section-head";
 
 const Work = () => (
@@ -47,16 +48,21 @@ const Work = () => (
                                     </span>
                                 ))}
                             </div>
-                            <div className="flex flex-wrap gap-2.5 border-t border-tint pt-4">
+                            <div className="flex flex-wrap gap-4 border-t border-tint pt-4">
                                 {project.links.map((link) => (
                                     <a
                                         href={link.href}
                                         key={link.label}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.06em] text-accent no-underline transition-colors duration-[250ms] hover:text-ink"
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 font-mono text-[11px] tracking-[0.06em] text-accent-dark no-underline transition-colors duration-[250ms] hover:bg-ink hover:text-white"
                                     >
-                                        {link.label} ↗
+                                        {link.label === "GITHUB" ? (
+                                            <GitHubIcon size={13} />
+                                        ) : (
+                                            <LinkIcon size={13} />
+                                        )}
+                                        {link.label}
                                     </a>
                                 ))}
                             </div>

@@ -1,4 +1,10 @@
-import project1Img from "../public/images/project-1.png";
+import penguinBattle1Img from "../public/images/penguin-battle-01.png";
+import penguinBattle2Img from "../public/images/penguin-battle-02.png";
+import penguinBattle3Img from "../public/images/penguin-battle-03.png";
+import replyo1Img from "../public/images/replyo-01.png";
+import replyo2Img from "../public/images/replyo-02.png";
+import replyo3Img from "../public/images/replyo-03.png";
+import replyo4Img from "../public/images/replyo-04.png";
 import { Job, Project } from "../types";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -68,7 +74,7 @@ export const PROJECTS: Array<Project> = [
                 href: "https://github.com/yuhueilee/replyo",
             },
         ],
-        shots: [null, null, null],
+        shots: [replyo1Img, replyo2Img, replyo3Img, replyo4Img],
     },
     {
         kind: "SIDE PROJECT",
@@ -83,6 +89,6 @@ export const PROJECTS: Array<Project> = [
                 href: "https://github.com/yuhueilee/penguin-game",
             },
         ],
-        shots: [project1Img, null, null],
+        shots: [penguinBattle1Img, penguinBattle2Img, penguinBattle3Img],
     },
 ];
