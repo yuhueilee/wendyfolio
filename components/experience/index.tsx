@@ -52,15 +52,15 @@ const Experience = () => {
                     spacing="mb-[clamp(36px,8vw,52px)]"
                 />
 
-                <div className="flex flex-col gap-7 md:flex-row md:items-center md:gap-[clamp(32px,5vw,56px)]">
+                <div className="flex flex-col gap-7 md:flex-row md:items-start md:gap-[clamp(32px,5vw,56px)]">
                     <div className="-mx-[clamp(20px,5vw,40px)] overflow-x-auto px-[clamp(20px,5vw,40px)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:w-[200px] md:flex-none md:overflow-visible md:px-0">
                         <div
                             className="relative flex w-fit flex-row md:w-auto md:flex-col"
                             role="tablist"
                             aria-label="Companies"
                         >
-                            <span className="absolute inset-x-0 bottom-0 h-px bg-line md:hidden" />
-                            <span className="absolute inset-y-0 left-0 hidden w-px bg-line md:block" />
+                            <span className="absolute inset-x-0 bottom-0 h-[2px] bg-line md:hidden" />
+                            <span className="absolute inset-y-0 left-0 hidden w-[2px] bg-line md:block" />
                             <span
                                 className="absolute bottom-0 left-0 h-[2px] bg-accent transition-[transform,width] duration-300 ease-out md:hidden"
                                 ref={hBarRef}
@@ -100,12 +100,15 @@ const Experience = () => {
                             {job.title}{" "}
                             <span className="text-accent">{job.org}</span>
                         </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-2.5">
+                        <div className="mt-2 flex flex-col gap-2">
                             <span className="font-mono text-[11px] tracking-[0.08em] text-muted">
                                 {job.duration}
                             </span>
+                            <span className="font-mono text-[11px] tracking-[0.08em] text-accent">
+                                {job.stack.join(" / ")}
+                            </span>
                         </div>
-                        <ul className="m-0 mt-3.5 flex list-none flex-col gap-2 p-0">
+                        <ul className="m-0 mt-2 flex list-none flex-col gap-2 p-0">
                             {job.points.map((point) => (
                                 <li
                                     className="relative max-w-[620px] pl-5 text-[clamp(13.5px,3.4vw,14.5px)] leading-[1.6] text-body before:absolute before:left-0 before:top-0 before:text-accent before:content-['—']"

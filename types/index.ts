@@ -4,6 +4,7 @@ export interface Job {
     duration: string;
     title: string;
     org: string;
+    stack: Array<string>;
     points: Array<string>;
 }
 
