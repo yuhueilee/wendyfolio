@@ -62,7 +62,7 @@ export const PROJECTS: Array<Project> = [
         kind: "SIDE PROJECT",
         title: "Replyo",
         description:
-            "Designed and implemented an auto-reply bot for Threads that matches keywords and responds in seconds, saving operational time of manual reply.",
+            "Designed and implemented an auto-reply bot for Threads that matches keywords and responds in seconds, saving operational time from manual replies.",
         stack: ["Next.js", "TypeScript", "Express", "Redis", "Threads API"],
         links: [
             {
