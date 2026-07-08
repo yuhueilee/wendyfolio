@@ -4,14 +4,12 @@ import { RESUME_HREF } from "../data";
 import Hero from "./index";
 
 describe("correctly returns the hero component", () => {
-    it("renders the name, motto and lede", () => {
+    it("renders the greeting, name and lede", () => {
         render(<Hero />);
 
+        expect(screen.getByText("Hi, my name is")).toBeInTheDocument();
         expect(
             screen.getByRole("heading", { level: 1, name: "Wendy Lee" })
-        ).toBeInTheDocument();
-        expect(
-            screen.getByText("Never stop learning and improving.")
         ).toBeInTheDocument();
         expect(
             screen.getByText(/Software engineer working across the stack/)
@@ -21,11 +19,10 @@ describe("correctly returns the hero component", () => {
     it("renders the call-to-action links", () => {
         render(<Hero />);
 
-        expect(screen.getByText(/DOWNLOAD RÉSUMÉ/)).toHaveAttribute(
-            "href",
-            RESUME_HREF
-        );
-        expect(screen.getByText(/VIEW WORK/)).toHaveAttribute(
+        expect(
+            screen.getByText("DOWNLOAD RESUME").closest("a")
+        ).toHaveAttribute("href", RESUME_HREF);
+        expect(screen.getByText("VIEW WORK")).toHaveAttribute(
             "href",
             "#work"
         );

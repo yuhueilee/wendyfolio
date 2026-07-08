@@ -4,10 +4,10 @@ import { RESUME_HREF } from "../data";
 import Header from "./index";
 
 describe("correctly returns the header component", () => {
-    it("renders the monogram and anchor navigation", () => {
+    it("renders the wordmark and anchor navigation", () => {
         render(<Header />);
 
-        expect(screen.getByText("WL")).toBeInTheDocument();
+        expect(screen.getByText("Wendy")).toBeInTheDocument();
         expect(screen.getByText("ABOUT")).toHaveAttribute("href", "#about");
         expect(screen.getByText("JOBS")).toHaveAttribute(
             "href",
@@ -20,15 +20,12 @@ describe("correctly returns the header component", () => {
         );
     });
 
-    it("renders both résumé download links", () => {
+    it("renders the resume download link", () => {
         render(<Header />);
 
-        expect(screen.getByText(/RÉSUMÉ/)).toHaveAttribute(
+        expect(screen.getByText("RESUME").closest("a")).toHaveAttribute(
             "href",
             RESUME_HREF
         );
-        expect(
-            screen.getByLabelText("Download résumé")
-        ).toHaveAttribute("href", RESUME_HREF);
     });
 });
