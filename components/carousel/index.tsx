@@ -7,18 +7,19 @@ import type { StaticImageData } from "next/image";
 
 import "swiper/css";
 
+import GlassButton from "../glass-button";
+import Lightbox from "./lightbox";
+
 type CarouselProps = {
     title: string;
     shots: Array<StaticImageData | null>;
     imageLeft?: boolean;
 };
 
-const NAV_BTN =
-    "absolute top-1/2 z-[3] hidden h-9 w-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full border-0 bg-[rgba(244,252,251,0.8)] text-[17px] text-ink backdrop-blur-[4px] transition-colors duration-[250ms] hover:bg-[rgba(36,60,76,0.8)] hover:text-mist wide:grid";
-
 const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
     const [active, setActive] = useState(0);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
     return (
         <div
@@ -34,7 +35,19 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                 >
                     {shots.map((img, j) => (
                         <SwiperSlide key={j}>
-                            <div className="flex h-full w-full">
+                            <div
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`View ${title} · shot 0${j + 1}`}
+                                onClick={() => setLightboxIndex(j)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        e.preventDefault();
+                                        setLightboxIndex(j);
+                                    }
+                                }}
+                                className="flex h-full w-full cursor-zoom-in"
+                            >
                                 {img ? (
                                     <img
                                         src={img.src}
@@ -50,22 +63,22 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <button
-                    type="button"
+                <GlassButton
+                    label="Previous"
                     onClick={() => swiper?.slidePrev()}
-                    aria-label="Previous"
-                    className={`${NAV_BTN} left-2.5`}
+                    hideOnMobile
+                    className="absolute left-2.5 top-1/2 z-[3] -translate-y-1/2"
                 >
                     ‹
-                </button>
-                <button
-                    type="button"
+                </GlassButton>
+                <GlassButton
+                    label="Next"
                     onClick={() => swiper?.slideNext()}
-                    aria-label="Next"
-                    className={`${NAV_BTN} right-2.5`}
+                    hideOnMobile
+                    className="absolute right-2.5 top-1/2 z-[3] -translate-y-1/2"
                 >
                     ›
-                </button>
+                </GlassButton>
                 <div className="absolute bottom-2.5 left-0 right-0 z-[3] flex justify-center gap-1.5">
                     {shots.map((_, j) => (
                         <button
@@ -85,6 +98,14 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                     ))}
                 </div>
             </div>
+            {lightboxIndex !== null && (
+                <Lightbox
+                    title={title}
+                    shots={shots}
+                    initialIndex={lightboxIndex}
+                    onClose={() => setLightboxIndex(null)}
+                />
+            )}
         </div>
     );
 };
