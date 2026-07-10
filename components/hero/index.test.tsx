@@ -12,7 +12,7 @@ describe("correctly returns the hero component", () => {
             screen.getByRole("heading", { level: 1, name: "Wendy Lee" })
         ).toBeInTheDocument();
         expect(
-            screen.getByText(/Software engineer working across the stack/)
+            screen.getByText(/Adaptable software engineer with 4 years/)
         ).toBeInTheDocument();
     });
 

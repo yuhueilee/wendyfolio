@@ -11,9 +11,9 @@ const Hero = () => (
                 Wendy Lee
             </h1>
             <p className="m-0 mt-[clamp(18px,4vw,26px)] max-w-[600px] text-[clamp(15px,2.4vw,17px)] leading-[1.65] text-body">
-                Software engineer working across the stack — backend services in
-                production at scale, responsive frontends, and the tests and
-                tooling that keep both trustworthy.
+                Adaptable software engineer with 4 years of experience across
+                the full stack. A quick learner and dependable team player,
+                driven to build tools and systems that help teams move faster.
             </p>
             <div className="mt-[clamp(30px,7vw,42px)] flex flex-wrap gap-3.5">
                 <a
