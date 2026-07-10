@@ -8,7 +8,7 @@ import { Job, Project } from "../types";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export const RESUME_HREF = `${BASE_PATH}/assets/YuHuei-Lee-Resume.pdf`;
+export const RESUME_HREF = `${BASE_PATH}/assets/YuHueiLee_Resume.pdf`;
 export const EMAIL = "wendylee70127@gmail.com";
 export const GITHUB_HREF = "https://github.com/yuhueilee";
 export const LINKEDIN_HREF = "https://www.linkedin.com/in/yuhueilee-wendy/";
