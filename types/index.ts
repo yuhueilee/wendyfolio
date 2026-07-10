@@ -1,13 +1,23 @@
-export interface CardContent {
-    img: string;
+import type { StaticImageData } from "next/image";
+
+export interface Job {
+    duration: string;
     title: string;
-    description: string;
-    links: Array<string>;
+    org: string;
+    stack: Array<string>;
+    points: Array<string>;
 }
 
-export interface ListContent {
+export interface ProjectLink {
+    label: string;
+    href: string;
+}
+
+export interface Project {
+    kind: string;
     title: string;
-    subTitle: string;
-    duration: string;
-    descriptions: Array<string>;
+    description: string;
+    stack: Array<string>;
+    links: Array<ProjectLink>;
+    shots: Array<StaticImageData | null>;
 }

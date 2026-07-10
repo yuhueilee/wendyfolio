@@ -2,9 +2,6 @@
 const nextConfig = {
   output: 'export',
   basePath: '/wendyfolio',
-  sassOptions: {
-    includePaths: ['./node_modules'],
-  },
   eslint: {
     ignoreDuringBuilds: true,
   },
