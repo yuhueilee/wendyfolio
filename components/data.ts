@@ -6,9 +6,7 @@ import replyo2Img from "../public/images/replyo-02.png";
 import replyo3Img from "../public/images/replyo-03.png";
 import { Job, Project } from "../types";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-export const RESUME_HREF = `${BASE_PATH}/assets/YuHueiLee_Resume.pdf`;
+export const RESUME_HREF = "/assets/YuHueiLee_Resume.pdf";
 export const EMAIL = "wendylee70127@gmail.com";
 export const GITHUB_HREF = "https://github.com/yuhueilee";
 export const LINKEDIN_HREF = "https://www.linkedin.com/in/yuhueilee-wendy/";

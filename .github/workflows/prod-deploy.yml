@@ -1,64 +1,47 @@
-name: Production (github-pages) Deployment
+name: Production (Cloudflare Workers) Deployment
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    build:
-        needs: test
+  test:
+    runs-on: ubuntu-latest
 
-        permissions:
-            contents: write
-            pages: write
-            id-token: write
+    strategy:
+      matrix:
+        node-version: [24.x]
 
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm ci
+      - name: tests
+        run: npm test
 
-        runs-on: ubuntu-latest
+  deploy:
+    needs: test
 
-        strategy:
-            matrix:
-                node-version: [24.x]
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: configure github pages
-              uses: actions/configure-pages@v4
-              with:
-                  static_site_generator: nextjs
-            - name: npm install
-              run: npm ci
-            - run: npm run build
-            - name: upload artifacts
-              uses: actions/upload-pages-artifact@v3
-              with:
-                  path: "./out"
-
-            - name: deploy
-              id: deployment
-              uses: actions/deploy-pages@v4
-    test:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [24.x]
-
-        steps:
-            - uses: actions/checkout@v4
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: npm install
-              run: npm ci
-            - name: tests
-              run: npm test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+      - name: npm install
+        run: npm ci
+      - name: Build & Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommands: npm run build:cloudflare
+          command: deploy
+          gitHubToken: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
