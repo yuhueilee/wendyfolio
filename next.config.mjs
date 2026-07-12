@@ -2,9 +2,6 @@
 const nextConfig = {
   output: 'export',
   basePath: '/wendyfolio',
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
 }
 
 export default nextConfig
