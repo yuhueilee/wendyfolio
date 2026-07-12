@@ -15,8 +15,8 @@ module.exports = async () => {
   const jestConfig = await createJestConfig(config)()
   jestConfig.transformIgnorePatterns = jestConfig.transformIgnorePatterns.map(
     (pattern) =>
-      pattern === '/node_modules/'
-        ? '/node_modules/(?!(swiper)/)'
+      pattern.includes('geist')
+        ? pattern.replace(/\(geist\|/g, '(geist|swiper|')
         : pattern
   )
   // 'swiper/css' resolves to a raw .css file that next/jest's CSS mapping
