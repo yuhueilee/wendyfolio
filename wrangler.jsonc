@@ -15,6 +15,10 @@
 		{
 			"pattern": "wendyfolio.com",
 			"custom_domain": true
+		},
+		{
+			"pattern": "www.wendyfolio.com",
+			"custom_domain": true
 		}
 	],
 	"services": [
