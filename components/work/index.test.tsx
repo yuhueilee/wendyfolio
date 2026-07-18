@@ -59,7 +59,7 @@ describe("correctly returns the work component", () => {
 
         const cards = screen.getAllByRole("article");
         cards.forEach((card) => {
-            expect(card).toHaveClass("aspect-[3/4]");
+            expect(card).toHaveClass("aspect-[3/4]", "max-w-[300px]");
         });
 
         const firstCard = cards[0];
