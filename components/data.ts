@@ -70,6 +70,20 @@ export const JOBS: Array<Job> = [
 export const PROJECTS: Array<Project> = [
     {
         kind: "PRODUCT FEATURE",
+        title: "E-Commerce React Native App Revamp",
+        description:
+            "Refactored the e-commerce mobile app by migrating from JavaScript to TypeScript and upgrading React Native from v0.64 to v0.74, resolving Google Play’s Android API deprecation blocker. Modernized state management with Redux Toolkit, async thunks, and listener middleware for the add-to-cart flow; replaced Shopify’s REST API with GraphQL and cursor-based pagination to enable incremental loading of cart items.",
+        stack: [
+            "React Native",
+            "TypeScript",
+            "Redux Toolkit",
+            "Shopify GraphQL",
+        ],
+        links: [],
+        shots: [{ mp4: `${R2_ASSET_URL}/work/citiesocial/1.mp4` }],
+    },
+    {
+        kind: "PRODUCT FEATURE",
         title: "Add Pro to Cart",
         description:
             "The Add Pro to Cart (APTC) initiative lets customers add a Pro subscription item directly to their cart, view applicable benefits, and check out food and subscription together through a single unified payment, all backed by cart-level eligibility validation and a subscription creation flow tied to order processing. At a high level, the project utilizes order-related SNS topics to transit subscription status, extending the existing state transition to support subscription activation based on order delivery status. It also reworks the delivery fee benefit counter to support an order-first activation flow. This drove a 23% increase in subscription conversion rate in Malaysia and the Philippines.",
