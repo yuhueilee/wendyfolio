@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Zoom } from "swiper/modules";
+import { Autoplay, Zoom } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { isVideoSource, type MediaSource } from "../../types";
 
@@ -31,11 +31,20 @@ const CardCarousel = ({ title, shots, children }: CardCarouselProps) => {
             <div className="absolute inset-0">
                 <Swiper
                     className="h-full w-full rounded-[32px] bg-tint [&_.swiper-slide]:h-full"
-                    modules={[Zoom]}
+                    modules={[Autoplay, Zoom]}
                     onSwiper={setSwiper}
                     onSlideChange={(s) => setActive(s.realIndex)}
                     slidesPerView={1}
                     loop={hasMultipleShots}
+                    autoplay={
+                        hasMultipleShots
+                            ? {
+                                  delay: 4000,
+                                  disableOnInteraction: false,
+                                  pauseOnMouseEnter: true,
+                              }
+                            : false
+                    }
                     zoom={{ maxRatio: 3 }}
                 >
                     {shots.map((media, j) => (
@@ -57,6 +66,7 @@ const CardCarousel = ({ title, shots, children }: CardCarouselProps) => {
                                     }}
                                     preload="metadata"
                                     role="button"
+                                    showPlaybackStatus={false}
                                     tabIndex={0}
                                 />
                             ) : (
