@@ -73,7 +73,7 @@ const WorkCard = ({ project, index }: WorkCardProps) => {
         <article
             ref={cardRef}
             data-column={index % 2 === 0 ? "left" : "right"}
-            className={`mb-5 aspect-[3/4] w-full max-w-[300px] self-start overflow-hidden rounded-[32px] shadow-[0_18px_38px_rgba(36,60,76,0.2)] transition-[transform,box-shadow] duration-300 wide:mb-0 wide:hover:-translate-y-1 wide:hover:shadow-[0_24px_48px_rgba(36,60,76,0.26)] ${
+            className={`mb-5 aspect-[3/4] w-full max-w-[300px] cursor-pointer self-start overflow-hidden rounded-[32px] shadow-[0_18px_38px_rgba(36,60,76,0.2)] transition-shadow duration-300 wide:mb-0 wide:hover:shadow-[0_24px_48px_rgba(36,60,76,0.26)] ${
                 index % 2 === 0
                     ? "mx-auto wide:mx-0 wide:justify-self-end"
                     : "mx-auto wide:mx-0 wide:justify-self-start"

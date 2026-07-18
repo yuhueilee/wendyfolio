@@ -44,7 +44,7 @@ const CardCarousel = ({ title, shots, children }: CardCarouselProps) => {
                                 <Video
                                     src={media}
                                     aria-label={`${title} · video 0${j + 1}`}
-                                    className="block h-full w-full bg-black object-cover"
+                                    className="block h-full w-full cursor-pointer bg-black object-cover"
                                     onClick={() => setLightboxIndex(j)}
                                     onKeyDown={(event) => {
                                         if (
@@ -78,7 +78,7 @@ const CardCarousel = ({ title, shots, children }: CardCarouselProps) => {
                                             setLightboxIndex(j);
                                         }
                                     }}
-                                    className={`flex h-full w-full cursor-zoom-in ${
+                                    className={`flex h-full w-full cursor-pointer ${
                                         media ? "swiper-zoom-container" : ""
                                     }`}
                                 >
