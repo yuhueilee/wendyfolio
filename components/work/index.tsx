@@ -48,24 +48,26 @@ const Work = () => (
                                     </span>
                                 ))}
                             </div>
-                            <div className="flex flex-wrap gap-4 border-t border-tint pt-4">
-                                {project.links.map((link) => (
-                                    <a
-                                        href={link.href}
-                                        key={link.label}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 font-mono text-[11px] tracking-[0.06em] text-accent-dark no-underline transition-colors duration-[250ms] hover:bg-ink hover:text-white"
-                                    >
-                                        {link.label === "GITHUB" ? (
-                                            <GitHubIcon size={13} />
-                                        ) : (
-                                            <LinkIcon size={13} />
-                                        )}
-                                        {link.label}
-                                    </a>
-                                ))}
-                            </div>
+                            {project.links.length > 0 && (
+                                <div className="flex flex-wrap gap-4 border-t border-tint pt-4">
+                                    {project.links.map((link) => (
+                                        <a
+                                            href={link.href}
+                                            key={link.label}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1.5 px-3.5 py-2 font-mono text-[11px] tracking-[0.06em] text-accent-dark no-underline transition-colors duration-[250ms] hover:bg-ink hover:text-white"
+                                        >
+                                            {link.label === "GITHUB" ? (
+                                                <GitHubIcon size={13} />
+                                            ) : (
+                                                <LinkIcon size={13} />
+                                            )}
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </article>
                 );

@@ -69,6 +69,15 @@ export const JOBS: Array<Job> = [
 
 export const PROJECTS: Array<Project> = [
     {
+        kind: "PRODUCT FEATURE",
+        title: "Add Pro to Cart",
+        description:
+            "The Add Pro to Cart (APTC) initiative lets customers add a Pro subscription item directly to their cart, view applicable benefits, and check out food and subscription together through a single unified payment, all backed by cart-level eligibility validation and a subscription creation flow tied to order processing. At a high level, the project utilizes order-related SNS topics to transit subscription status, extending the existing state transition to support subscription activation based on order delivery status. It also reworks the delivery fee benefit counter to support an order-first activation flow. This drove a 23% increase in subscription conversion rate in Malaysia and the Philippines.",
+        stack: ["GoLang", "AWS", "SNS", "SQL"],
+        links: [],
+        shots: [{ mp4: `${R2_ASSET_URL}/work/foodpanda/1.mp4` }],
+    },
+    {
         kind: "SIDE PROJECT",
         title: "Replyo",
         description:

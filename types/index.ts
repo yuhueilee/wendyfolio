@@ -17,11 +17,20 @@ export interface PictureSource {
     jpg: string;
 }
 
+export interface VideoSource {
+    mp4: string;
+}
+
+export type MediaSource = PictureSource | VideoSource;
+
+export const isVideoSource = (source: MediaSource): source is VideoSource =>
+    "mp4" in source;
+
 export interface Project {
     kind: string;
     title: string;
     description: string;
     stack: Array<string>;
     links: Array<ProjectLink>;
-    shots: Array<PictureSource | null>;
+    shots: Array<MediaSource | null>;
 }

@@ -4,17 +4,18 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Mousewheel, Zoom } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import type { PictureSource } from "../../types";
+import { isVideoSource, type MediaSource } from "../../types";
 
 import "swiper/css";
 import "swiper/css/zoom";
 
 import GlassButton from "../glass-button";
 import Picture from "../picture";
+import Video from "../video";
 
 type LightboxProps = {
     title: string;
-    shots: Array<PictureSource | null>;
+    shots: Array<MediaSource | null>;
     initialIndex: number;
     onClose: () => void;
 };
@@ -67,6 +68,8 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
         );
 
     const thumbs = shots.slice(0, MAX_THUMBS);
+    const activeMedia = shots[active];
+    const canZoom = !activeMedia || !isVideoSource(activeMedia);
 
     return (
         <div
@@ -80,26 +83,30 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                     {active + 1} / {shots.length}
                 </span>
                 <div className="flex items-center gap-2">
-                    <input
-                        type="range"
-                        min={1}
-                        max={MAX_ZOOM}
-                        step={0.1}
-                        value={scale}
-                        aria-label="Zoom"
-                        onChange={(e) => {
-                            const ratio = Number(e.target.value);
-                            setScale(ratio);
-                            zoomTo(ratio);
-                        }}
-                        className="w-20 cursor-pointer accent-accent wide:w-28"
-                    />
-                    <GlassButton label="Zoom out" onClick={zoomOut}>
-                        −
-                    </GlassButton>
-                    <GlassButton label="Zoom in" onClick={zoomIn}>
-                        +
-                    </GlassButton>
+                    {canZoom && (
+                        <>
+                            <input
+                                type="range"
+                                min={1}
+                                max={MAX_ZOOM}
+                                step={0.1}
+                                value={scale}
+                                aria-label="Zoom"
+                                onChange={(e) => {
+                                    const ratio = Number(e.target.value);
+                                    setScale(ratio);
+                                    zoomTo(ratio);
+                                }}
+                                className="w-20 cursor-pointer accent-accent wide:w-28"
+                            />
+                            <GlassButton label="Zoom out" onClick={zoomOut}>
+                                −
+                            </GlassButton>
+                            <GlassButton label="Zoom in" onClick={zoomIn}>
+                                +
+                            </GlassButton>
+                        </>
+                    )}
                     <GlassButton label="Close" onClick={onClose}>
                         ✕
                     </GlassButton>
@@ -123,23 +130,34 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                     keyboard={{ enabled: true }}
                     mousewheel
                 >
-                    {shots.map((img, j) => (
+                    {shots.map((media, j) => (
                         <SwiperSlide key={j}>
-                            <div className="swiper-zoom-container h-full w-full px-[clamp(12px,6vw,64px)] py-2">
-                                {img ? (
-                                    <Picture
-                                        src={img}
-                                        alt={`${title} · shot 0${j + 1}`}
-                                        className="max-h-full max-w-full object-contain"
-                                        loading="lazy"
-                                        decoding="async"
+                            {media && isVideoSource(media) ? (
+                                <div className="flex h-full w-full items-center justify-center px-[clamp(12px,6vw,64px)] py-2">
+                                    <Video
+                                        src={media}
+                                        aria-label={`${title} · video 0${j + 1}`}
+                                        className="aspect-[4/3] max-h-full w-full max-w-[960px] object-cover"
+                                        preload="metadata"
                                     />
-                                ) : (
-                                    <div className="grid aspect-[4/3] max-h-full w-full max-w-[720px] place-items-center bg-[repeating-linear-gradient(45deg,#E9F2FA,#E9F2FA_10px,#DFEAF5_10px,#DFEAF5_20px)] p-3 text-center font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
-                                        {title} · shot 0{j + 1}
-                                    </div>
-                                )}
-                            </div>
+                                </div>
+                            ) : (
+                                <div className="swiper-zoom-container h-full w-full px-[clamp(12px,6vw,64px)] py-2">
+                                    {media ? (
+                                        <Picture
+                                            src={media}
+                                            alt={`${title} · shot 0${j + 1}`}
+                                            className="max-h-full max-w-full object-contain"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    ) : (
+                                        <div className="grid aspect-[4/3] max-h-full w-full max-w-[720px] place-items-center bg-[repeating-linear-gradient(45deg,#E9F2FA,#E9F2FA_10px,#DFEAF5_10px,#DFEAF5_20px)] p-3 text-center font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
+                                            {title} · shot 0{j + 1}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -161,7 +179,7 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
 
             <div className="border-t border-dark-line px-[clamp(16px,4vw,28px)] py-3.5 text-center">
                 <div className="flex justify-center gap-2">
-                    {thumbs.map((img, j) => (
+                    {thumbs.map((media, j) => (
                         <button
                             type="button"
                             key={j}
@@ -174,9 +192,16 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                                     : "border-transparent opacity-50 hover:opacity-90"
                             }`}
                         >
-                            {img ? (
+                            {media && isVideoSource(media) ? (
+                                <Video
+                                    src={media}
+                                    aria-hidden
+                                    className="block h-full w-full object-cover"
+                                    preload="metadata"
+                                />
+                            ) : media ? (
                                 <Picture
-                                    src={img}
+                                    src={media}
                                     alt=""
                                     className="block h-full w-full object-cover"
                                     loading="lazy"

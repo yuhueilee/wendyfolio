@@ -3,6 +3,32 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import Carousel from "./index";
 
 describe("correctly returns the carousel component", () => {
+    it("renders looping autoplay video without native controls", () => {
+        const { container } = render(
+            <Carousel
+                title="Demo"
+                shots={[{ mp4: "https://cdn.example.com/demo.mp4" }]}
+            />
+        );
+
+        const video = screen.getByLabelText("Demo · video 01");
+        const source = container.querySelector('source[type="video/mp4"]');
+
+        expect(video).toHaveAttribute("autoplay");
+        expect(video).toHaveAttribute("loop");
+        expect(video).not.toHaveAttribute("controls");
+        expect(source).toHaveAttribute(
+            "src",
+            "https://cdn.example.com/demo.mp4"
+        );
+        expect(
+            screen.queryByLabelText("View Demo · shot 01")
+        ).not.toBeInTheDocument();
+        expect(screen.queryByLabelText("Previous")).not.toBeInTheDocument();
+        expect(screen.queryByLabelText("Next")).not.toBeInTheDocument();
+        expect(screen.queryByLabelText("Go to slide")).not.toBeInTheDocument();
+    });
+
     it("renders a placeholder slot for every missing shot", () => {
         render(<Carousel title="Demo" shots={[null, null, null]} />);
 
