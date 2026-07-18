@@ -71,6 +71,25 @@ describe("correctly returns the carousel component", () => {
         expect(container.querySelectorAll(".swiper-slide")).toHaveLength(3);
     });
 
+    it("enables pinch zoom for image slides", () => {
+        const { container } = render(
+            <Carousel
+                title="Demo"
+                shots={[
+                    {
+                        avif: "demo.avif",
+                        webp: "demo.webp",
+                        jpg: "demo.jpg",
+                    },
+                ]}
+            />
+        );
+
+        expect(
+            container.querySelector(".swiper-zoom-container")
+        ).toBeInTheDocument();
+    });
+
     it("renders navigation buttons and one dot per shot", () => {
         render(<Carousel title="Demo" shots={[null, null, null]} />);
 
@@ -115,8 +134,12 @@ describe("lightbox overlay", () => {
     it("keeps pinch zoom while omitting visible zoom controls", () => {
         const dialog = openLightbox();
 
-        expect(within(dialog).queryByLabelText("Zoom in")).not.toBeInTheDocument();
-        expect(within(dialog).queryByLabelText("Zoom out")).not.toBeInTheDocument();
+        expect(
+            within(dialog).queryByLabelText("Zoom in")
+        ).not.toBeInTheDocument();
+        expect(
+            within(dialog).queryByLabelText("Zoom out")
+        ).not.toBeInTheDocument();
         expect(within(dialog).queryByLabelText("Zoom")).not.toBeInTheDocument();
         expect(within(dialog).getByLabelText("Previous")).toBeInTheDocument();
         expect(within(dialog).getByLabelText("Next")).toBeInTheDocument();
@@ -155,5 +178,33 @@ describe("lightbox overlay", () => {
 
         fireEvent.keyDown(document, { key: "Escape" });
         expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    it("closes when swiped down beyond the dismiss threshold", () => {
+        const dialog = openLightbox();
+
+        fireEvent.touchStart(dialog, {
+            touches: [{ clientX: 120, clientY: 100 }],
+        });
+        fireEvent.touchMove(dialog, {
+            touches: [{ clientX: 125, clientY: 220 }],
+        });
+        fireEvent.touchEnd(dialog, { touches: [] });
+
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    it("stays open after a short downward swipe", () => {
+        const dialog = openLightbox();
+
+        fireEvent.touchStart(dialog, {
+            touches: [{ clientX: 120, clientY: 100 }],
+        });
+        fireEvent.touchMove(dialog, {
+            touches: [{ clientX: 120, clientY: 160 }],
+        });
+        fireEvent.touchEnd(dialog, { touches: [] });
+
+        expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 });

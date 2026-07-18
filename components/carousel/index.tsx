@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Zoom } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { isVideoSource, type MediaSource } from "../../types";
 
 import "swiper/css";
+import "swiper/css/zoom";
 
 import GlassButton from "../glass-button";
 import Picture from "../picture";
@@ -31,10 +33,12 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
             <div className="relative aspect-[4/3] w-full">
                 <Swiper
                     className="h-full w-full bg-tint [&_.swiper-slide]:h-full"
+                    modules={[Zoom]}
                     onSwiper={setSwiper}
                     onSlideChange={(s) => setActive(s.realIndex)}
                     slidesPerView={1}
                     loop={hasMultipleShots}
+                    zoom={{ maxRatio: 3 }}
                 >
                     {shots.map((media, j) => (
                         <SwiperSlide key={j}>
@@ -62,7 +66,11 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                                     role="button"
                                     tabIndex={0}
                                     aria-label={`View ${title} · shot 0${j + 1}`}
-                                    onClick={() => setLightboxIndex(j)}
+                                    onClick={() => {
+                                        if (swiper?.allowClick !== false) {
+                                            setLightboxIndex(j);
+                                        }
+                                    }}
                                     onKeyDown={(e) => {
                                         if (
                                             e.key === "Enter" ||
@@ -72,7 +80,9 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                                             setLightboxIndex(j);
                                         }
                                     }}
-                                    className="flex h-full w-full cursor-zoom-in"
+                                    className={`flex h-full w-full cursor-zoom-in ${
+                                        media ? "swiper-zoom-container" : ""
+                                    }`}
                                 >
                                     {media ? (
                                         <Picture
