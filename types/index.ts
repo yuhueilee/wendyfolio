@@ -29,6 +29,7 @@ export const isVideoSource = (source: MediaSource): source is VideoSource =>
 export interface Project {
     kind: string;
     title: string;
+    height: number;
     description: string;
     stack: Array<string>;
     links: Array<ProjectLink>;

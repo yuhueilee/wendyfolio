@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 
-import Carousel from "./index";
+import { CardCarousel, FullscreenCarousel } from "./index";
+
+const Carousel = CardCarousel;
 
 describe("correctly returns the carousel component", () => {
     it("renders looping autoplay video without native controls", () => {
@@ -122,6 +124,21 @@ describe("lightbox overlay", () => {
         render(<Carousel title="Demo" shots={[null, null, null]} />);
 
         expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    it("renders as an independent fullscreen carousel", () => {
+        render(
+            <FullscreenCarousel
+                title="Standalone"
+                shots={[null]}
+                initialIndex={0}
+                onClose={() => undefined}
+            />
+        );
+
+        expect(
+            screen.getByRole("dialog", { name: "Standalone gallery" })
+        ).toBeInTheDocument();
     });
 
     it("opens a modal with the clicked shot's caption at the bottom", () => {

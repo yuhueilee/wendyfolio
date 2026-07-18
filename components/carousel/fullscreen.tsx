@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type TouchEvent } from "react";
+import { createPortal } from "react-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Mousewheel, Zoom } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -13,7 +14,7 @@ import GlassButton from "../glass-button";
 import Picture from "../picture";
 import Video from "../video";
 
-type LightboxProps = {
+type FullscreenCarouselProps = {
     title: string;
     shots: Array<MediaSource | null>;
     initialIndex: number;
@@ -24,7 +25,12 @@ const MAX_ZOOM = 3;
 const MAX_THUMBS = 3;
 const DISMISS_DISTANCE = 100;
 
-const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
+const FullscreenCarousel = ({
+    title,
+    shots,
+    initialIndex,
+    onClose,
+}: FullscreenCarouselProps) => {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
     const [active, setActive] = useState(initialIndex);
     const [dismissOffset, setDismissOffset] = useState(0);
@@ -84,7 +90,7 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
 
     const thumbs = shots.slice(0, MAX_THUMBS);
 
-    return (
+    return createPortal(
         <div
             role="dialog"
             aria-modal="true"
@@ -226,8 +232,9 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                     {title}
                 </p>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 
-export default Lightbox;
+export default FullscreenCarousel;
