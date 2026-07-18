@@ -54,14 +54,12 @@ describe("correctly returns the work component", () => {
         expect(cards[3]).toHaveAttribute("data-column", "right");
     });
 
-    it("uses data-defined card heights with three-line descriptions", () => {
+    it("uses portrait cards with three-line descriptions", () => {
         render(<Work />);
 
         const cards = screen.getAllByRole("article");
-        PROJECTS.forEach((project, index) => {
-            expect(cards[index]).toHaveStyle({
-                height: `${project.height}px`,
-            });
+        cards.forEach((card) => {
+            expect(card).toHaveClass("aspect-[3/4]");
         });
 
         const firstCard = cards[0];

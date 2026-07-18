@@ -20,6 +20,7 @@ type WorkCardProps = {
 
 const WorkCard = ({ project, index }: WorkCardProps) => {
     const cardRef = useRef<HTMLElement>(null);
+    const [rowSpan, setRowSpan] = useState(320);
     const [descriptionHeight, setDescriptionHeight] = useState(
         DESCRIPTION_LINE_HEIGHT * DESCRIPTION_MAX_LINES
     );
@@ -57,6 +58,7 @@ const WorkCard = ({ project, index }: WorkCardProps) => {
 
         const observer = new ResizeObserver(([entry]) => {
             latestWidth = entry.contentRect.width;
+            setRowSpan(Math.ceil(entry.contentRect.height + MASONRY_GAP));
             measureAtWidth?.(latestWidth);
         });
         observer.observe(card);
@@ -71,11 +73,10 @@ const WorkCard = ({ project, index }: WorkCardProps) => {
         <article
             ref={cardRef}
             data-column={index % 2 === 0 ? "left" : "right"}
-            className="mb-5 w-full self-start overflow-hidden rounded-[32px] shadow-[0_18px_38px_rgba(36,60,76,0.2)] transition-[transform,box-shadow] duration-300 wide:mb-0 wide:hover:-translate-y-1 wide:hover:shadow-[0_24px_48px_rgba(36,60,76,0.26)]"
+            className="mb-5 aspect-[3/4] w-full self-start overflow-hidden rounded-[32px] shadow-[0_18px_38px_rgba(36,60,76,0.2)] transition-[transform,box-shadow] duration-300 wide:mb-0 wide:hover:-translate-y-1 wide:hover:shadow-[0_24px_48px_rgba(36,60,76,0.26)]"
             style={{
-                height: `${project.height}px`,
                 gridColumn: index % 2 === 0 ? 1 : 2,
-                gridRowEnd: `span ${project.height + MASONRY_GAP}`,
+                gridRowEnd: `span ${rowSpan}`,
             }}
         >
             <CardCarousel title={project.title} shots={project.shots}>
