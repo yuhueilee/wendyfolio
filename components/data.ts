@@ -84,7 +84,7 @@ export const PROJECTS: Array<Project> = [
     },
     {
         kind: "PRODUCT FEATURE",
-        ratio: "3:4",
+        ratio: "4:3",
         title: "E-Commerce React Native App Revamp",
         description:
             "Refactored the e-commerce mobile app by migrating from JavaScript to TypeScript and upgrading React Native from v0.64 to v0.74, resolving Google Play’s Android API deprecation blocker. Modernized state management with Redux Toolkit, async thunks, and listener middleware for the add-to-cart flow; replaced Shopify’s REST API with GraphQL and cursor-based pagination to enable incremental loading of cart items.",
