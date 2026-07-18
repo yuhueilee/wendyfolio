@@ -58,12 +58,12 @@ describe("Video", () => {
     });
 
     it("shows the current playback state in the top-right badge", () => {
-        const { container, getByLabelText, queryByRole } = render(
+        const { container, getByLabelText } = render(
             <Video src={{ mp4: "https://cdn.example.com/video.mp4" }} />
         );
         const video = container.querySelector("video")!;
 
-        expect(queryByRole("status")).not.toBeInTheDocument();
+        expect(getByLabelText("Video playing")).toBeInTheDocument();
 
         fireEvent.play(video);
         expect(getByLabelText("Video playing")).toBeInTheDocument();
