@@ -78,7 +78,7 @@ export const PROJECTS: Array<Project> = [
         links: [],
         shots: [
             {
-                mp4: `${R2_ASSET_URL}/work/pinkoi/1.mp4?asset=20260718`,
+                mp4: `${R2_ASSET_URL}/work/pinkoi/1.mp4`,
             },
         ],
     },
@@ -97,7 +97,7 @@ export const PROJECTS: Array<Project> = [
         links: [],
         shots: [
             {
-                mp4: `${R2_ASSET_URL}/work/citiesocial/1.mp4?asset=20260718`,
+                mp4: `${R2_ASSET_URL}/work/citiesocial/1.mp4`,
             },
         ],
     },
