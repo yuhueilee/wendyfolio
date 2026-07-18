@@ -4,10 +4,21 @@ import About from "./index";
 
 describe("correctly returns the about component", () => {
     it("renders the section title and photo", () => {
-        render(<About />);
+        const { container } = render(<About />);
 
         expect(screen.getByText("ABOUT ME")).toBeInTheDocument();
-        expect(screen.getByAltText("Wendy Lee")).toBeInTheDocument();
+        expect(screen.getByAltText("Wendy Lee")).toHaveAttribute(
+            "src",
+            "https://cdn.wendyfolio.com/profile/1.jpg"
+        );
+        expect(container.querySelector('source[type="image/avif"]')).toHaveAttribute(
+            "srcset",
+            "https://cdn.wendyfolio.com/profile/1.avif"
+        );
+        expect(container.querySelector('source[type="image/webp"]')).toHaveAttribute(
+            "srcset",
+            "https://cdn.wendyfolio.com/profile/1.webp"
+        );
     });
 
     it("renders the introduction with highlighted skills", () => {

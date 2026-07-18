@@ -2,6 +2,12 @@ import { Job, PictureSource, Project } from "../types";
 
 const R2_ASSET_URL = "https://cdn.wendyfolio.com";
 
+export const PROFILE_IMAGE: PictureSource = {
+    avif: `${R2_ASSET_URL}/profile/1.avif`,
+    webp: `${R2_ASSET_URL}/profile/1.webp`,
+    jpg: `${R2_ASSET_URL}/profile/1.jpg`,
+};
+
 const workShots = (project: string): Array<PictureSource> =>
     [1, 2, 3].map((shot) => {
         const baseUrl = `${R2_ASSET_URL}/work/${project}/${shot}`;

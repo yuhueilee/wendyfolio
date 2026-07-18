@@ -1,4 +1,5 @@
-import profileImg from "../../public/images/profile.jpg";
+import { PROFILE_IMAGE } from "../data";
+import Picture from "../picture";
 import SectionHead from "../section-head";
 
 const PARAGRAPH =
@@ -32,10 +33,12 @@ const About = () => (
         <div className="flex flex-row-reverse flex-wrap items-center gap-[clamp(28px,6vw,48px)]">
             <div className="mx-auto flex flex-none flex-col items-center gap-3.5">
                 <div className="relative">
-                    <img
-                        src={profileImg.src}
+                    <Picture
+                        src={PROFILE_IMAGE}
                         alt="Wendy Lee"
                         className="block h-[clamp(270px,60vw,330px)] w-[clamp(270px,60vw,330px)] line object-cover"
+                        loading="lazy"
+                        decoding="async"
                     />
                     <Waves position="-bottom-6 -left-8" />
                     <Waves position="-top-6 -right-8" />
