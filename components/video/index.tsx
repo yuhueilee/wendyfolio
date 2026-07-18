@@ -54,7 +54,7 @@ const Video = ({
     const isPausedByHover = useRef(false);
     const isPausedByUser = useRef(false);
     const feedbackTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState<boolean | null>(null);
     const [centerFeedback, setCenterFeedback] = useState<
         "play" | "pause" | null
     >(null);
@@ -199,7 +199,7 @@ const Video = ({
                         <PauseIcon />
                     )}
                 </span>
-            ) : !toggleOnClick ? (
+            ) : !toggleOnClick && isPlaying !== null ? (
                 <span
                     role="status"
                     aria-label={isPlaying ? "Video playing" : "Video paused"}
