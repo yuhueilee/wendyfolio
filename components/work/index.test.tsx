@@ -60,7 +60,8 @@ describe("correctly returns the work component", () => {
                 PROJECTS[index].ratio === "3:4"
                     ? "aspect-[3/4]"
                     : "aspect-[4/3]",
-                "rounded-[22px]"
+                "rounded-[22px]",
+                "p-2"
             );
         });
 
