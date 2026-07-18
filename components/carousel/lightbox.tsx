@@ -21,13 +21,11 @@ type LightboxProps = {
 };
 
 const MAX_ZOOM = 3;
-const ZOOM_STAGES = [1, 1.5, 2, 2.5, 3];
 const MAX_THUMBS = 3;
 
 const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
     const [active, setActive] = useState(initialIndex);
-    const [scale, setScale] = useState(1);
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
@@ -42,34 +40,7 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
         };
     }, [onClose]);
 
-    const zoomTo = (ratio: number) => {
-        if (!swiper) return;
-        if (ratio <= 1) {
-            swiper.zoom.out();
-            return;
-        }
-        swiper.zoom.in(Math.min(ratio, MAX_ZOOM));
-        // Swiper anchors programmatic zoom at the last pointer position;
-        // re-anchor the pan to keep the scale centered.
-        const slideEl = swiper.slides[swiper.activeIndex];
-        const wrapEl = slideEl?.querySelector<HTMLElement>(
-            ".swiper-zoom-container"
-        );
-        if (wrapEl) wrapEl.style.transform = "translate3d(0px, 0px, 0)";
-    };
-
-    const zoomIn = () =>
-        zoomTo(ZOOM_STAGES.find((stage) => stage > scale + 0.01) ?? MAX_ZOOM);
-    const zoomOut = () =>
-        zoomTo(
-            [...ZOOM_STAGES]
-                .reverse()
-                .find((stage) => stage < scale - 0.01) ?? 1
-        );
-
     const thumbs = shots.slice(0, MAX_THUMBS);
-    const activeMedia = shots[active];
-    const canZoom = !activeMedia || !isVideoSource(activeMedia);
 
     return (
         <div
@@ -82,35 +53,9 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                 <span className="font-mono text-[11px] tracking-[0.08em] text-dark-muted">
                     {active + 1} / {shots.length}
                 </span>
-                <div className="flex items-center gap-2">
-                    {canZoom && (
-                        <>
-                            <input
-                                type="range"
-                                min={1}
-                                max={MAX_ZOOM}
-                                step={0.1}
-                                value={scale}
-                                aria-label="Zoom"
-                                onChange={(e) => {
-                                    const ratio = Number(e.target.value);
-                                    setScale(ratio);
-                                    zoomTo(ratio);
-                                }}
-                                className="w-20 cursor-pointer accent-accent wide:w-28"
-                            />
-                            <GlassButton label="Zoom out" onClick={zoomOut}>
-                                −
-                            </GlassButton>
-                            <GlassButton label="Zoom in" onClick={zoomIn}>
-                                +
-                            </GlassButton>
-                        </>
-                    )}
-                    <GlassButton label="Close" onClick={onClose}>
-                        ✕
-                    </GlassButton>
-                </div>
+                <GlassButton label="Close" onClick={onClose}>
+                    ✕
+                </GlassButton>
             </div>
 
             <div className="relative min-h-0 flex-1">
@@ -118,14 +63,10 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                     className="h-full w-full [&_.swiper-slide]:h-full"
                     modules={[Zoom, Keyboard, Mousewheel]}
                     onSwiper={setSwiper}
-                    onSlideChange={(s) => {
-                        setActive(s.realIndex);
-                        setScale(1);
-                    }}
-                    onZoomChange={(_, newScale) => setScale(newScale)}
+                    onSlideChange={(s) => setActive(s.realIndex)}
                     initialSlide={initialIndex}
                     slidesPerView={1}
-                    loop
+                    loop={shots.length > 1}
                     zoom={{ maxRatio: MAX_ZOOM }}
                     keyboard={{ enabled: true }}
                     mousewheel
@@ -133,21 +74,25 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                     {shots.map((media, j) => (
                         <SwiperSlide key={j}>
                             {media && isVideoSource(media) ? (
-                                <div className="flex h-full w-full items-center justify-center px-[clamp(12px,6vw,64px)] py-2">
+                                <div className="flex h-full w-full items-center justify-center">
                                     <Video
                                         src={media}
                                         aria-label={`${title} · video 0${j + 1}`}
-                                        className="aspect-[4/3] max-h-full w-full max-w-[960px] object-cover"
+                                        className="h-full w-full bg-black object-contain"
+                                        pauseOnHover={false}
                                         preload="metadata"
+                                        role="button"
+                                        tabIndex={0}
+                                        toggleOnClick
                                     />
                                 </div>
                             ) : (
-                                <div className="swiper-zoom-container h-full w-full px-[clamp(12px,6vw,64px)] py-2">
+                                <div className="swiper-zoom-container flex h-full w-full items-center justify-center">
                                     {media ? (
                                         <Picture
                                             src={media}
                                             alt={`${title} · shot 0${j + 1}`}
-                                            className="max-h-full max-w-full object-contain"
+                                            className="h-full w-full object-contain"
                                             loading="lazy"
                                             decoding="async"
                                         />
@@ -161,20 +106,24 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <GlassButton
-                    label="Previous"
-                    onClick={() => swiper?.slidePrev()}
-                    className="absolute left-[clamp(8px,2vw,20px)] top-1/2 z-[3] -translate-y-1/2"
-                >
-                    ‹
-                </GlassButton>
-                <GlassButton
-                    label="Next"
-                    onClick={() => swiper?.slideNext()}
-                    className="absolute right-[clamp(8px,2vw,20px)] top-1/2 z-[3] -translate-y-1/2"
-                >
-                    ›
-                </GlassButton>
+                {shots.length > 1 && (
+                    <>
+                        <GlassButton
+                            label="Previous"
+                            onClick={() => swiper?.slidePrev()}
+                            className="absolute left-[clamp(8px,2vw,20px)] top-1/2 z-[3] -translate-y-1/2"
+                        >
+                            ‹
+                        </GlassButton>
+                        <GlassButton
+                            label="Next"
+                            onClick={() => swiper?.slideNext()}
+                            className="absolute right-[clamp(8px,2vw,20px)] top-1/2 z-[3] -translate-y-1/2"
+                        >
+                            ›
+                        </GlassButton>
+                    </>
+                )}
             </div>
 
             <div className="border-t border-dark-line px-[clamp(16px,4vw,28px)] py-3.5 text-center">
@@ -193,12 +142,18 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                             }`}
                         >
                             {media && isVideoSource(media) ? (
-                                <Video
-                                    src={media}
+                                <video
                                     aria-hidden
                                     className="block h-full w-full object-cover"
                                     preload="metadata"
-                                />
+                                    muted
+                                    playsInline
+                                    onLoadedData={(event) => {
+                                        event.currentTarget.currentTime = 0.1;
+                                    }}
+                                >
+                                    <source src={media.mp4} type="video/mp4" />
+                                </video>
                             ) : media ? (
                                 <Picture
                                     src={media}

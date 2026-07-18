@@ -23,6 +23,8 @@ type VideoProps = Omit<
     | "src"
 > & {
     src: VideoSource;
+    pauseOnHover?: boolean;
+    toggleOnClick?: boolean;
 };
 
 const DESKTOP_HOVER_QUERY = "(hover: hover) and (pointer: fine)";
@@ -39,21 +41,65 @@ const PauseIcon = () => (
     </svg>
 );
 
-const Video = ({ src, ...videoProps }: VideoProps) => {
+const Video = ({
+    src,
+    pauseOnHover = true,
+    toggleOnClick = false,
+    onClick,
+    onKeyDown,
+    ...videoProps
+}: VideoProps) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const isInViewport = useRef(false);
     const isPausedByHover = useRef(false);
+    const isPausedByUser = useRef(false);
+    const feedbackTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [centerFeedback, setCenterFeedback] = useState<
+        "play" | "pause" | null
+    >(null);
+
+    const clearFeedbackTimer = () => {
+        if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
+        feedbackTimer.current = null;
+    };
 
     const playIfVisible = () => {
         const video = videoRef.current;
-        if (video && isInViewport.current && !isPausedByHover.current) {
+        if (
+            video &&
+            isInViewport.current &&
+            !isPausedByHover.current &&
+            !isPausedByUser.current
+        ) {
             void video.play().catch(() => undefined);
+        }
+    };
+
+    const togglePlayback = () => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (video.paused) {
+            isPausedByUser.current = false;
+            clearFeedbackTimer();
+            setCenterFeedback("play");
+            feedbackTimer.current = setTimeout(
+                () => setCenterFeedback(null),
+                700
+            );
+            void video.play().catch(() => undefined);
+        } else {
+            isPausedByUser.current = true;
+            clearFeedbackTimer();
+            setCenterFeedback("pause");
+            video.pause();
         }
     };
 
     const handleMouseEnter = () => {
         if (
+            !pauseOnHover ||
             typeof window.matchMedia !== "function" ||
             !window.matchMedia(DESKTOP_HOVER_QUERY).matches
         ) {
@@ -94,6 +140,13 @@ const Video = ({ src, ...videoProps }: VideoProps) => {
         };
     }, []);
 
+    useEffect(
+        () => () => {
+            if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
+        },
+        []
+    );
+
     return (
         <div
             className="relative flex h-full w-full items-center justify-center overflow-hidden"
@@ -107,19 +160,54 @@ const Video = ({ src, ...videoProps }: VideoProps) => {
                 loop
                 muted
                 playsInline
+                onClick={(event) => {
+                    onClick?.(event);
+                    if (toggleOnClick && !event.defaultPrevented) {
+                        togglePlayback();
+                    }
+                }}
+                onKeyDown={(event) => {
+                    onKeyDown?.(event);
+                    if (
+                        toggleOnClick &&
+                        !event.defaultPrevented &&
+                        (event.key === "Enter" || event.key === " ")
+                    ) {
+                        event.preventDefault();
+                        togglePlayback();
+                    }
+                }}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
             >
                 <source src={src.mp4} type="video/mp4" />
                 Your browser does not support HTML video.
             </video>
-            <span
-                role="status"
-                aria-label={isPlaying ? "Video playing" : "Video paused"}
-                className="pointer-events-none absolute right-2.5 top-2.5 z-[2] grid h-8 w-8 place-items-center text-[rgba(36,60,76,0.8)] drop-shadow-[0_1px_2px_rgba(21,36,46,0.72)]"
-            >
-                {isPlaying ? <PlayIcon /> : <PauseIcon />}
-            </span>
+            {toggleOnClick && centerFeedback ? (
+                <span
+                    role="status"
+                    aria-label={
+                        centerFeedback === "play"
+                            ? "Video resumed"
+                            : "Video paused"
+                    }
+                    className="pointer-events-none absolute inset-0 z-[2] grid place-items-center text-[rgba(36,60,76,0.8)] drop-shadow-[0_2px_4px_rgba(21,36,46,0.72)] [&_svg]:h-6 [&_svg]:w-6"
+                >
+                    {centerFeedback === "play" ? (
+                        <PlayIcon />
+                    ) : (
+                        <PauseIcon />
+                    )}
+                </span>
+            ) : !toggleOnClick ? (
+                <span
+                    role="status"
+                    aria-label={isPlaying ? "Video playing" : "Video paused"}
+                    className="pointer-events-none absolute right-2.5 top-2.5 z-[2] grid h-8 w-8 place-items-center text-[rgba(36,60,76,0.8)] drop-shadow-[0_1px_2px_rgba(21,36,46,0.72)]"
+                >
+                    {isPlaying ? <PlayIcon /> : <PauseIcon />}
+                </span>
+            ) : null}
         </div>
     );
 };

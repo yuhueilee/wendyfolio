@@ -29,6 +29,31 @@ describe("correctly returns the carousel component", () => {
         expect(screen.queryByLabelText("Go to slide")).not.toBeInTheDocument();
     });
 
+    it("opens video media in the full-screen lightbox", () => {
+        render(
+            <Carousel
+                title="Demo"
+                shots={[{ mp4: "https://cdn.example.com/demo.mp4" }]}
+            />
+        );
+
+        fireEvent.click(screen.getByLabelText("Demo · video 01"));
+
+        const dialog = screen.getByRole("dialog", { name: "Demo gallery" });
+        expect(
+            within(dialog).getByLabelText("Demo · video 01")
+        ).toBeInTheDocument();
+        expect(
+            within(dialog).getByLabelText("Go to shot 1")
+        ).toBeInTheDocument();
+        expect(
+            within(dialog).getByText("Demo · shot 01", { selector: "p" })
+        ).toBeInTheDocument();
+        expect(
+            within(dialog).getByLabelText("Demo · video 01")
+        ).toHaveClass("object-contain");
+    });
+
     it("renders a placeholder slot for every missing shot", () => {
         render(<Carousel title="Demo" shots={[null, null, null]} />);
 
@@ -87,22 +112,14 @@ describe("lightbox overlay", () => {
         expect(within(dialog).getByText("2 / 3")).toBeInTheDocument();
     });
 
-    it("renders zoom and navigation controls", () => {
+    it("keeps pinch zoom while omitting visible zoom controls", () => {
         const dialog = openLightbox();
 
-        expect(within(dialog).getByLabelText("Zoom in")).toBeInTheDocument();
-        expect(within(dialog).getByLabelText("Zoom out")).toBeInTheDocument();
+        expect(within(dialog).queryByLabelText("Zoom in")).not.toBeInTheDocument();
+        expect(within(dialog).queryByLabelText("Zoom out")).not.toBeInTheDocument();
+        expect(within(dialog).queryByLabelText("Zoom")).not.toBeInTheDocument();
         expect(within(dialog).getByLabelText("Previous")).toBeInTheDocument();
         expect(within(dialog).getByLabelText("Next")).toBeInTheDocument();
-    });
-
-    it("renders a zoom slider ranging from 1x to 3x", () => {
-        const dialog = openLightbox();
-
-        const slider = within(dialog).getByLabelText("Zoom");
-        expect(slider).toHaveAttribute("type", "range");
-        expect(slider).toHaveAttribute("min", "1");
-        expect(slider).toHaveAttribute("max", "3");
     });
 
     it("renders a thumbnail per shot with the clicked one marked current", () => {

@@ -43,7 +43,19 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                                     src={media}
                                     aria-label={`${title} · video 0${j + 1}`}
                                     className="block aspect-[4/3] h-full w-full bg-black object-cover"
+                                    onClick={() => setLightboxIndex(j)}
+                                    onKeyDown={(event) => {
+                                        if (
+                                            event.key === "Enter" ||
+                                            event.key === " "
+                                        ) {
+                                            event.preventDefault();
+                                            setLightboxIndex(j);
+                                        }
+                                    }}
                                     preload="metadata"
+                                    role="button"
+                                    tabIndex={0}
                                 />
                             ) : (
                                 <div

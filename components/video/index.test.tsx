@@ -135,6 +135,56 @@ describe("Video", () => {
         expect(play).toHaveBeenCalledTimes(1);
     });
 
+    it("toggles playback on click and keyboard activation", () => {
+        const play = jest.mocked(HTMLMediaElement.prototype.play);
+        const pause = jest.mocked(HTMLMediaElement.prototype.pause);
+        const { container, getByLabelText } = render(
+            <Video
+                src={{ mp4: "https://cdn.example.com/video.mp4" }}
+                toggleOnClick
+            />
+        );
+        const video = container.querySelector("video")!;
+
+        Object.defineProperty(video, "paused", {
+            configurable: true,
+            value: false,
+        });
+        fireEvent.click(video);
+        expect(pause).toHaveBeenCalledTimes(1);
+        expect(getByLabelText("Video paused")).toBeInTheDocument();
+
+        Object.defineProperty(video, "paused", {
+            configurable: true,
+            value: true,
+        });
+        fireEvent.keyDown(video, { key: "Enter" });
+        expect(play).toHaveBeenCalledTimes(1);
+        expect(getByLabelText("Video resumed")).toBeInTheDocument();
+    });
+
+    it("hides resumed feedback after a short delay", () => {
+        jest.useFakeTimers();
+        const { container, queryByLabelText } = render(
+            <Video
+                src={{ mp4: "https://cdn.example.com/video.mp4" }}
+                toggleOnClick
+            />
+        );
+        const video = container.querySelector("video")!;
+
+        Object.defineProperty(video, "paused", {
+            configurable: true,
+            value: true,
+        });
+        fireEvent.click(video);
+        expect(queryByLabelText("Video resumed")).toBeInTheDocument();
+
+        act(() => jest.advanceTimersByTime(700));
+        expect(queryByLabelText("Video resumed")).not.toBeInTheDocument();
+        jest.useRealTimers();
+    });
+
     it("keeps playing on touch-style pointers", () => {
         window.matchMedia = jest.fn().mockReturnValue({ matches: false });
         const pause = jest.mocked(HTMLMediaElement.prototype.pause);
