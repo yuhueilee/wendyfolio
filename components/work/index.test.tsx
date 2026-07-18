@@ -36,22 +36,19 @@ describe("correctly returns the work component", () => {
         });
     });
 
-    it("uses a responsive masonry layout without a scrolling track", () => {
+    it("uses a full-viewport horizontally scrolling track with side padding", () => {
         render(<Work />);
 
-        const masonry = screen.getByLabelText("Selected work");
-        expect(masonry).toHaveClass("wide:grid", "wide:grid-cols-2");
-        expect(masonry).not.toHaveClass("overflow-x-auto");
-    });
-
-    it("places odd projects left and even projects right", () => {
-        render(<Work />);
-
-        const cards = screen.getAllByRole("article");
-        expect(cards[0]).toHaveAttribute("data-column", "left");
-        expect(cards[1]).toHaveAttribute("data-column", "right");
-        expect(cards[2]).toHaveAttribute("data-column", "left");
-        expect(cards[3]).toHaveAttribute("data-column", "right");
+        const track = screen.getByLabelText("Selected work");
+        expect(track).toHaveClass(
+            "flex",
+            "w-screen",
+            "overflow-x-auto",
+            "px-[clamp(20px,5vw,40px)]",
+            "[scrollbar-width:none]",
+            "[&::-webkit-scrollbar]:hidden"
+        );
+        expect(track).not.toHaveClass("wide:grid");
     });
 
     it("uses portrait cards with three-line descriptions", () => {
@@ -59,7 +56,11 @@ describe("correctly returns the work component", () => {
 
         const cards = screen.getAllByRole("article");
         cards.forEach((card) => {
-            expect(card).toHaveClass("aspect-[3/4]", "max-w-[300px]");
+            expect(card).toHaveClass(
+                "aspect-[3/4]",
+                "max-w-[400px]",
+                "flex-none"
+            );
         });
 
         const firstCard = cards[0];
