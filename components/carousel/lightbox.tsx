@@ -4,16 +4,17 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Mousewheel, Zoom } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import type { StaticImageData } from "next/image";
+import type { PictureSource } from "../../types";
 
 import "swiper/css";
 import "swiper/css/zoom";
 
 import GlassButton from "../glass-button";
+import Picture from "../picture";
 
 type LightboxProps = {
     title: string;
-    shots: Array<StaticImageData | null>;
+    shots: Array<PictureSource | null>;
     initialIndex: number;
     onClose: () => void;
 };
@@ -126,10 +127,12 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                         <SwiperSlide key={j}>
                             <div className="swiper-zoom-container h-full w-full px-[clamp(12px,6vw,64px)] py-2">
                                 {img ? (
-                                    <img
-                                        src={img.src}
+                                    <Picture
+                                        src={img}
                                         alt={`${title} · shot 0${j + 1}`}
                                         className="max-h-full max-w-full object-contain"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 ) : (
                                     <div className="grid aspect-[4/3] max-h-full w-full max-w-[720px] place-items-center bg-[repeating-linear-gradient(45deg,#E9F2FA,#E9F2FA_10px,#DFEAF5_10px,#DFEAF5_20px)] p-3 text-center font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
@@ -172,10 +175,12 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                             }`}
                         >
                             {img ? (
-                                <img
-                                    src={img.src}
+                                <Picture
+                                    src={img}
                                     alt=""
                                     className="block h-full w-full object-cover"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             ) : (
                                 <div className="h-full w-full bg-[repeating-linear-gradient(45deg,#E9F2FA,#E9F2FA_10px,#DFEAF5_10px,#DFEAF5_20px)]" />

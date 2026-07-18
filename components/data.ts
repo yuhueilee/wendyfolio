@@ -1,10 +1,17 @@
-import penguinBattle1Img from "../public/images/penguin-battle-01.png";
-import penguinBattle2Img from "../public/images/penguin-battle-02.png";
-import penguinBattle3Img from "../public/images/penguin-battle-03.png";
-import replyo1Img from "../public/images/replyo-01.png";
-import replyo2Img from "../public/images/replyo-02.png";
-import replyo3Img from "../public/images/replyo-03.png";
-import { Job, Project } from "../types";
+import { Job, PictureSource, Project } from "../types";
+
+const R2_ASSET_URL = "https://cdn.wendyfolio.com";
+
+const workShots = (project: string): Array<PictureSource> =>
+    [1, 2, 3].map((shot) => {
+        const baseUrl = `${R2_ASSET_URL}/work/${project}/${shot}`;
+
+        return {
+            avif: `${baseUrl}.avif`,
+            webp: `${baseUrl}.webp`,
+            jpg: `${baseUrl}.jpg`,
+        };
+    });
 
 export const RESUME_HREF = "/assets/YuHueiLee_Resume.pdf";
 export const EMAIL = "wendylee70127@gmail.com";
@@ -71,7 +78,7 @@ export const PROJECTS: Array<Project> = [
                 href: "https://github.com/yuhueilee/replyo",
             },
         ],
-        shots: [replyo1Img, replyo2Img, replyo3Img],
+        shots: workShots("replyo"),
     },
     {
         kind: "SIDE PROJECT",
@@ -86,6 +93,6 @@ export const PROJECTS: Array<Project> = [
                 href: "https://github.com/yuhueilee/penguin-game",
             },
         ],
-        shots: [penguinBattle1Img, penguinBattle2Img, penguinBattle3Img],
+        shots: workShots("penguin-battle"),
     },
 ];

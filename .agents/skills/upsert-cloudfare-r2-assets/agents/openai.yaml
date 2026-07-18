@@ -1,0 +1,4 @@
+interface:
+  display_name: "Upsert Cloudflare R2 Assets"
+  short_description: "Convert and upload image sets to Cloudflare R2"
+  default_prompt: "Use $upsert-cloudfare-r2-assets to convert local images and upsert optimized AVIF, WebP, and JPEG variants to Cloudflare R2."

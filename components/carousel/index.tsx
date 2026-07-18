@@ -3,16 +3,17 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
-import type { StaticImageData } from "next/image";
+import type { PictureSource } from "../../types";
 
 import "swiper/css";
 
 import GlassButton from "../glass-button";
+import Picture from "../picture";
 import Lightbox from "./lightbox";
 
 type CarouselProps = {
     title: string;
-    shots: Array<StaticImageData | null>;
+    shots: Array<PictureSource | null>;
     imageLeft?: boolean;
 };
 
@@ -49,10 +50,12 @@ const Carousel = ({ title, shots, imageLeft = false }: CarouselProps) => {
                                 className="flex h-full w-full cursor-zoom-in"
                             >
                                 {img ? (
-                                    <img
-                                        src={img.src}
+                                    <Picture
+                                        src={img}
                                         alt={`${title} · shot 0${j + 1}`}
                                         className="block h-full w-full object-cover"
+                                        loading={j === 0 ? "eager" : "lazy"}
+                                        decoding="async"
                                     />
                                 ) : (
                                     <div className="grid h-full w-full place-items-center bg-[repeating-linear-gradient(45deg,#E9F2FA,#E9F2FA_10px,#DFEAF5_10px,#DFEAF5_20px)] p-3 text-center font-mono text-[11px] uppercase tracking-[0.08em] text-muted">

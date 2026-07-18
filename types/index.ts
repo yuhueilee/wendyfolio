@@ -1,5 +1,3 @@
-import type { StaticImageData } from "next/image";
-
 export interface Job {
     duration: string;
     title: string;
@@ -13,11 +11,17 @@ export interface ProjectLink {
     href: string;
 }
 
+export interface PictureSource {
+    avif: string;
+    webp: string;
+    jpg: string;
+}
+
 export interface Project {
     kind: string;
     title: string;
     description: string;
     stack: Array<string>;
     links: Array<ProjectLink>;
-    shots: Array<StaticImageData | null>;
+    shots: Array<PictureSource | null>;
 }
