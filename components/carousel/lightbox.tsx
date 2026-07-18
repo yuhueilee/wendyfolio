@@ -199,18 +199,15 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                             }`}
                         >
                             {media && isVideoSource(media) ? (
-                                <video
-                                    aria-hidden
-                                    className="block h-full w-full object-cover"
-                                    preload="metadata"
-                                    muted
-                                    playsInline
-                                    onLoadedData={(event) => {
-                                        event.currentTarget.currentTime = 0.1;
-                                    }}
-                                >
-                                    <source src={media.mp4} type="video/mp4" />
-                                </video>
+                                <span className="grid h-full w-full place-items-center bg-black text-mist">
+                                    <svg
+                                        aria-hidden
+                                        viewBox="0 0 16 16"
+                                        className="h-4 w-4 fill-current"
+                                    >
+                                        <path d="M4 2.5v11L13 8 4 2.5Z" />
+                                    </svg>
+                                </span>
                             ) : media ? (
                                 <Picture
                                     src={media}

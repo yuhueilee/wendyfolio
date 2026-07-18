@@ -52,6 +52,9 @@ describe("correctly returns the carousel component", () => {
         expect(
             within(dialog).getByLabelText("Demo · video 01")
         ).toHaveClass("object-contain");
+        const thumbnail = within(dialog).getByLabelText("Go to shot 1");
+        expect(thumbnail.querySelector("svg")).toBeInTheDocument();
+        expect(thumbnail.querySelector("video")).not.toBeInTheDocument();
     });
 
     it("renders a placeholder slot for every missing shot", () => {
