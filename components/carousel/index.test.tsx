@@ -47,7 +47,7 @@ describe("correctly returns the carousel component", () => {
             within(dialog).getByLabelText("Go to shot 1")
         ).toBeInTheDocument();
         expect(
-            within(dialog).getByText("Demo · shot 01", { selector: "p" })
+            within(dialog).getByText("Demo", { selector: "p" })
         ).toBeInTheDocument();
         expect(
             within(dialog).getByLabelText("Demo · video 01")
@@ -126,7 +126,7 @@ describe("lightbox overlay", () => {
 
         expect(dialog).toHaveAttribute("aria-label", "Demo gallery");
         expect(
-            within(dialog).getByText("Demo · shot 02", { selector: "p" })
+            within(dialog).getByText("Demo", { selector: "p" })
         ).toBeInTheDocument();
         expect(within(dialog).getByText("2 / 3")).toBeInTheDocument();
     });

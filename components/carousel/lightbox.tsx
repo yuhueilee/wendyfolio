@@ -226,7 +226,7 @@ const Lightbox = ({ title, shots, initialIndex, onClose }: LightboxProps) => {
                     ))}
                 </div>
                 <p className="mb-0 mt-2.5 font-mono text-[11px] uppercase tracking-[0.08em] text-mist">
-                    {title} · shot 0{active + 1}
+                    {title}
                 </p>
             </div>
         </div>
