@@ -70,6 +70,7 @@ export const JOBS: Array<Job> = [
 export const PROJECTS: Array<Project> = [
     {
         kind: "PRODUCT FEATURE",
+        ratio: "3:4",
         title: "E-Commerce Product Webpage Revamp",
         description:
             "Deprecate jQuery with react components, implement interactive UI components that drives deeper user engagement.",
@@ -83,6 +84,7 @@ export const PROJECTS: Array<Project> = [
     },
     {
         kind: "PRODUCT FEATURE",
+        ratio: "3:4",
         title: "E-Commerce React Native App Revamp",
         description:
             "Refactored the e-commerce mobile app by migrating from JavaScript to TypeScript and upgrading React Native from v0.64 to v0.74, resolving Google Play’s Android API deprecation blocker. Modernized state management with Redux Toolkit, async thunks, and listener middleware for the add-to-cart flow; replaced Shopify’s REST API with GraphQL and cursor-based pagination to enable incremental loading of cart items.",
@@ -101,6 +103,7 @@ export const PROJECTS: Array<Project> = [
     },
     {
         kind: "PRODUCT FEATURE",
+        ratio: "3:4",
         title: "Add Pro to Cart",
         description:
             "The Add Pro to Cart (APTC) initiative lets customers add a Pro subscription item directly to their cart, view applicable benefits, and check out food and subscription together through a single unified payment, all backed by cart-level eligibility validation and a subscription creation flow tied to order processing. At a high level, the project utilizes order-related SNS topics to transit subscription status, extending the existing state transition to support subscription activation based on order delivery status. It also reworks the delivery fee benefit counter to support an order-first activation flow. This drove a 23% increase in subscription conversion rate in Malaysia and the Philippines.",
@@ -110,6 +113,7 @@ export const PROJECTS: Array<Project> = [
     },
     {
         kind: "SIDE PROJECT",
+        ratio: "4:3",
         title: "Replyo",
         description:
             "Designed and implemented an auto-reply bot for Threads that matches keywords and responds in seconds, saving operational time from manual replies.",
@@ -128,6 +132,7 @@ export const PROJECTS: Array<Project> = [
     },
     {
         kind: "SIDE PROJECT",
+        ratio: "4:3",
         title: "Penguin Battle",
         description:
             "A turn-based board game developed with React, leveraging the boardgame.io library for the game logic. Playable online — bring a friend and fight over fish.",

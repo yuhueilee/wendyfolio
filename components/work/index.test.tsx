@@ -36,37 +36,39 @@ describe("correctly returns the work component", () => {
         });
     });
 
-    it("uses a full-viewport horizontally scrolling track with side padding", () => {
+    it("uses Material UI Masonry without a horizontal scrolling track", () => {
         render(<Work />);
 
-        const track = screen.getByLabelText("Selected work");
-        expect(track).toHaveClass(
+        const masonry = screen.getByLabelText("Selected work");
+        expect(masonry).toHaveClass("MuiMasonry-root");
+        expect(masonry.parentElement).toHaveClass(
             "flex",
-            "w-screen",
-            "overflow-x-auto",
-            "px-[clamp(20px,5vw,40px)]",
-            "[scrollbar-width:none]",
-            "[&::-webkit-scrollbar]:hidden"
+            "w-full",
+            "justify-center"
         );
-        expect(track).not.toHaveClass("wide:grid");
+        expect(masonry).not.toHaveClass("overflow-x-auto");
     });
 
-    it("uses portrait cards with three-line descriptions", () => {
+    it("places the complete project details below the media", () => {
         render(<Work />);
 
         const cards = screen.getAllByRole("article");
-        cards.forEach((card) => {
-            expect(card).toHaveClass(
-                "aspect-[3/4]",
-                "max-w-[400px]",
-                "flex-none"
+        cards.forEach((card, index) => {
+            expect(card).toHaveClass("bg-white", "rounded-[12px]");
+            expect(card.firstElementChild).toHaveClass(
+                PROJECTS[index].ratio === "3:4"
+                    ? "aspect-[3/4]"
+                    : "aspect-[4/3]"
             );
         });
 
         const firstCard = cards[0];
-        expect(within(firstCard).getByText(PROJECTS[0].description)).toHaveClass(
-            "[-webkit-line-clamp:3]"
+        const description = within(firstCard).getByText(
+            PROJECTS[0].description
         );
+        expect(description).not.toHaveClass("[-webkit-line-clamp:3]");
+        expect(description).not.toHaveClass("overflow-hidden");
+        expect(firstCard.firstElementChild).not.toContainElement(description);
     });
 
     it("opens video cards in the fullscreen modal without a project CTA", () => {

@@ -149,7 +149,9 @@ const CardCarousel = ({ title, shots, children }: CardCarouselProps) => {
                     </>
                 )}
             </div>
-            <div className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(180deg,rgba(12,23,31,0.02)_18%,rgba(12,23,31,0.18)_42%,rgba(12,23,31,0.94)_100%)]" />
+            {children && (
+                <div className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(180deg,rgba(12,23,31,0.02)_18%,rgba(12,23,31,0.18)_42%,rgba(12,23,31,0.94)_100%)]" />
+            )}
             {children?.(() => setLightboxIndex(active))}
             {lightboxIndex !== null && (
                 <FullscreenCarousel
