@@ -27,10 +27,10 @@ const CardCarousel = ({ title, shots, children }: CardCarouselProps) => {
     const hasMultipleShots = shots.length > 1;
 
     return (
-        <div className="relative h-full w-full overflow-hidden rounded-[32px] bg-ink">
+        <div className="relative h-full w-full overflow-hidden rounded-[22px] bg-ink">
             <div className="absolute inset-0">
                 <Swiper
-                    className="h-full w-full rounded-[32px] bg-tint [&_.swiper-slide]:h-full"
+                    className="h-full w-full rounded-[22px] bg-tint [&_.swiper-slide]:h-full"
                     modules={[Autoplay, Zoom]}
                     onSwiper={setSwiper}
                     onSlideChange={(s) => setActive(s.realIndex)}

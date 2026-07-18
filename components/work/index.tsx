@@ -18,13 +18,13 @@ const MEDIA_RATIO_CLASS: Record<Project["ratio"], string> = {
 };
 
 const WorkCard = ({ project }: WorkCardProps) => (
-    <article className="overflow-hidden rounded-[12px] bg-white p-2">
+    <article className="overflow-hidden rounded-[22px] bg-white">
         <div
-            className={`${MEDIA_RATIO_CLASS[project.ratio]} overflow-hidden rounded-lg`}
+            className={`${MEDIA_RATIO_CLASS[project.ratio]} overflow-hidden rounded-[22px]`}
         >
             <CardCarousel title={project.title} shots={project.shots} />
         </div>
-        <div className="px-2 pb-3 pt-4">
+        <div className="px-4 pb-5 pt-4">
             <span className="inline-flex rounded-full bg-tint px-2.5 py-1 font-mono text-[9px] tracking-[0.08em] text-accent-dark">
                 {project.kind}
             </span>

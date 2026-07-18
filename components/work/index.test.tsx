@@ -54,11 +54,13 @@ describe("correctly returns the work component", () => {
 
         const cards = screen.getAllByRole("article");
         cards.forEach((card, index) => {
-            expect(card).toHaveClass("bg-white", "rounded-[12px]");
+            expect(card).toHaveClass("bg-white", "rounded-[22px]");
+            expect(card).not.toHaveClass("p-2");
             expect(card.firstElementChild).toHaveClass(
                 PROJECTS[index].ratio === "3:4"
                     ? "aspect-[3/4]"
-                    : "aspect-[4/3]"
+                    : "aspect-[4/3]",
+                "rounded-[22px]"
             );
         });
 
