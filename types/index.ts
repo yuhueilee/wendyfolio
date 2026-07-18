@@ -22,12 +22,14 @@ export interface VideoSource {
 }
 
 export type MediaSource = PictureSource | VideoSource;
+export type ProjectAspectRatio = "3:4" | "4:3";
 
 export const isVideoSource = (source: MediaSource): source is VideoSource =>
     "mp4" in source;
 
 export interface Project {
     kind: string;
+    ratio: ProjectAspectRatio;
     title: string;
     description: string;
     stack: Array<string>;

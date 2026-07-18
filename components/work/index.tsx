@@ -1,77 +1,94 @@
+"use client";
+
+import Masonry from "@mui/lab/Masonry";
+
+import CardCarousel from "../carousel/card";
 import { PROJECTS } from "../data";
-import Carousel from "../carousel";
 import { GitHubIcon, LinkIcon } from "../icons";
 import SectionHead from "../section-head";
+import type { Project } from "../../types";
+
+type WorkCardProps = {
+    project: Project;
+};
+
+const MEDIA_RATIO_CLASS: Record<Project["ratio"], string> = {
+    "3:4": "aspect-[3/4]",
+    "4:3": "aspect-[4/3]",
+};
+
+const WorkCard = ({ project }: WorkCardProps) => (
+    <article className="overflow-hidden rounded-[22px] bg-white">
+        <div
+            className={`${MEDIA_RATIO_CLASS[project.ratio]} overflow-hidden rounded-[22px] p-2`}
+        >
+            <CardCarousel title={project.title} shots={project.shots} />
+        </div>
+        <div className="px-4 pb-5 pt-4">
+            <span className="inline-flex rounded-full bg-tint px-2.5 py-1 font-mono text-[9px] tracking-[0.08em] text-accent-dark">
+                {project.kind}
+            </span>
+            <h3 className="mb-0 mt-2 text-[20px] font-semibold leading-[1.15] tracking-[-0.02em] text-ink">
+                {project.title}
+            </h3>
+            <p className="mb-0 mt-3 font-[Arial,sans-serif] text-[13px] leading-5 text-body">
+                {project.description}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-1.5">
+                {project.stack.map((tech) => (
+                    <span
+                        className="rounded-full bg-tint px-2.5 py-1 font-mono text-[9px] leading-[13px] text-body-dark"
+                        key={tech}
+                    >
+                        {tech}
+                    </span>
+                ))}
+            </div>
+            {project.links.length > 0 && (
+                <div className="mt-4 flex gap-2">
+                    {project.links.map((link) => (
+                        <a
+                            href={link.href}
+                            key={link.label}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-ink px-3 py-2.5 font-mono text-[9px] font-medium tracking-[0.05em] text-white no-underline transition-colors hover:bg-accent-dark"
+                        >
+                            {link.label === "GITHUB" ? (
+                                <GitHubIcon size={12} />
+                            ) : (
+                                <LinkIcon size={12} />
+                            )}
+                            {link.label}
+                        </a>
+                    ))}
+                </div>
+            )}
+        </div>
+    </article>
+);
 
 const Work = () => (
     <section
         id="work"
-        className="mx-auto max-w-[880px] scroll-mt-[72px] px-[clamp(20px,5vw,40px)] py-[clamp(56px,12vw,96px)]"
+        className="mx-auto max-w-[980px] scroll-mt-[72px] px-[clamp(20px,5vw,40px)] py-[clamp(56px,12vw,96px)]"
     >
         <SectionHead title="SELECTED WORK" />
 
-        <div className="flex flex-col gap-[clamp(18px,4vw,28px)]">
-            {PROJECTS.map((project, i) => {
-                const imageLeft = i % 2 === 1;
-                return (
-                    <article
-                        className={`flex flex-col items-stretch overflow-hidde wide:gap-3 ${
-                            imageLeft
-                                ? "wide:flex-row"
-                                : "wide:flex-row-reverse"
-                        }`}
-                        key={project.title}
-                    >
-                        <Carousel
-                            title={project.title}
-                            shots={project.shots}
-                            imageLeft={imageLeft}
-                        />
-
-                        <div className="flex min-w-0 flex-1 flex-col p-[clamp(20px,4.5vw,26px)] wide:flex-[1_1_60%] border border-card-line bg-white">
-                            <span className="font-mono text-[11px] tracking-[0.08em] text-muted">
-                                {project.kind}
-                            </span>
-                            <h3 className="m-0 mt-3 font-sans text-[clamp(21px,4.6vw,25px)] font-normal leading-[1.12]">
-                                {project.title}
-                            </h3>
-                            <p className="mb-[18px] mt-3 flex-1 text-[clamp(13.5px,3.4vw,14.5px)] leading-[1.65] text-body">
-                                {project.description}
-                            </p>
-                            <div className="mb-[18px] flex flex-wrap gap-2">
-                                {project.stack.map((tech) => (
-                                    <span
-                                        className="border border-line px-2.5 py-[5px] font-mono text-[11px] tracking-[0.03em] text-ink"
-                                        key={tech}
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                            {project.links.length > 0 && (
-                                <div className="flex flex-wrap gap-4 border-t border-tint pt-4">
-                                    {project.links.map((link) => (
-                                        <a
-                                            href={link.href}
-                                            key={link.label}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 px-3.5 py-2 font-mono text-[11px] tracking-[0.06em] text-accent-dark no-underline transition-colors duration-[250ms] hover:bg-ink hover:text-white"
-                                        >
-                                            {link.label === "GITHUB" ? (
-                                                <GitHubIcon size={13} />
-                                            ) : (
-                                                <LinkIcon size={13} />
-                                            )}
-                                            {link.label}
-                                        </a>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </article>
-                );
-            })}
+        <div className="flex w-full justify-center">
+            <Masonry
+                aria-label="Selected work"
+                columns={{ xs: 1, md: 2 }}
+                defaultColumns={1}
+                defaultHeight={1800}
+                defaultSpacing={2.5}
+                spacing={2.5}
+                sx={{ margin: "0 auto", width: "100%" }}
+            >
+                {PROJECTS.map((project) => (
+                    <WorkCard key={project.title} project={project} />
+                ))}
+            </Masonry>
         </div>
     </section>
 );

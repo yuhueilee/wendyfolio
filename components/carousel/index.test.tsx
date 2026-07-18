@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 
-import Carousel from "./index";
+import { CardCarousel, FullscreenCarousel } from "./index";
+
+const Carousel = CardCarousel;
 
 describe("correctly returns the carousel component", () => {
     it("renders looping autoplay video without native controls", () => {
@@ -27,6 +29,9 @@ describe("correctly returns the carousel component", () => {
         expect(screen.queryByLabelText("Previous")).not.toBeInTheDocument();
         expect(screen.queryByLabelText("Next")).not.toBeInTheDocument();
         expect(screen.queryByLabelText("Go to slide")).not.toBeInTheDocument();
+        expect(
+            screen.queryByLabelText("Video playing")
+        ).not.toBeInTheDocument();
     });
 
     it("opens video media in the full-screen lightbox", () => {
@@ -72,6 +77,25 @@ describe("correctly returns the carousel component", () => {
 
         expect(container.querySelector(".swiper")).toBeInTheDocument();
         expect(container.querySelectorAll(".swiper-slide")).toHaveLength(3);
+    });
+
+    it("auto-advances multiple shots and pauses while hovered", () => {
+        const { container } = render(
+            <Carousel title="Demo" shots={[null, null]} />
+        );
+        const swiperElement = container.querySelector(".swiper") as
+            | (HTMLElement & {
+                  swiper?: {
+                      params: { autoplay?: unknown };
+                  };
+              })
+            | null;
+
+        expect(swiperElement?.swiper?.params.autoplay).toMatchObject({
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        });
     });
 
     it("enables pinch zoom for image slides", () => {
@@ -122,6 +146,21 @@ describe("lightbox overlay", () => {
         render(<Carousel title="Demo" shots={[null, null, null]} />);
 
         expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    it("renders as an independent fullscreen carousel", () => {
+        render(
+            <FullscreenCarousel
+                title="Standalone"
+                shots={[null]}
+                initialIndex={0}
+                onClose={() => undefined}
+            />
+        );
+
+        expect(
+            screen.getByRole("dialog", { name: "Standalone gallery" })
+        ).toBeInTheDocument();
     });
 
     it("opens a modal with the clicked shot's caption at the bottom", () => {

@@ -24,6 +24,7 @@ type VideoProps = Omit<
 > & {
     src: VideoSource;
     pauseOnHover?: boolean;
+    showPlaybackStatus?: boolean;
     toggleOnClick?: boolean;
 };
 
@@ -44,6 +45,7 @@ const PauseIcon = () => (
 const Video = ({
     src,
     pauseOnHover = true,
+    showPlaybackStatus = true,
     toggleOnClick = false,
     onClick,
     onKeyDown,
@@ -199,7 +201,7 @@ const Video = ({
                         <PauseIcon />
                     )}
                 </span>
-            ) : !toggleOnClick ? (
+            ) : !toggleOnClick && showPlaybackStatus ? (
                 <span
                     role="status"
                     aria-label={isPlaying ? "Video playing" : "Video paused"}
