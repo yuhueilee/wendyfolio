@@ -66,10 +66,6 @@ const Contact = () => (
                         </a>
                     ))}
                 </div>
-                <p className="m-0 mt-2.5 text-center text-sm leading-[1.6] text-dark-muted">
-                    Open to full-stack &amp; backend roles — contract or
-                    full-time.
-                </p>
             </div>
 
             <div className="mt-[clamp(40px,8vw,60px)] flex flex-wrap items-center justify-between gap-3 border-t border-dark-line pt-[22px] font-mono text-[11px] tracking-[0.06em] text-dark-muted">
