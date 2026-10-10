@@ -1,32 +1,49 @@
-import { EMAIL, GITHUB_HREF, LINKEDIN_HREF, YEAR } from "../data";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "../icons";
 
-const CONTACT_CARDS = [
-    {
-        label: "EMAIL",
-        value: EMAIL,
-        href: `mailto:${EMAIL}`,
-        external: false,
-        icon: <MailIcon />,
-    },
-    {
-        label: "GITHUB",
-        value: "github.com/yuhueilee",
-        href: GITHUB_HREF,
-        external: true,
-        icon: <GitHubIcon />,
-    },
-    {
-        label: "LINKEDIN",
-        value: "linkedin.com/in/yuhueilee-wendy",
-        href: LINKEDIN_HREF,
-        external: true,
-        icon: <LinkedInIcon />,
-    },
-];
+interface ContactProps {
+    email: string;
+    githubHref: string;
+    linkedinHref: string;
+    name: string;
+    year: string;
+}
 
-const Contact = () => (
-    <section id="contact" className="scroll-mt-[60px] bg-ink text-mist">
+const displayUrl = (href: string): string =>
+    href.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+
+const Contact = ({
+    email,
+    githubHref,
+    linkedinHref,
+    name,
+    year,
+}: ContactProps) => {
+    const contactCards = [
+        {
+            label: "EMAIL",
+            value: email,
+            href: `mailto:${email}`,
+            external: false,
+            icon: <MailIcon />,
+        },
+        {
+            label: "GITHUB",
+            value: displayUrl(githubHref),
+            href: githubHref,
+            external: true,
+            icon: <GitHubIcon />,
+        },
+        {
+            label: "LINKEDIN",
+            value: displayUrl(linkedinHref),
+            href: linkedinHref,
+            external: true,
+            icon: <LinkedInIcon />,
+        },
+    ];
+
+    return (
+        <section id="contact" className="scroll-mt-[60px] bg-ink text-mist">
         <div className="mx-auto max-w-[880px] px-[clamp(20px,5vw,40px)] pb-[clamp(40px,8vw,60px)] pt-[clamp(48px,10vw,72px)]">
             <p className="m-0 mb-4 text-center font-mono text-[11px] tracking-[0.16em] text-dark-muted">
                 GET IN TOUCH
@@ -37,7 +54,7 @@ const Contact = () => (
 
             <div className="mx-auto flex w-full max-w-[760px] flex-col items-center gap-[18px]">
                 <div className="flex w-full flex-wrap justify-center gap-3.5">
-                    {CONTACT_CARDS.map((card) => (
+                    {contactCards.map((card) => (
                         <a
                             href={card.href}
                             key={card.label}
@@ -69,7 +86,7 @@ const Contact = () => (
             </div>
 
             <div className="mt-[clamp(40px,8vw,60px)] flex flex-wrap items-center justify-between gap-3 border-t border-dark-line pt-[22px] font-mono text-[11px] tracking-[0.06em] text-dark-muted">
-                <span>© {YEAR} WENDY LEE</span>
+                <span>© {year} {name.toUpperCase()}</span>
                 <a
                     href="#"
                     className="text-dark-muted no-underline transition-colors duration-[250ms] hover:text-mist"
@@ -78,7 +95,8 @@ const Contact = () => (
                 </a>
             </div>
         </div>
-    </section>
-);
+        </section>
+    );
+};
 
 export default Contact;

@@ -23,6 +23,7 @@ module.exports = async () => {
   // does not catch, since the import specifier has no .css extension.
   jestConfig.moduleNameMapper = {
     '^swiper/css(/.*)?$': '<rootDir>/__mocks__/styleMock.js',
+    '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js',
     ...jestConfig.moduleNameMapper,
   }
   return jestConfig

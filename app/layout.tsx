@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { getSiteProfile } from "../lib/site-profile";
 import "./globals.css";
 
+const profile = getSiteProfile();
+
 export const metadata: Metadata = {
-    title: "Wendy Lee — Software Engineer",
-    description:
-        "Portfolio of Wendy Lee (Lee Yu Huei), a software engineer working across backend services, responsive frontends, and the tests and tooling that keep both trustworthy.",
+    title: `${profile.name} — Software Engineer`,
+    description: profile.seoDescription,
     icons: {
         icon: `/logoNew.png`,
         apple: `/logoNew.png`,

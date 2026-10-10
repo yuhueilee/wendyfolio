@@ -1,11 +1,18 @@
 import { render, screen } from "@testing-library/react";
 
-import { RESUME_HREF } from "../data";
+import { getSiteProfile } from "../../lib/site-profile";
 import Header from "./index";
+
+const profile = getSiteProfile();
 
 describe("correctly returns the header component", () => {
     it("renders the wordmark and anchor navigation", () => {
-        render(<Header />);
+        render(
+            <Header
+                wordmark={profile.preferredName}
+                resumeHref={profile.resumeHref}
+            />
+        );
 
         expect(screen.getByText("Wendy")).toBeInTheDocument();
         expect(screen.getByText("ABOUT")).toHaveAttribute("href", "#about");
@@ -21,11 +28,16 @@ describe("correctly returns the header component", () => {
     });
 
     it("renders the resume download link", () => {
-        render(<Header />);
+        render(
+            <Header
+                wordmark={profile.preferredName}
+                resumeHref={profile.resumeHref}
+            />
+        );
 
         expect(screen.getByText("RESUME").closest("a")).toHaveAttribute(
             "href",
-            RESUME_HREF
+            profile.resumeHref
         );
     });
 });

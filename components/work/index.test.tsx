@@ -1,14 +1,16 @@
 import { render, screen, within } from "@testing-library/react";
 
-import { PROJECTS } from "../data";
+import { getSiteProfile } from "../../lib/site-profile";
 import Work from "./index";
+
+const { projects } = getSiteProfile();
 
 describe("correctly returns the work component", () => {
     it("renders every project with its description and stack", () => {
-        render(<Work />);
+        render(<Work projects={projects} />);
 
         expect(screen.getByText("SELECTED WORK")).toBeInTheDocument();
-        PROJECTS.forEach((project) => {
+        projects.forEach((project) => {
             expect(
                 screen.getByRole("heading", { name: project.title })
             ).toBeInTheDocument();
@@ -22,10 +24,10 @@ describe("correctly returns the work component", () => {
     });
 
     it("renders external project links", () => {
-        render(<Work />);
+        render(<Work projects={projects} />);
 
         const cards = screen.getAllByRole("article");
-        PROJECTS.forEach((project, i) => {
+        projects.forEach((project, i) => {
             project.links.forEach((link) => {
                 const anchor = within(cards[i]).getByRole("link", {
                     name: link.label,

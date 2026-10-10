@@ -2,12 +2,16 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { JOBS } from "../data";
+import type { Job } from "../../types";
 import SectionHead from "../section-head";
 
 const companyName = (org: string) => org.replace(/^@\s*/, "");
 
-const Experience = () => {
+interface ExperienceProps {
+    jobs: Array<Job>;
+}
+
+const Experience = ({ jobs }: ExperienceProps) => {
     const [active, setActive] = useState(0);
     const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
     const vBarRef = useRef<HTMLSpanElement | null>(null);
@@ -42,7 +46,7 @@ const Experience = () => {
         };
     }, [moveIndicator]);
 
-    const job = JOBS[active];
+    const job = jobs[active];
 
     return (
         <section id="experience" className="scroll-mt-[72px] bg-tint">
@@ -69,7 +73,7 @@ const Experience = () => {
                                 className="absolute left-0 top-0 hidden w-[2px] bg-accent transition-[transform,height] duration-300 ease-out md:block"
                                 ref={vBarRef}
                             />
-                            {JOBS.map((j, i) => (
+                            {jobs.map((j, i) => (
                                 <button
                                     className={`flex-none cursor-pointer border-0 bg-transparent px-4 py-3 text-left font-mono text-xs tracking-[0.08em] transition-colors duration-[250ms] hover:bg-tint-deep md:px-5 ${
                                         active === i

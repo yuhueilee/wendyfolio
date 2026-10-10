@@ -19,12 +19,12 @@ introductions:
     stack. A quick learner and dependable team player, driven to build tools
     and systems that help teams move faster.
   about: >-
-    Hi, I'm Wendy - a software engineer with four years of experience. My
+    Hi, I'm Wendy — a software engineer with four years of experience. My
     journey has taken me from backend to frontend: building subscription
     features for a food delivery app while conducting e2e tests covering key
     user flows, modernizing an e-commerce platform's React Native app with
     TypeScript and CI/CD workflows, and now working at the intersection of
-    React and AI tooling - building AI agents that speed up package migrations
+    React and AI tooling — building AI agents that speed up package migrations
     and automate repetitive engineering work. What ties it all together? I
     love stepping outside my comfort zone and building tools that help teams
     move faster.
@@ -147,8 +147,8 @@ projects:
     kind: Product Feature
     title: E-Commerce Product Webpage Revamp
     description: >-
-      Deprecate jQuery with React components and implement interactive UI
-      components that drive deeper user engagement.
+      Deprecate jQuery with react components, implement interactive UI
+      components that drives deeper user engagement.
     technologies:
       - React
       - TypeScript
@@ -240,7 +240,7 @@ projects:
     title: Penguin Battle
     description: >-
       A turn-based board game developed with React, leveraging the boardgame.io
-      library for the game logic. Playable online - bring a friend and fight
+      library for the game logic. Playable online — bring a friend and fight
       over fish.
     technologies:
       - React

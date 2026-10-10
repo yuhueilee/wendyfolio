@@ -1,9 +1,13 @@
-import { PROJECTS } from "../data";
+import type { Project } from "../../types";
 import Carousel from "../carousel";
 import { GitHubIcon, LinkIcon } from "../icons";
 import SectionHead from "../section-head";
 
-const Work = () => (
+interface WorkProps {
+    projects: Array<Project>;
+}
+
+const Work = ({ projects }: WorkProps) => (
     <section
         id="work"
         className="mx-auto max-w-[880px] scroll-mt-[72px] px-[clamp(20px,5vw,40px)] py-[clamp(56px,12vw,96px)]"
@@ -11,7 +15,7 @@ const Work = () => (
         <SectionHead title="SELECTED WORK" />
 
         <div className="flex flex-col gap-[clamp(18px,4vw,28px)]">
-            {PROJECTS.map((project, i) => {
+            {projects.map((project, i) => {
                 const imageLeft = i % 2 === 1;
                 return (
                     <article

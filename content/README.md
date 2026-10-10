@@ -13,5 +13,6 @@ projects, education, and channel-specific inclusion rules.
   different wording. Do not copy an entire entry to customize one field.
 - Keep layout and presentation decisions in their consumer templates.
 
-The website still reads from `components/data.ts` for now. A subsequent change
-will validate and load this file, then replace the duplicated component data.
+The website validates this file in `lib/profile.ts`, adapts it to UI-facing
+types in `lib/site-profile.ts`, and passes serializable data from the App Router
+page into the interactive components.

@@ -1,4 +1,3 @@
-import { RESUME_HREF } from "../data";
 import { DownloadIcon } from "../icons";
 
 const GLASS =
@@ -11,12 +10,17 @@ const NAV_LINKS = [
     { label: "CONTACT", href: "#contact" },
 ];
 
-const Header = () => (
+interface HeaderProps {
+    wordmark: string;
+    resumeHref: string;
+}
+
+const Header = ({ wordmark, resumeHref }: HeaderProps) => (
     <header className="pointer-events-none fixed left-0 right-0 top-0 z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2.5 px-[clamp(12px,4vw,40px)] py-3">
         <div
             className={`pointer-events-auto hidden items-center justify-self-start rounded-full px-[15px] py-[11px] font-mono text-xs font-medium tracking-[0.1em] text-ink sm:inline-flex ${GLASS}`}
         >
-            Wendy
+            {wordmark}
         </div>
 
         <nav
@@ -35,7 +39,7 @@ const Header = () => (
 
         <div className="pointer-events-auto col-start-3 inline-flex items-center gap-2 justify-self-end">
             <a
-                href={RESUME_HREF}
+                href={resumeHref}
                 download
                 className="hidden items-center gap-2 rounded-full border border-accent bg-accent px-4 py-[11px] font-mono text-[11px] tracking-[0.06em] text-mist no-underline shadow-float transition-colors duration-[250ms] hover:bg-accent-dark sm:inline-flex"
             >
