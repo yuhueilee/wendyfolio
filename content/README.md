@@ -16,3 +16,6 @@ projects, education, and channel-specific inclusion rules.
 The website validates this file in `lib/profile.ts`, adapts it to UI-facing
 types in `lib/site-profile.ts`, and passes serializable data from the App Router
 page into the interactive components.
+
+The print-ready `/resume` route uses `lib/resume-profile.ts` to select resume
+entries and apply only the explicitly declared resume overrides.

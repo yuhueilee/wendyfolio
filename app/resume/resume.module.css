@@ -1,0 +1,270 @@
+.viewport {
+    min-height: 100vh;
+    padding: 24px;
+    background: #e8edf1;
+}
+
+.page {
+    --resume-muted: #6b7785;
+
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 4.78in minmax(0, 1fr);
+    gap: 0.42in;
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    padding: 0.61in 0.6in 0.55in;
+    overflow: hidden;
+    color: #000000;
+    background: #ffffff;
+    box-shadow: 0 16px 48px rgb(15 23 42 / 18%);
+    font-family: "Carlito", "Calibri", Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.22;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page p,
+.page ul {
+    margin: 0;
+}
+
+.mainColumn,
+.sidebar {
+    min-width: 0;
+}
+
+.sidebar {
+    color: #1f2d3d;
+}
+
+.introduction h1 {
+    color: #0a2540;
+    font-size: 36pt;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.introduction h1 > span,
+.page h2 {
+    color: #1e5bbe;
+}
+
+.jobHeading h3,
+.company {
+    color: #2e74b5;
+}
+
+.introduction h1 small {
+    font-size: 14pt;
+    letter-spacing: 0;
+}
+
+.introduction > p {
+    margin-top: 4pt;
+}
+
+.experience {
+    margin-top: 12.75pt;
+}
+
+.page h2 {
+    margin-bottom: 9pt;
+    font-size: 14pt;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.experience > h2 {
+    margin-bottom: 15pt;
+}
+
+.job {
+    margin-bottom: 10pt;
+}
+
+.job:last-child {
+    margin-bottom: 0;
+}
+
+.jobHeading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 4pt;
+}
+
+.jobHeading h3,
+.jobHeading span {
+    font-size: 11pt;
+    font-weight: 700;
+}
+
+.jobHeading time {
+    margin-left: 1pt;
+    color: var(--resume-muted);
+    font-size: 9pt;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.technologies {
+    margin-top: 3pt !important;
+    color: var(--resume-muted);
+    font-size: 9pt;
+    font-style: italic;
+}
+
+.job ul {
+    margin-top: 4pt;
+    padding-left: 13pt;
+    list-style: disc outside;
+}
+
+.job li {
+    margin-bottom: 2pt;
+    padding-left: 1pt;
+}
+
+.job li::marker {
+    color: #1e5bbe;
+}
+
+.sidebarSection {
+    margin-bottom: 14pt;
+}
+
+.sidebarSection:last-child {
+    margin-bottom: 0;
+}
+
+.sidebarSection:nth-of-type(3) {
+    margin-bottom: 22.75pt;
+}
+
+.sidebarSection h2 {
+    margin-bottom: 8pt;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2pt;
+    font-size: 9pt;
+    line-height: 1.33;
+    font-style: normal;
+}
+
+.page a {
+    color: #2e74b5;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+}
+
+.sidebarItem h3,
+.project h3 {
+    margin-bottom: 3pt;
+    font-size: 10pt;
+    font-weight: 700;
+}
+
+.sidebarItem h3 {
+    color: #0a2540;
+}
+
+.sidebarSection:last-child .sidebarItem h3 {
+    color: #2e74b5;
+    font-size: 11pt;
+}
+
+.project h3 {
+    font-size: 11pt;
+}
+
+.sidebarItem p + p {
+    margin-top: 2pt;
+}
+
+.muted {
+    color: var(--resume-muted) !important;
+    font-size: 9pt;
+    font-weight: 400;
+}
+
+.activityLocation {
+    color: var(--resume-muted);
+    font-size: 9pt;
+    font-weight: 400;
+}
+
+.skills {
+    display: flex;
+    align-items: center;
+    gap: 3pt;
+}
+
+.skill {
+    display: inline-flex;
+    width: 21.75pt;
+    height: 21.75pt;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.skill[data-skill="react"] {
+    color: #61dafb;
+}
+
+.skill[data-skill="javascript"] {
+    color: #f7df1e;
+}
+
+.skill[data-skill="python"] {
+    color: #3776ab;
+}
+
+.skill[data-skill="claude"] {
+    color: #d97757;
+}
+
+.skill[data-skill="openai"] {
+    color: #202123;
+}
+
+.project {
+    margin-bottom: 6.75pt;
+}
+
+.project:last-child {
+    margin-bottom: 0;
+}
+
+@page {
+    size: letter;
+    margin: 0;
+}
+
+@media print {
+    .viewport {
+        min-height: auto;
+        padding: 0;
+        background: #ffffff;
+    }
+
+    .page {
+        margin: 0;
+        box-shadow: none;
+    }
+}

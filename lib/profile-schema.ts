@@ -8,6 +8,7 @@ const monthSchema = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/);
 const highlightSchema = z.object({
     id: z.string().min(1),
     text: z.string().min(1),
+    channels: channelsSchema.optional(),
 });
 
 const experienceSchema = z.object({
@@ -20,6 +21,13 @@ const experienceSchema = z.object({
     technologies: z.array(z.string().min(1)).min(1),
     highlights: z.array(highlightSchema).min(1),
     channels: channelsSchema,
+    overrides: z
+        .object({
+            resume: z.object({
+                technologies: z.array(z.string().min(1)).min(1).optional(),
+            }),
+        })
+        .optional(),
 });
 
 const projectSchema = z.object({
@@ -46,6 +54,14 @@ const projectSchema = z.object({
         ])
     ),
     channels: channelsSchema,
+    overrides: z
+        .object({
+            resume: z.object({
+                description: z.string().min(1).optional(),
+                technologies: z.array(z.string().min(1)).min(1).optional(),
+            }),
+        })
+        .optional(),
 });
 
 const datedChannelEntrySchema = z.object({
@@ -61,6 +77,7 @@ export const profileSchema = z.object({
             display: z.string().min(1),
             legal: z.string().min(1),
             preferred: z.string().min(1),
+            resume: z.string().min(1),
         }),
         headline: z.string().min(1),
         email: z.string().email(),
@@ -74,6 +91,7 @@ export const profileSchema = z.object({
         hero: z.string().min(1),
         about: z.string().min(1),
         seo: z.string().min(1),
+        resume: z.string().min(1),
     }),
     experience: z.array(experienceSchema).min(1),
     projects: z.array(projectSchema).min(1),

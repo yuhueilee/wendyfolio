@@ -6,6 +6,7 @@ person:
     display: Wendy Lee
     legal: Lee Yu Huei
     preferred: Wendy
+    resume: Yu Huei Lee
   headline: Software Engineer
   email: wendylee70127@gmail.com
   website: https://wendyfolio.com
@@ -32,6 +33,13 @@ introductions:
     Portfolio of Wendy Lee (Lee Yu Huei), a software engineer working across
     backend services, responsive frontends, and the tests and tooling that
     keep both trustworthy.
+  resume: >-
+    With 4 years of hands-on software engineering experience across backend
+    (Golang/AWS), mobile (React Native), and web (React) development, I bring a
+    versatile technical background and a collaborative mindset. I am a
+    dedicated team player who values efficiency, effective communication, and
+    teamwork, with a passion for building tools and solutions that streamline
+    workflows and help teams to work more effectively.
 
 experience:
   - id: pinkoi
@@ -53,6 +61,14 @@ experience:
           API to migrate v3 and v5 syntax to v5-compat, then developed an
           autonomous migrator agent with properly scoped boundaries that cut
           migration time by 50%.
+      - id: react-18-migration
+        text: >-
+          Led the migration from React 16 to 18, creating a staged upgrade plan
+          that allows the agent to resolve incompatible dependencies gradually,
+          and adding regression coverage for critical workflows.
+        channels:
+          - resume
+          - linkedin
       - id: analytics-agent-skill
         text: >-
           Built an agent skill to automate analytic tracking event
@@ -73,7 +89,6 @@ experience:
       - website
       - resume
       - linkedin
-
   - id: citiesocial
     company: Citiesocial
     location: Taipei
@@ -141,6 +156,13 @@ experience:
       - website
       - resume
       - linkedin
+    overrides:
+      resume:
+        technologies:
+          - GoLang
+          - Docker
+          - SQL
+          - Postman
 
 projects:
   - id: pinkoi-product-page
@@ -234,6 +256,12 @@ projects:
       - website
       - resume
       - linkedin
+    overrides:
+      resume:
+        description: >-
+          Designed and implemented an auto-reply bot for Threads that allows
+          users to customize responses per keyword for a single post, cutting
+          the operational time of manual replies from minutes to seconds.
 
   - id: penguin-battle
     kind: Side Project
@@ -257,6 +285,12 @@ projects:
       - website
       - resume
       - linkedin
+    overrides:
+      resume:
+        description: >-
+          A TypeScript and boardgame.io project aimed at learning how to build
+          and deploy a turn-based web game using a framework-driven approach
+          with SCSS styling and Netlify hosting.
 
 education:
   - id: monash-university-malaysia

@@ -85,7 +85,13 @@ export const toSiteProfile = (profile: Profile): SiteProfile => {
             title: job.role,
             org: `@ ${job.company}`,
             stack: job.technologies,
-            points: job.highlights.map((highlight) => highlight.text),
+            points: job.highlights
+                .filter(
+                    (highlight) =>
+                        !highlight.channels ||
+                        highlight.channels.includes("website")
+                )
+                .map((highlight) => highlight.text),
         })),
         projects: websiteProjects.map((project) => ({
             kind: project.kind.toUpperCase(),
