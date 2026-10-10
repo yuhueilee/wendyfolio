@@ -1,0 +1,327 @@
+schemaVersion: 1
+lastUpdated: "2026-10-10"
+
+person:
+  name:
+    display: Wendy Lee
+    legal: Lee Yu Huei
+    preferred: Wendy
+  headline: Software Engineer
+  email: wendylee70127@gmail.com
+  website: https://wendyfolio.com
+  profiles:
+    github: https://github.com/yuhueilee
+    linkedin: https://www.linkedin.com/in/yuhueilee-wendy/
+
+introductions:
+  hero: >-
+    Adaptable software engineer with 4 years of experience across the full
+    stack. A quick learner and dependable team player, driven to build tools
+    and systems that help teams move faster.
+  about: >-
+    Hi, I'm Wendy - a software engineer with four years of experience. My
+    journey has taken me from backend to frontend: building subscription
+    features for a food delivery app while conducting e2e tests covering key
+    user flows, modernizing an e-commerce platform's React Native app with
+    TypeScript and CI/CD workflows, and now working at the intersection of
+    React and AI tooling - building AI agents that speed up package migrations
+    and automate repetitive engineering work. What ties it all together? I
+    love stepping outside my comfort zone and building tools that help teams
+    move faster.
+  seo: >-
+    Portfolio of Wendy Lee (Lee Yu Huei), a software engineer working across
+    backend services, responsive frontends, and the tests and tooling that
+    keep both trustworthy.
+
+experience:
+  - id: pinkoi
+    company: Pinkoi
+    location: Taipei
+    role: Frontend Engineer
+    start: "2025-07"
+    end: null
+    technologies:
+      - AI Agent
+      - React
+      - TypeScript
+      - Zustand
+      - Webpack
+    highlights:
+      - id: router-migration
+        text: >-
+          Initiated React Router v6 adoption by extending the existing adaptive
+          API to migrate v3 and v5 syntax to v5-compat, then developed an
+          autonomous migrator agent with properly scoped boundaries that cut
+          migration time by 50%.
+      - id: analytics-agent-skill
+        text: >-
+          Built an agent skill to automate analytic tracking event
+          implementation and verification, saving 5 minutes per user flow test
+          case while improving code accuracy and maintainability.
+      - id: ticket-release-page
+        text: >-
+          Built a ticket release landing page powered by a refactored textpool
+          CMS, migrating from a legacy HOC pattern to a React Context-based
+          architecture with TypeScript, enabling independent business team copy
+          edits.
+      - id: add-to-cart-cta
+        text: >-
+          Designed and implemented a reusable Add-to-Cart CTA component for the
+          homepage revamp within a one-week sprint, eliminating UI coupling and
+          jQuery state management.
+    channels:
+      - website
+      - resume
+      - linkedin
+
+  - id: citiesocial
+    company: Citiesocial
+    location: Taipei
+    role: Mobile Engineer
+    start: "2024-05"
+    end: "2025-07"
+    technologies:
+      - React Native
+      - TypeScript
+      - Redux Toolkit
+      - Shopify GraphQL
+    highlights:
+      - id: react-native-modernization
+        text: >-
+          Refactored the codebase by migrating from JavaScript to TypeScript and
+          upgrading React Native from version 0.64 to 0.74, which decreased the
+          app's bundled size by 31% for iOS and 16% for Android.
+      - id: data-flow-architecture
+        text: >-
+          Rebuilt a new data flow architecture for critical features, including
+          social login, shopping cart, and favorite product management.
+          Integrated Redux Toolkit into the codebase by implementing async thunk
+          actions and listener middleware, which reduced duplicated business
+          logic and increased maintainability.
+      - id: mobile-cicd
+        text: >-
+          Built a CI/CD workflow with fastlane and GitHub Actions to deploy iOS
+          and Android apps, cutting release cycles from hours to minutes.
+    channels:
+      - website
+      - resume
+      - linkedin
+
+  - id: foodpanda
+    company: Foodpanda
+    location: Taipei
+    role: Backend Engineer
+    start: "2022-06"
+    end: "2023-12"
+    technologies:
+      - GoLang
+      - AWS
+      - Docker
+      - SQL
+      - Postman
+    highlights:
+      - id: add-pro-to-cart
+        text: >-
+          Launched a feature (add pro to cart) across Southeast Asia markets,
+          which increased the subscription conversion rate by 23%.
+      - id: subscription-benefits
+        text: >-
+          Led the architecture design for subscription benefits data CRUD,
+          which improved the data management user flow and resolved technical
+          debt of storing duplicated data. Performed unit tests and integration
+          tests on key user flows to uphold a minimum code coverage of 70%.
+      - id: ai-hackathon
+        text: >-
+          Won first place in a company hackathon focused on leveraging AI to
+          improve business profitability, building a predictive model with
+          Google Vertex AI trained on user metadata to identify subscription
+          cancellation reasons, enabling the marketing team to make targeted
+          retention decisions.
+    channels:
+      - website
+      - resume
+      - linkedin
+
+projects:
+  - id: pinkoi-product-page
+    kind: Product Feature
+    title: E-Commerce Product Webpage Revamp
+    description: >-
+      Deprecate jQuery with React components and implement interactive UI
+      components that drive deeper user engagement.
+    technologies:
+      - React
+      - TypeScript
+    links: {}
+    media:
+      - type: video
+        path: work/pinkoi/1.mp4
+    channels:
+      - website
+      - linkedin
+
+  - id: citiesocial-app
+    kind: Product Feature
+    title: E-Commerce React Native App Revamp
+    description: >-
+      Refactored the e-commerce mobile app by migrating from JavaScript to
+      TypeScript and upgrading React Native from v0.64 to v0.74, resolving
+      Google Play's Android API deprecation blocker. Modernized state management
+      with Redux Toolkit, async thunks, and listener middleware for the
+      add-to-cart flow; replaced Shopify's REST API with GraphQL and cursor-based
+      pagination to enable incremental loading of cart items.
+    technologies:
+      - React Native
+      - TypeScript
+      - Redux Toolkit
+      - Shopify GraphQL
+    links: {}
+    media:
+      - type: video
+        path: work/citiesocial/1.mp4
+    channels:
+      - website
+      - linkedin
+
+  - id: foodpanda-add-pro-to-cart
+    kind: Product Feature
+    title: Add Pro to Cart
+    description: >-
+      The Add Pro to Cart (APTC) initiative lets customers add a Pro
+      subscription item directly to their cart, view applicable benefits, and
+      check out food and subscription together through a single unified
+      payment, all backed by cart-level eligibility validation and a
+      subscription creation flow tied to order processing. At a high level, the
+      project utilizes order-related SNS topics to transit subscription status,
+      extending the existing state transition to support subscription activation
+      based on order delivery status. It also reworks the delivery fee benefit
+      counter to support an order-first activation flow. This drove a 23%
+      increase in subscription conversion rate in Malaysia and the Philippines.
+    technologies:
+      - GoLang
+      - AWS
+      - SNS
+      - SQL
+    links: {}
+    media:
+      - type: video
+        path: work/foodpanda/1.mp4
+    channels:
+      - website
+      - linkedin
+
+  - id: replyo
+    kind: Side Project
+    title: Replyo
+    description: >-
+      Designed and implemented an auto-reply bot for Threads that matches
+      keywords and responds in seconds, saving operational time from manual
+      replies.
+    technologies:
+      - Next.js
+      - TypeScript
+      - Express
+      - Redis
+      - Threads API
+    links:
+      demo: https://replyo-client.vercel.app/
+      source: https://github.com/yuhueilee/replyo
+    media:
+      - type: image-set
+        path: work/replyo
+        count: 3
+    channels:
+      - website
+      - resume
+      - linkedin
+
+  - id: penguin-battle
+    kind: Side Project
+    title: Penguin Battle
+    description: >-
+      A turn-based board game developed with React, leveraging the boardgame.io
+      library for the game logic. Playable online - bring a friend and fight
+      over fish.
+    technologies:
+      - React
+      - boardgame.io
+      - TypeScript
+    links:
+      demo: https://penguin-battle.netlify.app/
+      source: https://github.com/yuhueilee/penguin-game
+    media:
+      - type: image-set
+        path: work/penguin-battle
+        count: 3
+    channels:
+      - website
+      - resume
+      - linkedin
+
+education:
+  - id: monash-university-malaysia
+    institution: Monash University, Malaysia
+    degree: Bachelor of Computer Science
+    specialization: Advanced Computer Programming
+    start: "2019"
+    end: "2022"
+    grade: GPA 3.8 / 4.0
+    channels:
+      - resume
+      - linkedin
+
+certifications:
+  - id: topik-ii-level-3
+    name: TOPIK II, level 3
+    issued: "2026-03"
+    channels:
+      - resume
+      - linkedin
+
+activities:
+  - id: deep-dive-club
+    name: Deep Dive Club
+    location: Online
+    description: >-
+      Active member of a 10-person English-speaking discussion group with
+      members from diverse industries. Strengthening communication, critical
+      thinking, and the ability to engage with different perspectives.
+    channels:
+      - resume
+      - linkedin
+
+skills:
+  featured:
+    - React
+    - JavaScript
+    - Python
+    - Claude
+    - OpenAI
+
+assets:
+  baseUrl: https://cdn.wendyfolio.com
+  profileImage:
+    path: profile/1
+    formats:
+      - avif
+      - webp
+      - jpg
+  resume:
+    outputPath: public/assets/YuHueiLee_Resume.pdf
+
+channels:
+  resume:
+    pageSize: letter
+    sectionOrder:
+      main:
+        - introduction
+        - experience
+      sidebar:
+        - contact
+        - education
+        - skills
+        - certifications
+        - projects
+        - activities
+  linkedin:
+    lastSynchronized: null
