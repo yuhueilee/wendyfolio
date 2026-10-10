@@ -1,11 +1,19 @@
 import { render, screen } from "@testing-library/react";
 
-import { RESUME_HREF } from "../data";
+import { getSiteProfile } from "../../lib/site-profile";
 import Hero from "./index";
+
+const profile = getSiteProfile();
 
 describe("correctly returns the hero component", () => {
     it("renders the greeting, name and lede", () => {
-        render(<Hero />);
+        render(
+            <Hero
+                name={profile.name}
+                introduction={profile.heroIntroduction}
+                resumeHref={profile.resumeHref}
+            />
+        );
 
         expect(screen.getByText("Hi, my name is")).toBeInTheDocument();
         expect(
@@ -17,11 +25,17 @@ describe("correctly returns the hero component", () => {
     });
 
     it("renders the call-to-action links", () => {
-        render(<Hero />);
+        render(
+            <Hero
+                name={profile.name}
+                introduction={profile.heroIntroduction}
+                resumeHref={profile.resumeHref}
+            />
+        );
 
         expect(
             screen.getByText("DOWNLOAD RESUME").closest("a")
-        ).toHaveAttribute("href", RESUME_HREF);
+        ).toHaveAttribute("href", profile.resumeHref);
         expect(screen.getByText("VIEW WORK")).toHaveAttribute(
             "href",
             "#work"

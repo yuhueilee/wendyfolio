@@ -1,18 +1,19 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { JOBS } from "../data";
+import { getSiteProfile } from "../../lib/site-profile";
 import Experience from "./index";
 
 const companyName = (org: string) => org.replace(/^@\s*/, "");
+const { jobs } = getSiteProfile();
 
 describe("correctly returns the experience component", () => {
     it("renders a tab for every company", () => {
-        render(<Experience />);
+        render(<Experience jobs={jobs} />);
 
         expect(screen.getByText("JOB EXPERIENCE")).toBeInTheDocument();
         const tabs = screen.getAllByRole("tab");
-        expect(tabs).toHaveLength(JOBS.length);
-        JOBS.forEach((job) => {
+        expect(tabs).toHaveLength(jobs.length);
+        jobs.forEach((job) => {
             expect(
                 screen.getByRole("tab", { name: companyName(job.org) })
             ).toBeInTheDocument();
@@ -20,9 +21,9 @@ describe("correctly returns the experience component", () => {
     });
 
     it("shows the first job by default", () => {
-        render(<Experience />);
+        render(<Experience jobs={jobs} />);
 
-        const job = JOBS[0];
+        const job = jobs[0];
         expect(screen.getByText(job.title)).toBeInTheDocument();
         expect(screen.getByText(job.org)).toBeInTheDocument();
         expect(screen.getByText(job.duration)).toBeInTheDocument();
@@ -35,9 +36,9 @@ describe("correctly returns the experience component", () => {
     });
 
     it("switches the visible job when a tab is clicked", () => {
-        render(<Experience />);
+        render(<Experience jobs={jobs} />);
 
-        JOBS.forEach((job) => {
+        jobs.forEach((job) => {
             fireEvent.click(
                 screen.getByRole("tab", { name: companyName(job.org) })
             );

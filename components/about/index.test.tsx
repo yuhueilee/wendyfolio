@@ -1,10 +1,22 @@
 import { render, screen } from "@testing-library/react";
 
+import { getSiteProfile } from "../../lib/site-profile";
 import About from "./index";
+
+const profile = getSiteProfile();
+
+const renderAbout = () =>
+    render(
+        <About
+            name={profile.name}
+            introduction={profile.aboutIntroduction}
+            profileImage={profile.profileImage}
+        />
+    );
 
 describe("correctly returns the about component", () => {
     it("renders the section title and photo", () => {
-        const { container } = render(<About />);
+        const { container } = renderAbout();
 
         expect(screen.getByText("ABOUT ME")).toBeInTheDocument();
         expect(screen.getByAltText("Wendy Lee")).toHaveAttribute(
@@ -22,7 +34,7 @@ describe("correctly returns the about component", () => {
     });
 
     it("renders the introduction with highlighted skills", () => {
-        render(<About />);
+        renderAbout();
 
         expect(
             screen.getByText(
