@@ -21,6 +21,22 @@ describe("profile data source", () => {
         expect(result.success).toBe(false);
     });
 
+    it("rejects resume emphasis that is absent from its text", () => {
+        const profile = getProfile();
+        const result = profileSchema.safeParse({
+            ...profile,
+            introductions: {
+                ...profile.introductions,
+                resume: {
+                    ...profile.introductions.resume,
+                    emphasis: ["This phrase is not in the resume summary"],
+                },
+            },
+        });
+
+        expect(result.success).toBe(false);
+    });
+
     it("exposes only website-selected entries to the portfolio", () => {
         const profile = getProfile();
         const siteProfile = toSiteProfile(profile);

@@ -33,13 +33,17 @@ introductions:
     Portfolio of Wendy Lee (Lee Yu Huei), a software engineer working across
     backend services, responsive frontends, and the tests and tooling that
     keep both trustworthy.
-  resume: >-
-    With 4 years of hands-on software engineering experience across backend
-    (Golang/AWS), mobile (React Native), and web (React) development, I bring a
-    versatile technical background and a collaborative mindset. I am a
-    dedicated team player who values efficiency, effective communication, and
-    teamwork, with a passion for building tools and solutions that streamline
-    workflows and help teams to work more effectively.
+  resume:
+    text: >-
+      With 4 years of hands-on software engineering experience across backend
+      (Golang/AWS), mobile (React Native), and web (React) development, I bring a
+      versatile technical background and a collaborative mindset. I am a
+      dedicated team player who values efficiency, effective communication, and
+      teamwork, with a passion for building tools and solutions that streamline
+      workflows and help teams to work more effectively.
+    emphasis:
+      - With 4 years of hands-on software engineering experience
+      - efficiency, effective communication, and teamwork
 
 experience:
   - id: pinkoi
@@ -61,6 +65,8 @@ experience:
           API to migrate v3 and v5 syntax to v5-compat, then developed an
           autonomous migrator agent with properly scoped boundaries that cut
           migration time by 50%.
+        emphasis:
+          - cut migration time by 50%
       - id: react-18-migration
         text: >-
           Led the migration from React 16 to 18, creating a staged upgrade plan
@@ -80,11 +86,17 @@ experience:
           CMS, migrating from a legacy HOC pattern to a React Context-based
           architecture with TypeScript, enabling independent business team copy
           edits.
+        emphasis:
+          - >-
+            migrating from a legacy HOC pattern to a React Context-based
+            architecture
       - id: add-to-cart-cta
         text: >-
           Designed and implemented a reusable Add-to-Cart CTA component for the
           homepage revamp within a one-week sprint, eliminating UI coupling and
           jQuery state management.
+        emphasis:
+          - eliminating UI coupling and jQuery state management
     channels:
       - website
       - resume
@@ -106,6 +118,9 @@ experience:
           Refactored the codebase by migrating from JavaScript to TypeScript and
           upgrading React Native from version 0.64 to 0.74, which decreased the
           app's bundled size by 31% for iOS and 16% for Android.
+        emphasis:
+          - >-
+            decreased the app's bundled size by 31% for iOS and 16% for Android
       - id: data-flow-architecture
         text: >-
           Rebuilt a new data flow architecture for critical features, including
@@ -113,10 +128,14 @@ experience:
           Integrated Redux Toolkit into the codebase by implementing async thunk
           actions and listener middleware, which reduced duplicated business
           logic and increased maintainability.
+        emphasis:
+          - reduced duplicated business logic
       - id: mobile-cicd
         text: >-
           Built a CI/CD workflow with fastlane and GitHub Actions to deploy iOS
           and Android apps, cutting release cycles from hours to minutes.
+        emphasis:
+          - CI/CD workflow with fastlane and GitHub Actions
     channels:
       - website
       - resume
@@ -145,6 +164,8 @@ experience:
           which improved the data management user flow and resolved technical
           debt of storing duplicated data. Performed unit tests and integration
           tests on key user flows to uphold a minimum code coverage of 70%.
+        emphasis:
+          - resolved technical debt
       - id: ai-hackathon
         text: >-
           Won first place in a company hackathon focused on leveraging AI to
@@ -152,6 +173,8 @@ experience:
           Google Vertex AI trained on user metadata to identify subscription
           cancellation reasons, enabling the marketing team to make targeted
           retention decisions.
+        emphasis:
+          - first place in a company hackathon
     channels:
       - website
       - resume
@@ -262,6 +285,10 @@ projects:
           Designed and implemented an auto-reply bot for Threads that allows
           users to customize responses per keyword for a single post, cutting
           the operational time of manual replies from minutes to seconds.
+        emphasis:
+          - >-
+            cutting the operational time of manual replies from minutes to
+            seconds
 
   - id: penguin-battle
     kind: Side Project

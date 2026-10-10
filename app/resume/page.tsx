@@ -19,27 +19,8 @@ export const metadata: Metadata = {
     robots: { index: false, follow: false },
 };
 
-const EMPHASIS = [
-    "With 4 years of hands-on software engineering experience",
-    "efficiency, effective communication, and teamwork",
-    "cut migration time by 50%",
-    "migrating from a legacy HOC pattern to a React Context-based architecture",
-    "eliminating UI coupling and jQuery state management",
-    "decreased the app's bundled size by 31% for iOS and 16% for Android",
-    "reduced duplicated business logic",
-    "CI/CD workflow with fastlane and GitHub Actions",
-    "resolved technical debt",
-    "first place in a company hackathon",
-    "cutting the operational time of manual replies from minutes to seconds",
-];
-
 const escapePattern = (value: string): string =>
     value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-const EMPHASIS_PATTERN = new RegExp(
-    `(${EMPHASIS.map(escapePattern).join("|")})`,
-    "g"
-);
 
 const SKILL_ICONS: Record<string, ReactNode> = {
     React: <SiReact />,
@@ -49,14 +30,34 @@ const SKILL_ICONS: Record<string, ReactNode> = {
     OpenAI: <BsOpenai />,
 };
 
-const emphasize = (text: string): Array<ReactNode> =>
-    text.split(EMPHASIS_PATTERN).map((part, index) =>
-        EMPHASIS.includes(part) ? (
+const emphasize = ({
+    text,
+    emphasis,
+}: {
+    text: string;
+    emphasis: Array<string>;
+}): Array<ReactNode> => {
+    if (emphasis.length === 0) {
+        return [text];
+    }
+
+    const phrases = [...emphasis].sort(
+        (left, right) => right.length - left.length
+    );
+    const emphasized = new Set(phrases);
+    const pattern = new RegExp(
+        `(${phrases.map(escapePattern).join("|")})`,
+        "g"
+    );
+
+    return text.split(pattern).map((part, index) =>
+        emphasized.has(part) ? (
             <strong key={`${part}-${index}`}>{part}</strong>
         ) : (
             part
         )
     );
+};
 
 const displayUrl = (href: string): string =>
     href.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
@@ -115,7 +116,7 @@ export default function ResumePage() {
                                 </p>
                                 <ul>
                                     {job.highlights.map((highlight) => (
-                                        <li key={highlight}>
+                                        <li key={highlight.text}>
                                             {emphasize(highlight)}
                                         </li>
                                     ))}

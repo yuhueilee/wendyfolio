@@ -4,12 +4,51 @@ const channelSchema = z.enum(["website", "resume", "linkedin"]);
 const channelsSchema = z.array(channelSchema).min(1);
 const yearSchema = z.string().regex(/^\d{4}$/);
 const monthSchema = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/);
+const emphasisSchema = z.array(z.string().min(1)).default([]);
 
-const highlightSchema = z.object({
-    id: z.string().min(1),
-    text: z.string().min(1),
-    channels: channelsSchema.optional(),
-});
+const validateEmphasis = (
+    value: { text: string; emphasis: Array<string> },
+    context: z.RefinementCtx,
+    pathPrefix: Array<string> = []
+) => {
+    const seen = new Set<string>();
+
+    value.emphasis.forEach((phrase, index) => {
+        if (seen.has(phrase)) {
+            context.addIssue({
+                code: "custom",
+                message: "Emphasis phrases must be unique",
+                path: [...pathPrefix, "emphasis", index],
+            });
+        }
+
+        if (!value.text.includes(phrase)) {
+            context.addIssue({
+                code: "custom",
+                message: "Emphasis phrase must appear in the associated text",
+                path: [...pathPrefix, "emphasis", index],
+            });
+        }
+
+        seen.add(phrase);
+    });
+};
+
+const emphasizedTextSchema = z
+    .object({
+        text: z.string().min(1),
+        emphasis: emphasisSchema,
+    })
+    .superRefine((value, context) => validateEmphasis(value, context));
+
+const highlightSchema = z
+    .object({
+        id: z.string().min(1),
+        text: z.string().min(1),
+        emphasis: emphasisSchema,
+        channels: channelsSchema.optional(),
+    })
+    .superRefine((value, context) => validateEmphasis(value, context));
 
 const experienceSchema = z.object({
     id: z.string().min(1),
@@ -59,9 +98,25 @@ const projectSchema = z.object({
             resume: z.object({
                 description: z.string().min(1).optional(),
                 technologies: z.array(z.string().min(1)).min(1).optional(),
+                emphasis: emphasisSchema,
             }),
         })
         .optional(),
+}).superRefine((project, context) => {
+    const resumeOverride = project.overrides?.resume;
+
+    if (!resumeOverride) {
+        return;
+    }
+
+    validateEmphasis(
+        {
+            text: resumeOverride.description ?? project.description,
+            emphasis: resumeOverride.emphasis,
+        },
+        context,
+        ["overrides", "resume"]
+    );
 });
 
 const datedChannelEntrySchema = z.object({
@@ -91,7 +146,7 @@ export const profileSchema = z.object({
         hero: z.string().min(1),
         about: z.string().min(1),
         seo: z.string().min(1),
-        resume: z.string().min(1),
+        resume: emphasizedTextSchema,
     }),
     experience: z.array(experienceSchema).min(1),
     projects: z.array(projectSchema).min(1),

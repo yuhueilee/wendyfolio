@@ -10,20 +10,25 @@ interface ResumeExperience {
     role: string;
     duration: string;
     technologies: Array<string>;
-    highlights: Array<string>;
+    highlights: Array<ResumeText>;
+}
+
+interface ResumeText {
+    text: string;
+    emphasis: Array<string>;
 }
 
 interface ResumeProject {
     id: string;
     title: string;
-    description: string;
+    description: ResumeText;
     href?: string;
 }
 
 export interface ResumeProfile {
     name: string;
     preferredName: string;
-    summary: string;
+    summary: ResumeText;
     contact: {
         email: string;
         linkedin: string;
@@ -76,15 +81,21 @@ export const toResumeProfile = (profile: Profile): ResumeProfile => ({
                     !highlight.channels ||
                     highlight.channels.includes("resume")
             )
-            .map((highlight) => highlight.text),
+            .map((highlight) => ({
+                text: highlight.text,
+                emphasis: highlight.emphasis,
+            })),
     })),
     education: resumeEntries(profile.education),
     certifications: resumeEntries(profile.certifications),
     projects: resumeEntries(profile.projects).map((project) => ({
         id: project.id,
         title: project.title,
-        description:
-            project.overrides?.resume.description ?? project.description,
+        description: {
+            text:
+                project.overrides?.resume.description ?? project.description,
+            emphasis: project.overrides?.resume.emphasis ?? [],
+        },
         href: project.links.demo,
     })),
     activities: resumeEntries(profile.activities),

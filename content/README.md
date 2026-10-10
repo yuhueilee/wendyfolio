@@ -11,6 +11,8 @@ projects, education, and channel-specific inclusion rules.
 - Use `channels` to select content for the website, resume, or LinkedIn.
 - Add a channel-specific override only when that platform genuinely needs
   different wording. Do not copy an entire entry to customize one field.
+- Add exact phrases to an `emphasis` list beside résumé text when those phrases
+  should render in bold. Validation rejects phrases not found in that text.
 - Keep layout and presentation decisions in their consumer templates.
 
 The website validates this file in `lib/profile.ts`, adapts it to UI-facing

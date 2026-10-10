@@ -4,7 +4,7 @@ import ResumePage, { metadata } from "./page";
 
 describe("resume page", () => {
     it("renders the one-page resume sections from profile data", () => {
-        render(<ResumePage />);
+        const { container } = render(<ResumePage />);
 
         expect(
             screen.getByRole("heading", { level: 1, name: /Yu Huei Lee/ })
@@ -17,6 +17,15 @@ describe("resume page", () => {
         expect(
             screen.getByText("React 16 to 18", { exact: false })
         ).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                "With 4 years of hands-on software engineering experience"
+            ).tagName
+        ).toBe("STRONG");
+        expect(screen.getByText("cut migration time by 50%").tagName).toBe(
+            "STRONG"
+        );
+        expect(container.querySelectorAll("strong")).toHaveLength(11);
         expect(screen.getAllByRole("listitem").length).toBeGreaterThan(0);
         expect(screen.getByRole("link", { name: "Replyo" })).toHaveAttribute(
             "href",
