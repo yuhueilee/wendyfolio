@@ -21,6 +21,9 @@
   },
   "scripts": {
     "generate:profile": "node scripts/generate-profile-json.mjs",
+    "check:profile": "node scripts/generate-profile-json.mjs --check",
+    "check:production": "node scripts/check-production.mjs",
+    "smoke:cloudflare": "node scripts/smoke-cloudflare.mjs",
     "prebuild": "npm run generate:profile",
     "pretest": "npm run generate:profile",
     "build": "next build",
