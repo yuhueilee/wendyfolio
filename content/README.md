@@ -3,6 +3,11 @@
 `profile.yml` is the canonical source for personal information, work history,
 projects, education, and channel-specific inclusion rules.
 
+The website imports `profile.generated.json` so the data is bundled into the
+Cloudflare Worker. Do not edit that file directly. `npm run build` and
+`npm test` regenerate it from `profile.yml`; run `npm run generate:profile`
+when you need to refresh it manually.
+
 ## Editing rules
 
 - Update facts and shared wording here before changing any consumer.
