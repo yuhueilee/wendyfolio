@@ -18,5 +18,26 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - name: npm install
               run: npm ci
+            - name: Check generated profile
+              run: npm run check:profile
             - name: tests
               run: npm test
+
+    cloudflare-worker:
+        name: Cloudflare Worker
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24.22.3'
+            - name: npm install
+              run: npm ci
+            - name: Build Cloudflare Worker
+              run: npm run build:cloudflare
+            - name: Check deployment package
+              run: npx wrangler deploy --dry-run
+            - name: Smoke test Cloudflare Worker
+              run: npm run smoke:cloudflare

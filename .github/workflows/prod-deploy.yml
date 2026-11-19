@@ -21,6 +21,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install
         run: npm ci
+      - name: Check generated profile
+        run: npm run check:profile
       - name: tests
         run: npm test
 
@@ -46,3 +48,5 @@ jobs:
           preCommands: npm run build:cloudflare
           command: deploy
           gitHubToken: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Verify production domains
+        run: npm run check:production
